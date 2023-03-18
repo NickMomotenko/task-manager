@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 
-interface InputProps {}
+import { InputBody, InputWrapp } from "./styled";
 
-export const Input: React.FC<InputProps> = () => {
-  return <div></div>;
+interface InputProps {
+  initialValue: string;
+  placeholder: string;
+}
+
+export const Input: React.FC<InputProps> = ({
+  initialValue,
+  placeholder = "",
+}) => {
+  const [value, setValue] = useState<string>(initialValue);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setValue(event.target.value);
+
+  return (
+    <InputWrapp>
+      <InputBody
+        value={value}
+        placeholder={placeholder}
+        onChange={handleChange}
+      />
+    </InputWrapp>
+  );
 };

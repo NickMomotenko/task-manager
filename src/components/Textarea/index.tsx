@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 
-interface TextareaProps {}
+import { TextareaWrapp, TextareaBody } from "./styled";
 
-export const Textarea: React.FC<TextareaProps> = () => {
-  return <div></div>;
+interface TextareaProps {
+  placeholder: string;
+  initialValue: string;
+}
+
+export const Textarea: React.FC<TextareaProps> = ({
+  initialValue,
+  placeholder = "name@email.com, name@email.com, ...",
+}) => {
+  const [value, setValue] = useState<string>(initialValue);
+
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) =>
+    setValue(event.target.value);
+
+  return (
+    <TextareaWrapp>
+      <TextareaBody
+        value={value}
+        placeholder={placeholder}
+        onChange={handleChange}
+      />
+    </TextareaWrapp>
+  );
 };
