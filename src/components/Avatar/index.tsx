@@ -5,7 +5,7 @@ import { AvatarWrapp, AvatarBody } from "./styled";
 interface AvatarProps {
   url: string;
   alt: string;
-  size: number;
+  size?: number;
 }
 
 export const Avatar: React.FC<AvatarProps> = ({

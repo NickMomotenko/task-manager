@@ -5,6 +5,8 @@ export const TextareaWrapp = styled.div``;
 export const TextareaBody = styled.textarea`
   width: 290px;
 
+  font-family: "Poppins";
+
   background: #ffffff;
 
   border: 0.8px solid #e0e0e0;
@@ -21,7 +23,6 @@ export const TextareaBody = styled.textarea`
 
   &::placeholder {
     font-size: 13px;
-
     color: #bdbdbd;
   }
 

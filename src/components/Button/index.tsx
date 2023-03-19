@@ -1,13 +1,13 @@
 import React from "react";
 
-import { ButtonWrapp } from "./styled";
+import { ButtonWrapp, DefaultButtonWrapp } from "./styled";
 
 type ButtonType = "button" | "submit" | "reset";
 
 interface ButtonProps {
-  type: ButtonType;
+  type?: ButtonType;
   text: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -16,4 +16,8 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
 }) => {
   return <ButtonWrapp type={type}>{text}</ButtonWrapp>;
+};
+
+export const DefaultButton: React.FC<ButtonProps> = ({ type, text }) => {
+  return <DefaultButtonWrapp type={type}>{text}</DefaultButtonWrapp>;
 };

@@ -16,6 +16,7 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-size: 14px;
+  background: #e3e7f1;
 }
 
 a {
@@ -35,6 +36,7 @@ button {
   background: transparent;
   padding: 0;
   cursor: pointer;
+  font-family: "Poppins";
 }
 
 ul,

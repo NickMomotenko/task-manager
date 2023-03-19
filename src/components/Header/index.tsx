@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu } from "../../containers/Menu";
+import { Menu } from "../Menu";
 
 import { HeaderWrapp } from "./styled";
 

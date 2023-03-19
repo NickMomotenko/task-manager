@@ -8,6 +8,12 @@ export const ButtonWrapp = styled.button`
   font-size: 13px;
   color: #f2f2f2;
 
-  padding:14px 5px;
-  max-width:302px;
+  padding: 14px 36px;
+  max-width: 302px;
+`;
+
+export const DefaultButtonWrapp = styled.button`
+  font-size: 13px;
+  color: #2f80ed;
+  font-weight: 500;
 `;
