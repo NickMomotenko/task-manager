@@ -8,15 +8,21 @@ import {
 
 interface ProgressLineProps {
   initialValue: number;
+  overLineColor?: string;
+  baseLineColor?: string;
 }
 
-export const ProgressLine: React.FC<ProgressLineProps> = ({ initialValue }) => {
+export const ProgressLine: React.FC<ProgressLineProps> = ({
+  initialValue,
+  overLineColor,
+  baseLineColor,
+}) => {
   const [value, setValue] = useState(initialValue ?? 0);
 
   return (
     <ProgressLineWrapp>
-      <ProgressLineGlobal>
-        <ProgressLineOver value={value} />
+      <ProgressLineGlobal baseLineColor={baseLineColor}>
+        <ProgressLineOver value={value} overLineColor={overLineColor} />
       </ProgressLineGlobal>
     </ProgressLineWrapp>
   );

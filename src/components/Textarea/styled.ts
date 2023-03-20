@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const TextareaWrapp = styled.div``;
 
 export const TextareaBody = styled.textarea`
-  width: 290px;
+  width: 100%;
 
   font-family: "Poppins";
 

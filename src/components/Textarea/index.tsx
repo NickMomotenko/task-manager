@@ -4,11 +4,11 @@ import { TextareaWrapp, TextareaBody } from "./styled";
 
 interface TextareaProps {
   placeholder: string;
-  initialValue: string;
+  initialValue?: string;
 }
 
 export const Textarea: React.FC<TextareaProps> = ({
-  initialValue,
+  initialValue = "",
   placeholder = "name@email.com, name@email.com, ...",
 }) => {
   const [value, setValue] = useState<string>(initialValue);

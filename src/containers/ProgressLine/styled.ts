@@ -6,6 +6,7 @@ export const ProgressLineGlobal = styled.div<{ baseLineColor?: string }>`
   height: 4px;
   width: 130px;
   display: inline-block;
+  width: 100%;
   border-radius: 2px;
 
   background: ${({ baseLineColor }) =>

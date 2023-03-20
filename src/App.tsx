@@ -1,19 +1,21 @@
 import styled from "styled-components";
 
-import { InviteBlock } from "./containers/InviteBlock";
-import { FileAttachment } from "./containers/FileAttachment";
-import { MembersBlock } from "./containers/MembersBlock";
-import { ProgressLine } from "./containers/ProgressLine";
+import Header from "./components/Header";
+import { MainContent } from "./components/MainContent";
 
-const AppWrapp = styled.div``;
+const AppWrapp = styled.div`
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+`;
 
 export const App = () => {
   return (
     <AppWrapp>
-      <MembersBlock />
-      <InviteBlock />
-      <FileAttachment />
-      <ProgressLine initialValue={30} />
+      <Header />
+      <MainContent />
     </AppWrapp>
   );
 };
