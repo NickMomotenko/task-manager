@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import { MenuItem, MenuList, MenuWrapp, MenuLink } from "./styled";
 
 import { list } from "./mock";
@@ -24,9 +23,9 @@ export const Menu: React.FC = () => {
           return (
             <MenuItem key={id}>
               <MenuLink
-                href={path}
+                to={path}
                 isActiveItem={isActiveItem}
-                // onClick={handleItemClick}
+                onClick={() => handleItemClick(id)}
               >
                 {title}
               </MenuLink>

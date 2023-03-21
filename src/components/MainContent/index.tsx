@@ -1,14 +1,20 @@
 import styled from "styled-components";
-import { ProjectList } from "../../containers/ProjectList";
+
+import { Outlet } from "react-router-dom";
+
+import { Container } from "../Container";
 
 export const MainContentWrapp = styled.main`
   flex: 1;
+  margin-top: 40px;
 `;
 
 export const MainContent = () => {
   return (
     <MainContentWrapp>
-      <ProjectList />
+      <Container>
+        <Outlet />
+      </Container>
     </MainContentWrapp>
   );
 };

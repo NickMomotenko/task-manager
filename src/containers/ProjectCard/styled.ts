@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { Row } from "../../components/Layout";
 import { Paper } from "../../components/Paper";
 
-export const ProjectCardWrapp = styled.div``;
+export const ProjectCardWrapp = styled.div`
+  position: relative;
+`;
 
 export const ProjectCardPaper = styled(Paper)``;
 

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { Link } from "react-router-dom";
+
 export const MenuWrapp = styled.nav``;
 
 export const MenuList = styled.ul`
@@ -15,7 +17,7 @@ export const MenuItem = styled.li`
   }
 `;
 
-export const MenuLink = styled.a<{ isActiveItem: boolean }>`
+export const MenuLink = styled(Link)<{ isActiveItem: boolean }>`
   color: ${({ isActiveItem }) => (isActiveItem ? "#24abf8" : "black")};
   font-size: 15px;
   font-weight: 500;

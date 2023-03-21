@@ -23,16 +23,22 @@ import {
   ProjectCardInviteButton,
 } from "./styled";
 import { DefaultButton } from "../../components/Button";
+import { Options } from "../../components/Options";
+import { useState } from "react";
 
 export const ProjectCard = () => {
+  const [isOptionsOpen, setIsOptionsOpen] = useState(false);
+
+  const handleOptionsActiveClick = () => setIsOptionsOpen(!isOptionsOpen);
+
   return (
-    <ProjectCardWrapp>
+    <ProjectCardWrapp as="li">
       <ProjectCardPaper>
         <ProjectCardHead btw>
           <ProjectCardHeadTitle>
             <Title text="Konsept design homepage" />
           </ProjectCardHeadTitle>
-          <ProjectCardCrossButton>
+          <ProjectCardCrossButton onClick={handleOptionsActiveClick}>
             <Icon src={optionIcon} alt="option icon" />
           </ProjectCardCrossButton>
         </ProjectCardHead>
@@ -71,6 +77,7 @@ export const ProjectCard = () => {
           </Row>
         </ProjectCardBody>
       </ProjectCardPaper>
+      <Options initialState={isOptionsOpen} />
     </ProjectCardWrapp>
   );
 };

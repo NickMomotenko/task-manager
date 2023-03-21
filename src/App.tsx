@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
+import { Routes, Route } from "react-router-dom";
+
 import Header from "./components/Header";
 import { MainContent } from "./components/MainContent";
+import { Projects } from "./pages/Projects";
+import { ProjectScreen } from "./pages/ProjectScreen";
 
 const AppWrapp = styled.div`
   height: 100%;
@@ -15,7 +19,12 @@ export const App = () => {
   return (
     <AppWrapp>
       <Header />
-      <MainContent />
+      <Routes>
+        <Route path="/" element={<MainContent />}>
+          {/* <Route path="/" element={<Projects />} /> */}
+          <Route path="/" element={<ProjectScreen />} />
+        </Route>
+      </Routes>
     </AppWrapp>
   );
 };
