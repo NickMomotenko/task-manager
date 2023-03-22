@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const ProgressLineWrapp = styled.div``;
+export const ProgressLineWrapp = styled.div`
+  width: 100%;
+`;
 
 export const ProgressLineGlobal = styled.div<{ baseLineColor?: string }>`
   height: 4px;

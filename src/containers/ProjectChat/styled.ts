@@ -1,9 +1,13 @@
 import styled from "styled-components";
+
 import { ButtonWrapp } from "../../components/Button/styled";
 import { Row } from "../../components/Layout";
+import { Paper } from "../../components/Paper";
 import { TextareaBody } from "../../components/Textarea/styled";
 
 export const ProjectChatWrapp = styled.div``;
+
+export const ProjectChatPaper = styled(Paper)``;
 
 export const ProjectChatTitle = styled.div`
   margin-bottom: 20px;

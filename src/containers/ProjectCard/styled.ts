@@ -5,6 +5,8 @@ import { Paper } from "../../components/Paper";
 
 export const ProjectCardWrapp = styled.div`
   position: relative;
+  display: inline-block;
+  width: 100%;
 `;
 
 export const ProjectCardPaper = styled(Paper)``;

@@ -27,6 +27,7 @@ import {
   ProjectChatBodyList,
   ProjectChatTextarea,
   ProjectChatTextareaButton,
+  ProjectChatPaper,
 } from "./styled";
 
 import { ProjectChatItem } from "./ProjectChatItem";
@@ -35,50 +36,52 @@ import { Icon } from "../../components/Icon";
 export const ProjectChat = () => {
   return (
     <ProjectChatWrapp>
-      <ProjectChatTitle>
-        <Title text="Project Chat" />
-      </ProjectChatTitle>
-      <ProjectChatContent>
-        <ProjectChatTeamList>
-          <Row>
-            <ProjectChatTeamLabelText>Team:</ProjectChatTeamLabelText>
-            <ProjectChatTeamMultiAvatar>
-              <MultiAvatar size={30} />
-            </ProjectChatTeamMultiAvatar>
-          </Row>
-        </ProjectChatTeamList>
-        <ProjectChatBody>
-          <ProjectChatBodyList>
-            {chatList.map((chat) => (
-              <ProjectChatItem key={chat.id} as="li" {...chat} />
-            ))}
-          </ProjectChatBodyList>
-        </ProjectChatBody>
-        <ProjectChatTextareaBlock>
-          <ProjectChatTextareaBlockRow>
-            <ProjectChatTextareaAvatar>
-              <Avatar url={photo_1} alt="avatar icon" size={30} />
-            </ProjectChatTextareaAvatar>
-            <ProjectChatTextarea>
-              <Textarea placeholder="Reply or post an update" />
-              <ProjectChatTextareaBottom>
-                <Row>
-                  <ProjectChatTextareaButton>
-                    <Icon src={textOutlineIcon} alt="text outline icon" />
-                  </ProjectChatTextareaButton>
-                  <ProjectChatTextareaButton>
-                    <Icon src={smileIcon} alt="smile icon" />
-                  </ProjectChatTextareaButton>
-                  <ProjectChatTextareaButton>
-                    <Icon src={attachIcon} alt="attach icon" />
-                  </ProjectChatTextareaButton>
-                </Row>
-                <Button text="Send" />
-              </ProjectChatTextareaBottom>
-            </ProjectChatTextarea>
-          </ProjectChatTextareaBlockRow>
-        </ProjectChatTextareaBlock>
-      </ProjectChatContent>
+      <ProjectChatPaper>
+        <ProjectChatTitle>
+          <Title text="Project Chat" />
+        </ProjectChatTitle>
+        <ProjectChatContent>
+          <ProjectChatTeamList>
+            <Row>
+              <ProjectChatTeamLabelText>Team:</ProjectChatTeamLabelText>
+              <ProjectChatTeamMultiAvatar>
+                <MultiAvatar size={30} />
+              </ProjectChatTeamMultiAvatar>
+            </Row>
+          </ProjectChatTeamList>
+          <ProjectChatBody>
+            <ProjectChatBodyList>
+              {chatList.map((chat) => (
+                <ProjectChatItem key={chat.id} as="li" {...chat} />
+              ))}
+            </ProjectChatBodyList>
+          </ProjectChatBody>
+          <ProjectChatTextareaBlock>
+            <ProjectChatTextareaBlockRow>
+              <ProjectChatTextareaAvatar>
+                <Avatar url={photo_1} alt="avatar icon" size={30} />
+              </ProjectChatTextareaAvatar>
+              <ProjectChatTextarea>
+                <Textarea placeholder="Reply or post an update" />
+                <ProjectChatTextareaBottom>
+                  <Row>
+                    <ProjectChatTextareaButton>
+                      <Icon src={textOutlineIcon} alt="text outline icon" />
+                    </ProjectChatTextareaButton>
+                    <ProjectChatTextareaButton>
+                      <Icon src={smileIcon} alt="smile icon" />
+                    </ProjectChatTextareaButton>
+                    <ProjectChatTextareaButton>
+                      <Icon src={attachIcon} alt="attach icon" />
+                    </ProjectChatTextareaButton>
+                  </Row>
+                  <Button text="Send" />
+                </ProjectChatTextareaBottom>
+              </ProjectChatTextarea>
+            </ProjectChatTextareaBlockRow>
+          </ProjectChatTextareaBlock>
+        </ProjectChatContent>
+      </ProjectChatPaper>
     </ProjectChatWrapp>
   );
 };

@@ -1,10 +1,15 @@
+import { useState } from "react";
+
 import { Icon } from "../../components/Icon";
 import { Title } from "../../components/Title";
-import optionIcon from "../../assets/icons/option-dots.svg";
 import { Row } from "../../components/Layout";
 import { MultiAvatar } from "../../components/MultiAvatar";
+import { DefaultButton } from "../../components/Button";
+import { Options } from "../../components/Options";
 
 import { ProgressLine } from "../ProgressLine";
+
+import optionIcon from "../../assets/icons/option-dots.svg";
 
 import {
   ProjectCardWrapp,
@@ -22,17 +27,18 @@ import {
   ProjectCardMultiAvatarText,
   ProjectCardInviteButton,
 } from "./styled";
-import { DefaultButton } from "../../components/Button";
-import { Options } from "../../components/Options";
-import { useState } from "react";
 
-export const ProjectCard = () => {
+interface ProjectCardProps {
+  as?: string | any;
+}
+
+export const ProjectCard: React.FC<ProjectCardProps> = ({ as }) => {
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
 
   const handleOptionsActiveClick = () => setIsOptionsOpen(!isOptionsOpen);
 
   return (
-    <ProjectCardWrapp as="li">
+    <ProjectCardWrapp as={as}>
       <ProjectCardPaper>
         <ProjectCardHead btw>
           <ProjectCardHeadTitle>
