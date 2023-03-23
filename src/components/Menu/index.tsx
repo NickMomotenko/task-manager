@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { MenuItem, MenuList, MenuWrapp, MenuLink } from "./styled";
+import {
+  MenuItem,
+  MenuList,
+  MenuWrapp,
+  MenuLink,
+  MenuLinkText,
+} from "./styled";
 
 import { list } from "./mock";
 
@@ -18,16 +24,12 @@ export const Menu: React.FC = () => {
     <MenuWrapp>
       <MenuList>
         {list.map(({ id, title, path }) => {
-          const isActiveItem = activeItem.id === id;
+          const isActive = activeItem.id === id;
 
           return (
             <MenuItem key={id}>
-              <MenuLink
-                to={path}
-                isActiveItem={isActiveItem}
-                onClick={() => handleItemClick(id)}
-              >
-                {title}
+              <MenuLink to={path} onClick={() => handleItemClick(id)}>
+                <MenuLinkText active={isActive}>{title}</MenuLinkText>
               </MenuLink>
             </MenuItem>
           );

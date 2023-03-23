@@ -28,7 +28,10 @@ interface TableProps {
     };
     data: {
       created_at: string;
-      status_name: string;
+      status_type: {
+        title: string;
+        textColor: string;
+      };
       title: string;
       status_percent: number;
     };
@@ -54,37 +57,42 @@ export const Table: React.FC<TableProps> = ({ head, layoutRules, body }) => {
       </TableHeader>
       <TableBody>
         <TableList as="ul">
-          {body?.map(({ data, user }) => (
-            <TableItem as="li">
-              <TableColumn flex={layoutRules[0]}>
-                <TableCheckbox>
-                  <Checkbox
-                    initialState={data?.status_percent === 100 ? true : false}
-                  />
-                </TableCheckbox>
-                <TableData>
-                  <TableDataTitle>{data?.title}</TableDataTitle>
-                  <TableProgressLine>
-                    <ProgressLine initialValue={data?.status_percent} />
-                    <TableProgressLineCounter>
-                      {data?.status_percent}%
-                    </TableProgressLineCounter>
-                  </TableProgressLine>
-                </TableData>
-              </TableColumn>
-              <TableColumn
-                flex={layoutRules[1]}
-                center
-                style={{ flexDirection: "column" }}
-              >
-                <TableStatus>{data?.status_name}</TableStatus>
-                <TableDate>{data?.created_at}</TableDate>
-              </TableColumn>
-              <TableColumn flex={layoutRules[2]} center>
-                <Avatar url={user?.avatar} alt={user?.fullname} size={32} />
-              </TableColumn>
-            </TableItem>
-          ))}
+          {body?.map(({ data, user, id }) => {
+            const { textColor, title } = data?.status_type;
+
+            return (
+              <TableItem key={id} as="li">
+                <TableColumn flex={layoutRules[0]}>
+                  <TableCheckbox>
+                    <Checkbox initialState={data?.status_percent === 100} />
+                  </TableCheckbox>
+                  <TableData>
+                    <TableDataTitle>{data?.title}</TableDataTitle>
+                    <TableProgressLine>
+                      <ProgressLine
+                        initialValue={data?.status_percent}
+                        overLineColor={textColor}
+                      />
+                      <TableProgressLineCounter>
+                        {data?.status_percent}%
+                      </TableProgressLineCounter>
+                    </TableProgressLine>
+                  </TableData>
+                </TableColumn>
+                <TableColumn
+                  flex={layoutRules[1]}
+                  center
+                  style={{ flexDirection: "column" }}
+                >
+                  <TableStatus textColor={textColor}>{title}</TableStatus>
+                  <TableDate>{data?.created_at}</TableDate>
+                </TableColumn>
+                <TableColumn flex={layoutRules[2]} center>
+                  <Avatar url={user?.avatar} alt={user?.fullname} size={32} />
+                </TableColumn>
+              </TableItem>
+            );
+          })}
         </TableList>
       </TableBody>
     </TableWrapp>

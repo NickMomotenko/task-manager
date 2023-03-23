@@ -49,4 +49,4 @@ export const ProjectCardMultiAvatarText = styled.span`
   margin-left: 10px;
 `;
 
-export const ProjectCardInviteButton = styled.button``;
+export const ProjectCardInviteButton = styled.div``;

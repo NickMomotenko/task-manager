@@ -1,6 +1,7 @@
 import photo_1 from "../../assets/member/2.png";
 import photo_2 from "../../assets/member/1.png";
 import photo_3 from "../../assets/member/3.png";
+import { status } from "../../helper/project-status";
 
 export const header = ["Project", "Status", "Owner"];
 
@@ -13,7 +14,7 @@ export const body = [
     },
     data: {
       created_at: "14 Mar",
-      status_name: "On Track",
+      status_type: status.onTrack,
       title: "Marketing Page Redesign",
       status_percent: 100,
     },
@@ -26,7 +27,7 @@ export const body = [
     },
     data: {
       created_at: "16 Mar",
-      status_name: "At risk",
+      status_type: status.atRisk,
       title: "Pitch Deck",
       status_percent: 70,
     },
@@ -39,7 +40,7 @@ export const body = [
     },
     data: {
       created_at: "17 Mar",
-      status_name: "Off Track",
+      status_type: status.offTrack,
       title: "New iOS Developement",
       status_percent: 20,
     },

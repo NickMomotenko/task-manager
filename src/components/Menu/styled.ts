@@ -17,14 +17,17 @@ export const MenuItem = styled.li`
   }
 `;
 
-export const MenuLink = styled(Link)<{ isActiveItem: boolean }>`
-  color: ${({ isActiveItem }) => (isActiveItem ? "#24abf8" : "black")};
+export const MenuLinkText = styled.span<{ active: boolean }>`
+  color: ${({ active }) => (active ? "#24abf8" : "black")};
   font-size: 15px;
   font-weight: 500;
+`;
 
-  transition: 0.5s;
-
+export const MenuLink = styled(Link)`
   &:hover {
-    color: #24abf8;
+    ${MenuLinkText} {
+      transition:color 0.5s;
+      color: #24abf8;
+    }
   }
 `;

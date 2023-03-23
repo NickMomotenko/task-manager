@@ -15,7 +15,11 @@ export const Button: React.FC<ButtonProps> = ({
   text,
   onClick,
 }) => {
-  return <ButtonWrapp type={type}>{text}</ButtonWrapp>;
+  return (
+    <ButtonWrapp type={type} onClick={onClick}>
+      {text}
+    </ButtonWrapp>
+  );
 };
 
 export const DefaultButton: React.FC<ButtonProps> = ({ type, text }) => {

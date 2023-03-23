@@ -7,11 +7,14 @@ export const ProjectStatusWrapp = styled.div``;
 
 export const ProjectStatusPaper = styled(PaperWrapp)`
   min-width: 400px;
+  width:100%;
 `;
 
 export const ProjectStatusHeader = styled(Row)`
   margin-bottom: 20px;
 `;
+
+export const ProjectStatusSearchButton = styled.button``;
 
 export const ProjectStatusBody = styled.div``;
 

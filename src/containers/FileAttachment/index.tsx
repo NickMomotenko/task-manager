@@ -1,4 +1,5 @@
-import { Paper } from "../../components/Paper";
+import { useEffect, useRef, useState } from "react";
+
 import { Title } from "../../components/Title";
 
 import { FileAttachmentItem } from "./FileAttachmentItem";
@@ -12,32 +13,38 @@ import {
   FileAttachmentDropSpaceTextSpan,
   FileAttachmentList,
   FileAttachmentPaper,
+  FileAttachmentBodyWrapper,
 } from "./styled";
 
 import { files } from "./mock";
+import { useToggleClicker } from "../../hooks/useToggleClicker";
 
 export const FileAttachment = () => {
+  const { bodyRef, bodyWrappRef, handleOpenClick } = useToggleClicker(false);
+
   return (
     <FileAttachmentWrapp>
       <FileAttachmentPaper>
-        <FileAttachmentHeader>
+        <FileAttachmentHeader onClick={handleOpenClick}>
           <Title text="File Attachment" />
         </FileAttachmentHeader>
-        <FileAttachmentBody>
-          <FileAttachmentList>
-            {files.map((file) => (
-              <FileAttachmentItem key={file.id} {...file} />
-            ))}
-          </FileAttachmentList>
+        <FileAttachmentBody ref={bodyRef}>
+          <FileAttachmentBodyWrapper ref={bodyWrappRef}>
+            <FileAttachmentList>
+              {files.map((file) => (
+                <FileAttachmentItem key={file.id} {...file} />
+              ))}
+            </FileAttachmentList>
+            <FileAttachmentDropSpace>
+              <FileAttachmentDropSpaceText>
+                Choose a file
+                <FileAttachmentDropSpaceTextSpan>
+                  or drag it here
+                </FileAttachmentDropSpaceTextSpan>
+              </FileAttachmentDropSpaceText>
+            </FileAttachmentDropSpace>
+          </FileAttachmentBodyWrapper>
         </FileAttachmentBody>
-        <FileAttachmentDropSpace>
-          <FileAttachmentDropSpaceText>
-            Choose a file
-            <FileAttachmentDropSpaceTextSpan>
-              or drag it here
-            </FileAttachmentDropSpaceTextSpan>
-          </FileAttachmentDropSpaceText>
-        </FileAttachmentDropSpace>
       </FileAttachmentPaper>
     </FileAttachmentWrapp>
   );

@@ -11,6 +11,7 @@ import {
   ProjectStatusBody,
   ProjectStatusTable,
   ProjectStatusPaper,
+  ProjectStatusSearchButton,
 } from "./styled";
 
 import { header, body } from "./mock";
@@ -21,7 +22,9 @@ export const ProjectStatus = () => {
       <ProjectStatusPaper>
         <ProjectStatusHeader btw>
           <Title text="Project Status" />
-          <Icon src={lypaIcon} alt="search icon" />
+          <ProjectStatusSearchButton>
+            <Icon src={lypaIcon} alt="search icon" />
+          </ProjectStatusSearchButton>
         </ProjectStatusHeader>
         <ProjectStatusBody>
           <ProjectStatusTable>

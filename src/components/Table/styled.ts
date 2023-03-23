@@ -60,9 +60,20 @@ export const TableDataTitle = styled.div`
   color: #4f4f4f;
 `;
 
-export const TableStatus = styled.div`
+export const TableStatus = styled.div<{ textColor: string }>`
   font-size: 11px;
-  color: #219653;
+  color: ${({ textColor }) => (textColor ? textColor : "#219653")};
+
+  &:before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: ${({ textColor }) => (textColor ? textColor : "#219653")};
+    margin-right: 4px;
+    vertical-align: middle;
+  }
 `;
 
 export const TableDate = styled.div`
