@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-
 import { Title } from "../../components/Title";
 
 import { FileAttachmentItem } from "./FileAttachmentItem";
+
+import { useToggleClicker } from "../../hooks/useToggleClicker";
 
 import {
   FileAttachmentWrapp,
@@ -17,7 +17,6 @@ import {
 } from "./styled";
 
 import { files } from "./mock";
-import { useToggleClicker } from "../../hooks/useToggleClicker";
 
 export const FileAttachment = () => {
   const { bodyRef, bodyWrappRef, handleOpenClick } = useToggleClicker(false);
