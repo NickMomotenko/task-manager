@@ -2,6 +2,8 @@ import { Button } from "../../components/Button";
 import { Icon } from "../../components/Icon";
 import { Textarea } from "../../components/Textarea";
 import { Title } from "../../components/Title";
+import { Avatar } from "../../components/Avatar";
+
 import {
   TaskCreatorWrapp,
   TaskCreatorPaper,
@@ -14,13 +16,24 @@ import {
   TaskCreatorOptionsList,
   TaskCreatorOptionsItem,
   TaskCreatorCrossButton,
+  TaskCreatorImplementor,
+  TaskCreatorImplementorText,
+  TaskCreatorImplementorTextIn,
+  TaskCreatorImplementorContentWrapp,
+  TaskCreatorImplementorTextProject,
+  TaskCreatorImplementorTextName,
+  TaskCreatorImplementorContentWrappUser,
+  TaskCreatorImplementorCrossButton,
 } from "./styled";
 
 import crossIcon from "../../assets/icons/cross.svg";
+import photo_1 from "../../assets/member/2.png";
 
 import { options } from "./mock";
 
-export const TaskCreator = () => {
+export const TaskCreator: React.FC<{ initialState?: boolean }> = ({
+  initialState = false,
+}) => {
   return (
     <TaskCreatorWrapp>
       <TaskCreatorPaper>
@@ -31,6 +44,24 @@ export const TaskCreator = () => {
           </TaskCreatorCrossButton>
         </TaskCreatorHead>
         <TaskCreatorBody>
+          <TaskCreatorImplementor>
+            <TaskCreatorImplementorText>For</TaskCreatorImplementorText>
+            <TaskCreatorImplementorContentWrappUser>
+              <Avatar url={photo_1} alt="avatar icon" size={24} />
+              <TaskCreatorImplementorTextName>
+                Brooklyn
+              </TaskCreatorImplementorTextName>
+              <TaskCreatorImplementorCrossButton>
+                <Icon src={crossIcon} alt="cross icon" />
+              </TaskCreatorImplementorCrossButton>
+            </TaskCreatorImplementorContentWrappUser>
+            <TaskCreatorImplementorTextIn>In</TaskCreatorImplementorTextIn>
+            <TaskCreatorImplementorContentWrapp>
+              <TaskCreatorImplementorTextProject>
+                Project
+              </TaskCreatorImplementorTextProject>
+            </TaskCreatorImplementorContentWrapp>
+          </TaskCreatorImplementor>
           <TaskCreatorTextarea>
             <Textarea placeholder="Description..." />
           </TaskCreatorTextarea>

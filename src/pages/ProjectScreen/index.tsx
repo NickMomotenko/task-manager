@@ -8,6 +8,7 @@ import { ProjectCard } from "../../containers/ProjectCard";
 import { ProjectChat } from "../../containers/ProjectChat";
 import { ProjectStatus } from "../../containers/ProjectStatus";
 import { RecentActivity } from "../../containers/RecentActivity";
+import { TaskCreator } from "../../containers/TaskCreator";
 
 export const ProjectScreenWrapp = styled.div``;
 
@@ -42,6 +43,10 @@ export const ProjectScreenMembers = styled.div`
 
 export const ProjectScreenActivity = styled.div``;
 
+export const ProjectScreenStatusTable = styled.div`
+  margin-bottom: 20px;
+`;
+
 export const ProjectScreen = () => {
   return (
     <ProjectScreenWrapp>
@@ -50,7 +55,10 @@ export const ProjectScreen = () => {
           <ProjectScreenCard>
             <ProjectCard />
           </ProjectScreenCard>
-          <ProjectStatus />
+          <ProjectScreenStatusTable>
+            <ProjectStatus />
+          </ProjectScreenStatusTable>
+          <TaskCreator />
         </ProjectScreenColumn>
         <ProjectScreenColumn>
           <ProjectScreenChat>

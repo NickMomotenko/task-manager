@@ -3,18 +3,22 @@ import styled from "styled-components";
 import { Row } from "../../components/Layout";
 import { PaperWrapp } from "../../components/Paper/styled";
 
-export const ProjectStatusWrapp = styled.div``;
+export const ProjectStatusWrapp = styled.div`
+  position: relative;
+`;
 
 export const ProjectStatusPaper = styled(PaperWrapp)`
   min-width: 400px;
-  width:100%;
+  width: 100%;
 `;
 
 export const ProjectStatusHeader = styled(Row)`
   margin-bottom: 20px;
 `;
 
-export const ProjectStatusSearchButton = styled.button``;
+export const ProjectStatusSearchButton = styled.button`
+  margin-right: 15px;
+`;
 
 export const ProjectStatusBody = styled.div``;
 
@@ -28,6 +32,10 @@ export const ProjectStatusTableHead = styled.div`
   display: flex;
 `;
 
+export const ProjectStatusTableHeadButtons = styled(Row)`
+  align-items: center;
+`;
+
 export const ProjectStatusTableColumn = styled(Row)``;
 
 export const ProjectStatusTableHeadLabel = styled.div`
@@ -38,3 +46,5 @@ export const ProjectStatusTableHeadLabel = styled.div`
 export const ProjectStatusTableBody = styled.div``;
 
 export const ProjectStatusTableBodyRow = styled(Row)``;
+
+export const ProjectStatusOptionButton = styled.button``;

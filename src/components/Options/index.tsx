@@ -6,14 +6,19 @@ import {
   OptionsButton,
 } from "./styled";
 
-const list = [{ id: 1, title: "Project info" }];
+const mockList = [{ id: 1, title: "Project info" }];
+
+type ListItem = { id: number; title: string };
 
 interface OptionsProps {
-  list?: [];
+  list?: ListItem[];
   initialState: boolean;
 }
 
-export const Options: React.FC<OptionsProps> = ({ initialState }) => {
+export const Options: React.FC<OptionsProps> = ({
+  initialState,
+  list = mockList,
+}) => {
   const [isOpen, setIsOpen] = useState(initialState);
 
   useEffect(() => {
@@ -23,7 +28,7 @@ export const Options: React.FC<OptionsProps> = ({ initialState }) => {
   return (
     <OptionsWrapp isOpen={isOpen}>
       <OptionsList>
-        {list.map(({ id, title }) => (
+        {list?.map(({ id, title }) => (
           <OptionsItem key={id}>
             <OptionsButton>{title}</OptionsButton>
           </OptionsItem>

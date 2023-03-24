@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { Icon } from "../../components/Icon";
 import { Title } from "../../components/Title";
@@ -27,6 +27,7 @@ import {
   ProjectCardMultiAvatarText,
   ProjectCardInviteButton,
 } from "./styled";
+import { useClickOutside } from "../../hooks/useClickOutside";
 
 interface ProjectCardProps {
   as?: string | any;
@@ -35,7 +36,11 @@ interface ProjectCardProps {
 export const ProjectCard: React.FC<ProjectCardProps> = ({ as }) => {
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
 
+  const optionRef = useRef<HTMLDivElement>(null);
+
   const handleOptionsActiveClick = () => setIsOptionsOpen(!isOptionsOpen);
+
+  useClickOutside(optionRef, () => setIsOptionsOpen(false));
 
   return (
     <ProjectCardWrapp as={as}>
@@ -83,7 +88,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ as }) => {
           </Row>
         </ProjectCardBody>
       </ProjectCardPaper>
-      <Options initialState={isOptionsOpen} />
+      <div ref={optionRef}>
+        <Options initialState={isOptionsOpen} />
+      </div>
     </ProjectCardWrapp>
   );
 };
