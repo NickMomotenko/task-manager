@@ -31,15 +31,16 @@ import photo_1 from "../../assets/member/2.png";
 
 import { options } from "./mock";
 
-export const TaskCreator: React.FC<{ initialState?: boolean }> = ({
-  initialState = false,
-}) => {
+export const TaskCreator: React.FC<{
+  initialState?: boolean;
+  handleTaskCreatorActive: () => void;
+}> = ({ initialState = false, handleTaskCreatorActive }) => {
   return (
     <TaskCreatorWrapp>
       <TaskCreatorPaper>
         <TaskCreatorHead btw>
           <Title text="Create New Task" />
-          <TaskCreatorCrossButton>
+          <TaskCreatorCrossButton onClick={handleTaskCreatorActive}>
             <Icon src={crossIcon} alt="cross icon" />
           </TaskCreatorCrossButton>
         </TaskCreatorHead>

@@ -48,3 +48,5 @@ export const ProjectStatusTableBody = styled.div``;
 export const ProjectStatusTableBodyRow = styled(Row)``;
 
 export const ProjectStatusOptionButton = styled.button``;
+
+export const ProjectStatusOptionBlock = styled.div``;

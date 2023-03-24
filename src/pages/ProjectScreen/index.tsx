@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import styled from "styled-components";
 
 import { Row } from "../../components/Layout";
@@ -6,6 +8,7 @@ import { FileAttachment } from "../../containers/FileAttachment";
 import { MembersBlock } from "../../containers/MembersBlock";
 import { ProjectCard } from "../../containers/ProjectCard";
 import { ProjectChat } from "../../containers/ProjectChat";
+import { ProjectProgress } from "../../containers/ProjectProgress";
 import { ProjectStatus } from "../../containers/ProjectStatus";
 import { RecentActivity } from "../../containers/RecentActivity";
 import { TaskCreator } from "../../containers/TaskCreator";
@@ -48,6 +51,16 @@ export const ProjectScreenStatusTable = styled.div`
 `;
 
 export const ProjectScreen = () => {
+  const [isTaskCreatorOpen, setIsTaskCreatorOpen] = useState<boolean>(false);
+  const [isWeeklyProgressOpen, setIsWeeklyProgressOpen] =
+    useState<boolean>(false);
+
+  const handleTaskCreatorActive = () =>
+    setIsTaskCreatorOpen(!isTaskCreatorOpen);
+
+  const handleWeeklyProgressActive = () =>
+    setIsWeeklyProgressOpen(!isWeeklyProgressOpen);
+
   return (
     <ProjectScreenWrapp>
       <ProjectScreenRow>
@@ -56,9 +69,13 @@ export const ProjectScreen = () => {
             <ProjectCard />
           </ProjectScreenCard>
           <ProjectScreenStatusTable>
-            <ProjectStatus />
+            <ProjectStatus
+              handleTaskCreatorActive={handleTaskCreatorActive}
+              handleWeeklyProgressActive={handleWeeklyProgressActive}
+            />
           </ProjectScreenStatusTable>
-          <TaskCreator />
+          {isTaskCreatorOpen && <TaskCreator handleTaskCreatorActive={handleTaskCreatorActive} />}
+          {isWeeklyProgressOpen && <ProjectProgress handleWeeklyProgressActive={handleWeeklyProgressActive} />}
         </ProjectScreenColumn>
         <ProjectScreenColumn>
           <ProjectScreenChat>

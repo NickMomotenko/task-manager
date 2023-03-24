@@ -6,9 +6,9 @@ import {
   OptionsButton,
 } from "./styled";
 
-const mockList = [{ id: 1, title: "Project info" }];
+const mockList = [{ id: 1, title: "Project info", onClick: () => {} }];
 
-type ListItem = { id: number; title: string };
+type ListItem = { id: number; title: string; onClick: () => void };
 
 interface OptionsProps {
   list?: ListItem[];
@@ -28,9 +28,9 @@ export const Options: React.FC<OptionsProps> = ({
   return (
     <OptionsWrapp isOpen={isOpen}>
       <OptionsList>
-        {list?.map(({ id, title }) => (
+        {list?.map(({ id, title, onClick }) => (
           <OptionsItem key={id}>
-            <OptionsButton>{title}</OptionsButton>
+            <OptionsButton onClick={onClick}>{title}</OptionsButton>
           </OptionsItem>
         ))}
       </OptionsList>

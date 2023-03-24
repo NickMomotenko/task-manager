@@ -27,4 +27,10 @@ export const OptionsItem = styled.li`
 export const OptionsButton = styled.button`
   width: 100%;
   text-align: left;
+  color: #7f4d4d;
+  transition: opacity 0.4s;
+
+  &:hover {
+    opacity: 0.7;
+  }
 `;

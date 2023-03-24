@@ -19,11 +19,20 @@ import {
   ProjectStatusPaper,
   ProjectStatusSearchButton,
   ProjectStatusOptionButton,
+  ProjectStatusOptionBlock,
 } from "./styled";
 
 import { header, body } from "./mock";
 
-export const ProjectStatus: React.FC = () => {
+interface ProjectStatusProps {
+  handleTaskCreatorActive: () => void;
+  handleWeeklyProgressActive: () => void;
+}
+
+export const ProjectStatus: React.FC<ProjectStatusProps> = ({
+  handleTaskCreatorActive,
+  handleWeeklyProgressActive,
+}) => {
   const [isOptionsOpen, setIsOptionsOpen] = useState<boolean>(false);
 
   const optionRef = useRef<HTMLDivElement>(null);
@@ -32,7 +41,10 @@ export const ProjectStatus: React.FC = () => {
 
   useClickOutside(optionRef, () => setIsOptionsOpen(false));
 
-  const optionList = [{ id: 1, title: "Add new task" }];
+  const optionList = [
+    { id: 1, title: "Add new task", onClick: handleTaskCreatorActive },
+    { id: 2, title: "Project progress", onClick: handleWeeklyProgressActive },
+  ];
 
   return (
     <ProjectStatusWrapp>
@@ -54,9 +66,12 @@ export const ProjectStatus: React.FC = () => {
           </ProjectStatusTable>
         </ProjectStatusBody>
       </ProjectStatusPaper>
-      <div ref={optionRef}>
+      <ProjectStatusOptionBlock
+        ref={optionRef}
+        onClick={handleOptionsActiveClick}
+      >
         <Options initialState={isOptionsOpen} list={optionList} />
-      </div>
+      </ProjectStatusOptionBlock>
     </ProjectStatusWrapp>
   );
 };

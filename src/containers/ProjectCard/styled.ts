@@ -50,3 +50,5 @@ export const ProjectCardMultiAvatarText = styled.span`
 `;
 
 export const ProjectCardInviteButton = styled.div``;
+
+export const ProjectCardOptionBlock = styled.div``;

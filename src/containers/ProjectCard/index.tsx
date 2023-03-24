@@ -26,6 +26,7 @@ import {
   ProjectCardMultiAvatar,
   ProjectCardMultiAvatarText,
   ProjectCardInviteButton,
+  ProjectCardOptionBlock,
 } from "./styled";
 import { useClickOutside } from "../../hooks/useClickOutside";
 
@@ -88,9 +89,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ as }) => {
           </Row>
         </ProjectCardBody>
       </ProjectCardPaper>
-      <div ref={optionRef}>
+      <ProjectCardOptionBlock
+        ref={optionRef}
+        onClick={handleOptionsActiveClick}
+      >
         <Options initialState={isOptionsOpen} />
-      </div>
+      </ProjectCardOptionBlock>
     </ProjectCardWrapp>
   );
 };
