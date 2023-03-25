@@ -19,13 +19,6 @@ export const InviteInfo = styled.div`
 
 export const InviteButtons = styled.div``;
 
-export const InviteButton = styled.button`
-  display: inline-flex;
-  align-items: center;
-`;
-
-export const InviteButtonText = styled.span`
-  font-size: 13px;
-  color: #2f80ed;
-  margin-left:4px;
+export const InviteButtonIcon = styled.div`
+  margin-right: 4px;
 `;

@@ -37,20 +37,9 @@ export const ProjectChatTextareaAvatar = styled.div`
 `;
 
 export const ProjectChatTextareaBottom = styled(Row)`
-  position: absolute;
-  bottom: 12px;
-  left: 0;
-  right: 0;
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 0 8px;
-
-  ${ButtonWrapp} {
-    fons-size: 12px;
-    padding: 3px 15px;
-    font-weight: 500;
-  }
 `;
 
 export const ProjectChatBody = styled.div`

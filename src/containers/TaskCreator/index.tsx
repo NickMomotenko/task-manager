@@ -15,7 +15,6 @@ import {
   TaskCreatorOptionsButton,
   TaskCreatorOptionsList,
   TaskCreatorOptionsItem,
-  TaskCreatorCrossButton,
   TaskCreatorImplementor,
   TaskCreatorImplementorText,
   TaskCreatorImplementorTextIn,
@@ -40,9 +39,9 @@ export const TaskCreator: React.FC<{
       <TaskCreatorPaper>
         <TaskCreatorHead verticalSpace="between">
           <Title text="Create New Task" />
-          <TaskCreatorCrossButton onClick={handleTaskCreatorActive}>
+          <Button view="ghost">
             <Icon src={crossIcon} alt="cross icon" />
-          </TaskCreatorCrossButton>
+          </Button>
         </TaskCreatorHead>
         <TaskCreatorBody>
           <TaskCreatorImplementor>
@@ -76,16 +75,16 @@ export const TaskCreator: React.FC<{
                     key={id}
                     isLastIcon={personAddIconId === id}
                   >
-                    <TaskCreatorOptionsButton>
+                    <Button view="ghost">
                       <Icon src={icon} alt={alt} />
-                    </TaskCreatorOptionsButton>
+                    </Button>
                   </TaskCreatorOptionsItem>
                 );
               })}
             </TaskCreatorOptionsList>
           </TaskCreatorOptions>
           <TaskCreatorButton>
-            <Button text="Create Task" />
+            <Button size="b">Create Task</Button>
           </TaskCreatorButton>
         </TaskCreatorBody>
       </TaskCreatorPaper>

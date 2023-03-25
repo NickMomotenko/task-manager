@@ -70,21 +70,22 @@ export const ProjectChat = () => {
                   value={value}
                   onChange={handleChange}
                   placeholder="Reply or post an update"
-                />
-                <ProjectChatTextareaBottom>
-                  <Row>
-                    <ProjectChatTextareaButton>
-                      <Icon src={textOutlineIcon} alt="text outline icon" />
-                    </ProjectChatTextareaButton>
-                    <ProjectChatTextareaButton>
-                      <Icon src={smileIcon} alt="smile icon" />
-                    </ProjectChatTextareaButton>
-                    <ProjectChatTextareaButton>
-                      <Icon src={attachIcon} alt="attach icon" />
-                    </ProjectChatTextareaButton>
-                  </Row>
-                  <Button text="Send" />
-                </ProjectChatTextareaBottom>
+                >
+                  <ProjectChatTextareaBottom>
+                    <Row>
+                      <ProjectChatTextareaButton>
+                        <Icon src={textOutlineIcon} alt="text outline icon" />
+                      </ProjectChatTextareaButton>
+                      <ProjectChatTextareaButton>
+                        <Icon src={smileIcon} alt="smile icon" />
+                      </ProjectChatTextareaButton>
+                      <ProjectChatTextareaButton>
+                        <Icon src={attachIcon} alt="attach icon" />
+                      </ProjectChatTextareaButton>
+                    </Row>
+                    <Button size="s">Send</Button>
+                  </ProjectChatTextareaBottom>
+                </Textarea>
               </ProjectChatTextarea>
             </ProjectChatTextareaBlockRow>
           </ProjectChatTextareaBlock>

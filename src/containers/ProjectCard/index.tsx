@@ -84,7 +84,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ as }) => {
               </ProjectCardMultiAvatarText>
             </ProjectCardMultiAvatar>
             <ProjectCardInviteButton>
-              <Button view="ghost" text="Invite" />
+              <Button view="ghost">Invite</Button>
             </ProjectCardInviteButton>
           </Row>
         </ProjectCardBody>

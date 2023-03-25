@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const TextareaWrapp = styled.label`
+export const TextareaWrapp = styled.label<{ isFocused: boolean }>`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -27,13 +27,5 @@ export const TextareaBody = styled.textarea`
   &::placeholder {
     font-size: 13px;
     color: #bdbdbd;
-  }
-
-  &:focus,
-  &:hover {
-    & ${TextareaWrapp} {
-      border-color: #2f80ed;
-      box-shadow: 0px 4px 6px 3px rgba(45, 83, 219, 0.1);
-    }
   }
 `;

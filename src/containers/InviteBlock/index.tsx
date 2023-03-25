@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Button } from "../../components/Button";
 import { Row } from "../../components/Layout";
@@ -12,8 +12,7 @@ import {
   InviteBody,
   InviteInfo,
   InviteButtons,
-  InviteButton,
-  InviteButtonText,
+  InviteButtonIcon,
 } from "./styled";
 
 import inviteIcon from "../../assets/icons/invite-link.svg";
@@ -21,7 +20,7 @@ import { Icon } from "../../components/Icon";
 import { useTextarea } from "../../hooks/useTextarea";
 
 export const InviteBlock: React.FC = () => {
-  const { value, handleChange } = useTextarea();
+  const { value, handleChange, ref, isFocused, getFocus } = useTextarea();
 
   return (
     <InviteBlockWrapp>
@@ -34,8 +33,10 @@ export const InviteBlock: React.FC = () => {
         <InviteBody>
           <Textarea
             value={value}
+            ref={ref}
             onChange={handleChange}
             placeholder="name@email.com, name@email.com, ..."
+            isFocused={isFocused}
           />
           <InviteInfo>
             Your teammates will get an email that gives them access to your
@@ -44,11 +45,13 @@ export const InviteBlock: React.FC = () => {
         </InviteBody>
         <InviteButtons>
           <Row verticalSpace="between">
-            <InviteButton>
-              <Icon src={inviteIcon} alt="invite icon" />
-              <InviteButtonText>copy link invite</InviteButtonText>
-            </InviteButton>
-            <Button text="Send" />
+            <Button view="ghost">
+              <InviteButtonIcon>
+                <Icon src={inviteIcon} alt="invite icon" />
+              </InviteButtonIcon>
+              copy link invite
+            </Button>
+            <Button>Send</Button>
           </Row>
         </InviteButtons>
       </Paper>

@@ -64,7 +64,7 @@ export const Table: React.FC<TableProps> = ({ head, layoutRules, body }) => {
               <TableItem key={id} as="li">
                 <TableColumn flex={layoutRules[0]}>
                   <TableCheckbox>
-                    <Checkbox initialState={data?.status_percent === 100} />
+                    <Checkbox initialState={data?.status_percent === 100} onChange={() => {}}  />
                   </TableCheckbox>
                   <TableData>
                     <TableDataTitle>{data?.title}</TableDataTitle>

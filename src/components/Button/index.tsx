@@ -2,22 +2,23 @@ import React from "react";
 
 import { ButtonWrapp } from "./styled";
 
-import { TButtonType } from "./types";
+import { TButtonType, TButtonSize } from "./types";
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   view?: TButtonType;
-  text: string;
+  size?: TButtonSize;
 };
 
 export const Button: React.FC<ButtonProps> = ({
   view = "common",
-  text,
+  size = "m",
+  children,
   onClick,
   ...rest
 }) => {
   return (
-    <ButtonWrapp onClick={onClick} view={view} {...rest}>
-      {text}
+    <ButtonWrapp onClick={onClick} view={view} size={size} {...rest}>
+      {children}
     </ButtonWrapp>
   );
 };

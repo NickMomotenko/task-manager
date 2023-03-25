@@ -35,7 +35,7 @@ export const FileAttachmentItem: React.FC<FileAttachmentItemProps> = ({
         <FileAttachmentItemCol>
           <FileAttachmentItemSize>{size}</FileAttachmentItemSize>
           <FileAttachmentItemButton>
-            <Button view="ghost" text="Download" />
+            <Button view="ghost">Download</Button>
           </FileAttachmentItemButton>
         </FileAttachmentItemCol>
       </Row>

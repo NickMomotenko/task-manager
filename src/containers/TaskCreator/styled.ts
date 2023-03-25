@@ -15,8 +15,6 @@ export const TaskCreatorHead = styled(Row)`
   margin-bottom: 20px;
 `;
 
-export const TaskCreatorCrossButton = styled.button``;
-
 export const TaskCreatorBody = styled.div``;
 
 export const TaskCreatorTextarea = styled.div`
@@ -51,8 +49,6 @@ export const TaskCreatorOptionsItem = styled.li<{
     margin-right: 0;
   }
 `;
-
-export const TaskCreatorOptionsButton = styled.button``;
 
 export const TaskCreatorImplementor = styled(Row)`
   margin-bottom: 20px;

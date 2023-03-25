@@ -28,7 +28,9 @@ export const Options: React.FC<OptionsProps> = ({
       <OptionsList>
         {list?.map(({ id, title, onClick }) => (
           <OptionsItem key={id}>
-            <Button text={title} onClick={onClick} view="ghost"></Button>
+            <Button onClick={onClick} view="ghost">
+              {title}
+            </Button>
           </OptionsItem>
         ))}
       </OptionsList>
