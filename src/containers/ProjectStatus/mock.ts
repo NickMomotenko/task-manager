@@ -1,7 +1,7 @@
 import photo_1 from "../../assets/member/2.png";
 import photo_2 from "../../assets/member/1.png";
 import photo_3 from "../../assets/member/3.png";
-import { status } from "../../helper/project-status";
+import { status } from "../../helpers/project-status";
 
 export const header = ["Project", "Status", "Owner"];
 

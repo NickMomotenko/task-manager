@@ -2,11 +2,11 @@ import React from "react";
 
 import { AvatarWrapp, AvatarBody } from "./styled";
 
-interface AvatarProps {
+type AvatarProps = {
   url: string;
   alt: string;
   size?: number;
-}
+};
 
 export const Avatar: React.FC<AvatarProps> = ({
   url = "",

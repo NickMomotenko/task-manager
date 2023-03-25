@@ -64,11 +64,6 @@ export const ProjectChatBodyItem = styled.li``;
 export const ProjectChatTextarea = styled.div`
   width: 100%;
   position: relative;
-
-  ${TextareaBody} {
-    min-height: 90px;
-    padding: 8px 8px 38px 8px;
-  }
 `;
 
 export const ProjectChatTextareaButton = styled.button`

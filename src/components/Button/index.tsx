@@ -1,27 +1,23 @@
 import React from "react";
 
-import { ButtonWrapp, DefaultButtonWrapp } from "./styled";
+import { ButtonWrapp } from "./styled";
 
-type ButtonType = "button" | "submit" | "reset";
+import { TButtonType } from "./types";
 
-interface ButtonProps {
-  type?: ButtonType;
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  view?: TButtonType;
   text: string;
-  onClick?: () => void;
-}
+};
 
 export const Button: React.FC<ButtonProps> = ({
-  type = "button",
+  view = "common",
   text,
   onClick,
+  ...rest
 }) => {
   return (
-    <ButtonWrapp type={type} onClick={onClick}>
+    <ButtonWrapp onClick={onClick} view={view} {...rest}>
       {text}
     </ButtonWrapp>
   );
-};
-
-export const DefaultButton: React.FC<ButtonProps> = ({ type, text }) => {
-  return <DefaultButtonWrapp type={type}>{text}</DefaultButtonWrapp>;
 };

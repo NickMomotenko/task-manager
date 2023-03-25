@@ -1,25 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { CheckboxWrapp, CheckboxInput, CheckboxFake } from "./styled";
 
-interface CheckboxProps {
+export type ButtonProps = React.InputHTMLAttributes<HTMLInputElement> & {
   initialState: boolean;
-}
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
-export const Checkbox: React.FC<CheckboxProps> = ({ initialState }) => {
-  const [isChecked, setIsChecked] = useState<boolean>(initialState);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setIsChecked(event.target.checked);
-
+export const Checkbox: React.FC<ButtonProps> = ({
+  initialState,
+  onChange,
+  ...rest
+}) => {
   return (
     <CheckboxWrapp>
       <CheckboxInput
         type="checkbox"
-        checked={isChecked}
-        onChange={handleChange}
+        checked={initialState}
+        onChange={onChange}
+        {...rest}
       />
-      <CheckboxFake isChecked={isChecked} />
+      <CheckboxFake isChecked={initialState} />
     </CheckboxWrapp>
   );
 };

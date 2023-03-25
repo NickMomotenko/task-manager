@@ -27,7 +27,7 @@ export const TaskBlock = () => {
   return (
     <TaskBlockWrapp>
       <TaskBlockPaper>
-        <TaskBlockHeader btw>
+        <TaskBlockHeader verticalSpace="between">
           <TaskBlockLabel>Landing Page</TaskBlockLabel>
           <TaskBlockOptionButton>
             <Icon src={optionDotsIcon} alt="option dots icon" />

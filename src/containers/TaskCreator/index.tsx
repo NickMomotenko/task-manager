@@ -38,7 +38,7 @@ export const TaskCreator: React.FC<{
   return (
     <TaskCreatorWrapp>
       <TaskCreatorPaper>
-        <TaskCreatorHead btw>
+        <TaskCreatorHead verticalSpace="between">
           <Title text="Create New Task" />
           <TaskCreatorCrossButton onClick={handleTaskCreatorActive}>
             <Icon src={crossIcon} alt="cross icon" />

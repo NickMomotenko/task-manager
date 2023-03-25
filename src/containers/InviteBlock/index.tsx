@@ -18,10 +18,10 @@ import {
 
 import inviteIcon from "../../assets/icons/invite-link.svg";
 import { Icon } from "../../components/Icon";
-import { useInput } from "../../hooks/useInput";
+import { useTextarea } from "../../hooks/useTextarea";
 
 export const InviteBlock: React.FC = () => {
-  const inviteTextarea = useInput({ initialValue: "fasf", name: "test" });
+  const { value, handleChange } = useTextarea();
 
   return (
     <InviteBlockWrapp>
@@ -33,7 +33,8 @@ export const InviteBlock: React.FC = () => {
         </InviteHeader>
         <InviteBody>
           <Textarea
-            initialValue=""
+            value={value}
+            onChange={handleChange}
             placeholder="name@email.com, name@email.com, ..."
           />
           <InviteInfo>
@@ -42,7 +43,7 @@ export const InviteBlock: React.FC = () => {
           </InviteInfo>
         </InviteBody>
         <InviteButtons>
-          <Row btw>
+          <Row verticalSpace="between">
             <InviteButton>
               <Icon src={inviteIcon} alt="invite icon" />
               <InviteButtonText>copy link invite</InviteButtonText>

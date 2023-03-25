@@ -1,4 +1,5 @@
 import { FileAttachment } from "../../containers/FileAttachment";
+import { InviteBlock } from "../../containers/InviteBlock";
 import { MembersBlock } from "../../containers/MembersBlock";
 import { ProjectCard } from "../../containers/ProjectCard";
 import { ProjectChat } from "../../containers/ProjectChat";
@@ -29,6 +30,7 @@ export const ProjectScreen = () => {
     <ProjectScreenWrapp>
       <ProjectScreenRow>
         <ProjectScreenColumn>
+          <InviteBlock />
           <ProjectScreenCard>
             <ProjectCard />
           </ProjectScreenCard>

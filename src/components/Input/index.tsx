@@ -1,24 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
+
 import { Icon } from "../Icon";
 
-import { InputBody, InputWrapp ,InputIcon } from "./styled";
+import { InputBody, InputWrapp, InputIcon } from "./styled";
 
-interface InputProps {
-  initialValue?: string;
-  placeholder?: string;
+export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   icon?: string;
-}
+};
 
 export const Input: React.FC<InputProps> = ({
-  initialValue = "",
-  placeholder = "",
+  value,
+  onChange,
+  placeholder,
   icon,
+  ...rest
 }) => {
-  const [value, setValue] = useState<string>(initialValue);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setValue(event.target.value);
-
   return (
     <InputWrapp>
       {icon && (
@@ -29,7 +25,8 @@ export const Input: React.FC<InputProps> = ({
       <InputBody
         value={value}
         placeholder={placeholder}
-        onChange={handleChange}
+        onChange={onChange}
+        {...rest}
       />
     </InputWrapp>
   );

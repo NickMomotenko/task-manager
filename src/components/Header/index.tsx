@@ -19,17 +19,24 @@ import {
   HeaderInput,
   HeaderLogo,
 } from "./styled";
+import { useInput } from "../../hooks/useInput";
 
 const Header: React.FC = () => {
+  const { value, handleChange } = useInput();
   return (
     <HeaderWrapp>
       <Container>
-        <Row btw>
+        <Row verticalSpace="between">
           <HeaderLogo>
             <Logo />
           </HeaderLogo>
           <HeaderInput>
-            <Input placeholder="Search everything" icon={lypaIcon} />
+            <Input
+              value={value}
+              onChange={handleChange}
+              placeholder="Search everything"
+              icon={lypaIcon}
+            />
           </HeaderInput>
           <HeaderMenu>
             <Menu />

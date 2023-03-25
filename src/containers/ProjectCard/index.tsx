@@ -4,7 +4,7 @@ import { Icon } from "../../components/Icon";
 import { Title } from "../../components/Title";
 import { Row } from "../../components/Layout";
 import { MultiAvatar } from "../../components/MultiAvatar";
-import { DefaultButton } from "../../components/Button";
+import { Button } from "../../components/Button";
 import { Options } from "../../components/Options";
 
 import { ProgressLine } from "../ProgressLine";
@@ -46,7 +46,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ as }) => {
   return (
     <ProjectCardWrapp as={as}>
       <ProjectCardPaper>
-        <ProjectCardHead btw>
+        <ProjectCardHead verticalSpace="between">
           <ProjectCardHeadTitle>
             <Title text="Konsept design homepage" />
           </ProjectCardHeadTitle>
@@ -62,7 +62,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ as }) => {
             asperiores tempore aut similique maiores?
           </ProjectCardDescription>
           <ProjectCardProgress>
-            <Row btw>
+            <Row verticalSpace="between">
               <ProjectCardProgressLabel>
                 Project Progress
               </ProjectCardProgressLabel>
@@ -76,7 +76,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ as }) => {
               />
             </ProjectCardProgressLine>
           </ProjectCardProgress>
-          <Row btw>
+          <Row verticalSpace="between">
             <ProjectCardMultiAvatar>
               <MultiAvatar />
               <ProjectCardMultiAvatarText>
@@ -84,7 +84,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ as }) => {
               </ProjectCardMultiAvatarText>
             </ProjectCardMultiAvatar>
             <ProjectCardInviteButton>
-              <DefaultButton text="Invite" />
+              <Button view="ghost" text="Invite" />
             </ProjectCardInviteButton>
           </Row>
         </ProjectCardBody>

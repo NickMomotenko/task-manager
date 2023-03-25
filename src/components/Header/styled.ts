@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const HeaderWrapp = styled.header`
   background: #fff;
   padding: 10px 0;
+
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
 `;
 
 export const HeaderUser = styled.div`
@@ -20,7 +24,7 @@ export const HeaderUserFullname = styled.div``;
 export const HeaderMenu = styled.div``;
 
 export const HeaderInput = styled.div`
-  width: 350px;
+  max-width: 350px;
 `;
 
 export const HeaderLogo = styled.div``;

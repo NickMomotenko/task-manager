@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-import {
-  OptionsWrapp,
-  OptionsList,
-  OptionsItem,
-  OptionsButton,
-} from "./styled";
+
+import { Button } from "../Button";
+
+import { OptionsWrapp, OptionsList, OptionsItem } from "./styled";
 
 const mockList = [{ id: 1, title: "Project info", onClick: () => {} }];
 
@@ -30,7 +28,7 @@ export const Options: React.FC<OptionsProps> = ({
       <OptionsList>
         {list?.map(({ id, title, onClick }) => (
           <OptionsItem key={id}>
-            <OptionsButton onClick={onClick}>{title}</OptionsButton>
+            <Button text={title} onClick={onClick} view="ghost"></Button>
           </OptionsItem>
         ))}
       </OptionsList>

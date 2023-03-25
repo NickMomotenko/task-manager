@@ -7,13 +7,17 @@ import {
   MenuLinkText,
 } from "./styled";
 
-import { list } from "./mock";
+import { navigationList } from "../../helpers/routes";
 
-export const Menu: React.FC = () => {
-  const [activeItem, setIsActiveItem] = useState(list[0]);
+type MenuProps = {
+  parentTag?: string | "nav" | any;
+};
+
+export const Menu: React.FC<MenuProps> = ({ parentTag = "nav" }) => {
+  const [activeItem, setIsActiveItem] = useState(navigationList[0]);
 
   const handleItemClick = (id: number) => {
-    const searchableItem = list.find((item) => item.id === id);
+    const searchableItem = navigationList.find((item) => item.id === id);
 
     if (!searchableItem) return;
 
@@ -21,9 +25,9 @@ export const Menu: React.FC = () => {
   };
 
   return (
-    <MenuWrapp>
+    <MenuWrapp as={parentTag}>
       <MenuList>
-        {list.map(({ id, title, path }) => {
+        {navigationList.map(({ id, title, path }) => {
           const isActive = activeItem.id === id;
 
           return (

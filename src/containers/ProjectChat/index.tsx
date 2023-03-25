@@ -4,6 +4,9 @@ import { MultiAvatar } from "../../components/MultiAvatar";
 import { Title } from "../../components/Title";
 import { Textarea } from "../../components/Textarea";
 import { Button } from "../../components/Button";
+import { Icon } from "../../components/Icon";
+
+import { ProjectChatItem } from "./ProjectChatItem";
 
 import photo_1 from "../../assets/member/3.png";
 import textOutlineIcon from "../../assets/icons/text-outline.svg";
@@ -30,10 +33,11 @@ import {
   ProjectChatPaper,
 } from "./styled";
 
-import { ProjectChatItem } from "./ProjectChatItem";
-import { Icon } from "../../components/Icon";
+import { useTextarea } from "../../hooks/useTextarea";
 
 export const ProjectChat = () => {
+  const { value, handleChange } = useTextarea();
+
   return (
     <ProjectChatWrapp>
       <ProjectChatPaper>
@@ -62,7 +66,11 @@ export const ProjectChat = () => {
                 <Avatar url={photo_1} alt="avatar icon" size={30} />
               </ProjectChatTextareaAvatar>
               <ProjectChatTextarea>
-                <Textarea placeholder="Reply or post an update" />
+                <Textarea
+                  value={value}
+                  onChange={handleChange}
+                  placeholder="Reply or post an update"
+                />
                 <ProjectChatTextareaBottom>
                   <Row>
                     <ProjectChatTextareaButton>

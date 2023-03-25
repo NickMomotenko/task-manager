@@ -1,6 +1,6 @@
 import React from "react";
 
-import { DefaultButton } from "../../components/Button";
+import { Button } from "../../components/Button";
 import { Row } from "../../components/Layout";
 
 import {
@@ -27,7 +27,7 @@ export const FileAttachmentItem: React.FC<FileAttachmentItemProps> = ({
 }) => {
   return (
     <FileAttachmentItemStyles>
-      <Row btw>
+      <Row verticalSpace="between">
         <FileAttachmentItemCol>
           <FileAttachmentItemIcon src={icon} alt="file icon" />
           <FileAttachmentItemFileName>{file_name}</FileAttachmentItemFileName>
@@ -35,7 +35,7 @@ export const FileAttachmentItem: React.FC<FileAttachmentItemProps> = ({
         <FileAttachmentItemCol>
           <FileAttachmentItemSize>{size}</FileAttachmentItemSize>
           <FileAttachmentItemButton>
-            <DefaultButton text="Download" />
+            <Button view="ghost" text="Download" />
           </FileAttachmentItemButton>
         </FileAttachmentItemCol>
       </Row>

@@ -1,27 +1,28 @@
 import styled from "styled-components";
 
-export const TextareaWrapp = styled.div`
+export const TextareaWrapp = styled.label`
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  background: #ffffff;
+  border: 0.8px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px;
+  min-height: 121px;
+
+  &:focus,
+  &:hover {
+    border-color: #2f80ed;
+    box-shadow: 0px 4px 6px 3px rgba(45, 83, 219, 0.1);
+  }
 `;
 
 export const TextareaBody = styled.textarea`
-  width: 100%;
-
-  font-family: "Poppins";
-
-  background: #ffffff;
-
-  border: 0.8px solid #e0e0e0;
-  border-radius: 8px;
-  resize: none;
-  outline: #2f80ed;
-
-  padding: 12px;
+  display: block;
+  flex: 1;
 
   font-size: 13px;
   color: #bdbdbd;
-
-  min-height: 121px;
 
   &::placeholder {
     font-size: 13px;
@@ -30,7 +31,9 @@ export const TextareaBody = styled.textarea`
 
   &:focus,
   &:hover {
-    border-color: #2f80ed;
-    box-shadow: 0px 4px 6px 3px rgba(45, 83, 219, 0.1);
+    & ${TextareaWrapp} {
+      border-color: #2f80ed;
+      box-shadow: 0px 4px 6px 3px rgba(45, 83, 219, 0.1);
+    }
   }
 `;
