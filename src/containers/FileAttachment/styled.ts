@@ -4,10 +4,6 @@ import { PaperWrapp } from "../../components/Paper/styled";
 
 export const FileAttachmentWrapp = styled.div``;
 
-export const FileAttachmentBodyWrapper = styled.div`
-  margin-top: 28px;
-`;
-
 export const FileAttachmentPaper = styled(PaperWrapp)`
   min-width: 400px;
   max-width: 100%;
@@ -17,7 +13,9 @@ export const FileAttachmentPaper = styled(PaperWrapp)`
 
 export const FileAttachmentHeader = styled.div``;
 
-export const FileAttachmentBody = styled.div``;
+export const FileAttachmentBody = styled.div`
+  margin-top: 28px;
+`;
 
 export const FileAttachmentDropSpace = styled.div`
   height: 88px;

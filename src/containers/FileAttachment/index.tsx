@@ -2,8 +2,6 @@ import { Title } from "../../components/Title";
 
 import { FileAttachmentItem } from "./FileAttachmentItem";
 
-import { useToggleClicker } from "../../hooks/useToggleClicker";
-
 import {
   FileAttachmentWrapp,
   FileAttachmentHeader,
@@ -13,22 +11,23 @@ import {
   FileAttachmentDropSpaceTextSpan,
   FileAttachmentList,
   FileAttachmentPaper,
-  FileAttachmentBodyWrapper,
 } from "./styled";
 
 import { files } from "./mock";
+import { Accordion } from "../Accordion";
 
 export const FileAttachment = () => {
-  const { bodyRef, bodyWrappRef, handleOpenClick } = useToggleClicker(false);
-
   return (
     <FileAttachmentWrapp>
       <FileAttachmentPaper>
-        <FileAttachmentHeader onClick={handleOpenClick}>
-          <Title text="File Attachment" />
-        </FileAttachmentHeader>
-        <FileAttachmentBody ref={bodyRef}>
-          <FileAttachmentBodyWrapper ref={bodyWrappRef}>
+        <Accordion
+          header={
+            <FileAttachmentHeader>
+              <Title text="File Attachment" />
+            </FileAttachmentHeader>
+          }
+        >
+          <FileAttachmentBody>
             <FileAttachmentList>
               {files.map((file) => (
                 <FileAttachmentItem key={file.id} {...file} />
@@ -42,8 +41,8 @@ export const FileAttachment = () => {
                 </FileAttachmentDropSpaceTextSpan>
               </FileAttachmentDropSpaceText>
             </FileAttachmentDropSpace>
-          </FileAttachmentBodyWrapper>
-        </FileAttachmentBody>
+          </FileAttachmentBody>
+        </Accordion>
       </FileAttachmentPaper>
     </FileAttachmentWrapp>
   );

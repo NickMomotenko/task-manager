@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Tooltip } from "../Tooltip";
+import { TooltipWrapp } from "../Tooltip/styled";
 
 export const MultiAvatarWrapp = styled.div``;
 
@@ -17,6 +19,12 @@ export const MultiAvatarItem = styled.li<{ zIndex: number }>`
 `;
 
 export const MultiAvatarLink = styled.a`
+  &:hover {
+    ${TooltipWrapp} {
+      visibility: visible;
+    }
+  }
+
   img {
     border: 2px solid #fff;
     border-radius: 50%;

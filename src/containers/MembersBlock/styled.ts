@@ -7,11 +7,11 @@ export const MembersBlockPaper = styled(PaperWrapp)`
   min-width: 400px;
 `;
 
-export const MembersBlockTitle = styled.div`
-  margin-bottom: 24px;
-`;
+export const MembersBlockTitle = styled.div``;
 
-export const MembersBlockBody = styled.div``;
+export const MembersBlockBody = styled.div`
+  margin-top: 24px;
+`;
 
 export const MembersBlockList = styled.ul`
   column-count: 2;

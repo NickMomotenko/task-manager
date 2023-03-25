@@ -6,26 +6,33 @@ import {
   MembersBlockTitle,
   MembersBlockBody,
   MembersBlockList,
-  MembersBlockPaper
+  MembersBlockPaper,
 } from "./styled";
 
 import { members } from "./mock";
 import { MemberItem } from "./MemberItem";
 
+import { Accordion } from "../Accordion";
+
 export const MembersBlock = () => {
   return (
     <MembersBlockWrapp>
       <MembersBlockPaper>
-        <MembersBlockTitle>
-          <Title text="Project Members" />
-        </MembersBlockTitle>
-        <MembersBlockBody>
-          <MembersBlockList>
-            {members.map((member) => (
-              <MemberItem key={member.id} {...member} />
-            ))}
-          </MembersBlockList>
-        </MembersBlockBody>
+        <Accordion
+          header={
+            <MembersBlockTitle>
+              <Title text="Project Members" />
+            </MembersBlockTitle>
+          }
+        >
+          <MembersBlockBody>
+            <MembersBlockList>
+              {members.map((member) => (
+                <MemberItem key={member.id} {...member} />
+              ))}
+            </MembersBlockList>
+          </MembersBlockBody>
+        </Accordion>
       </MembersBlockPaper>
     </MembersBlockWrapp>
   );

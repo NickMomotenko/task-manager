@@ -1,10 +1,13 @@
 import { TooltipWrapp } from "./styled";
 
 type TooltipProps = {
-  text: string;
+  children: React.ReactNode;
   position?: string;
 };
 
-export const Tooltip: React.FC<TooltipProps> = ({ text, position }) => {
-  return <TooltipWrapp position={position}>{text}</TooltipWrapp>;
+export const Tooltip: React.FC<TooltipProps> = ({
+  children,
+  position = "top",
+}) => {
+  return <TooltipWrapp position={position}>{children}</TooltipWrapp>;
 };

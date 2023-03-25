@@ -9,9 +9,9 @@ import {
   MultiAvatarLink,
 } from "./styled";
 
-import photo_1 from "../../assets/member/1.png";
-import photo_2 from "../../assets/member/2.png";
-import photo_3 from "../../assets/member/3.png";
+import { Tooltip } from "../Tooltip";
+
+import { multiData } from "./data";
 
 interface MultiAvatarProps {
   data?: [];
@@ -22,10 +22,15 @@ export const MultiAvatar: React.FC<MultiAvatarProps> = ({ size }) => {
   return (
     <MultiAvatarWrapp>
       <MultiAvatarList>
-        {[photo_1, photo_2, photo_3].map((item, ind) => (
+        {multiData.map(({ user, id }, ind) => (
           <MultiAvatarItem key={ind} zIndex={ind + 1}>
             <MultiAvatarLink href="#">
-              <Avatar url={item} alt="avatar icon" size={size} />
+              <Tooltip>{user.fullname}</Tooltip>
+              <Avatar
+                url={user.avatar}
+                alt={`${user.fullname} avatar`}
+                size={size}
+              />
             </MultiAvatarLink>
           </MultiAvatarItem>
         ))}

@@ -5,5 +5,5 @@ export const useOpen = (initialState?: boolean) => {
 
   const handleToggleClick = () => setIsOpen(!isOpen);
 
-  return { isOpen, handleToggleClick };
+  return { isOpen, handleToggleClick , setIsOpen };
 };

@@ -29,19 +29,18 @@ import {
   ProjectCardOptionBlock,
 } from "./styled";
 import { useClickOutside } from "../../hooks/useClickOutside";
+import { useOpen } from "../../hooks/useOpen";
 
 interface ProjectCardProps {
   as?: string | any;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ as }) => {
-  const [isOptionsOpen, setIsOptionsOpen] = useState(false);
+  const { isOpen, setIsOpen, handleToggleClick } = useOpen();
 
   const optionRef = useRef<HTMLDivElement>(null);
 
-  const handleOptionsActiveClick = () => setIsOptionsOpen(!isOptionsOpen);
-
-  useClickOutside(optionRef, () => setIsOptionsOpen(false));
+  useClickOutside(optionRef, () => setIsOpen(false));
 
   return (
     <ProjectCardWrapp as={as}>
@@ -50,7 +49,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ as }) => {
           <ProjectCardHeadTitle>
             <Title text="Konsept design homepage" />
           </ProjectCardHeadTitle>
-          <ProjectCardCrossButton onClick={handleOptionsActiveClick}>
+          <ProjectCardCrossButton onClick={handleToggleClick}>
             <Icon src={optionIcon} alt="option icon" />
           </ProjectCardCrossButton>
         </ProjectCardHead>
@@ -89,11 +88,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ as }) => {
           </Row>
         </ProjectCardBody>
       </ProjectCardPaper>
-      <ProjectCardOptionBlock
-        ref={optionRef}
-        onClick={handleOptionsActiveClick}
-      >
-        <Options initialState={isOptionsOpen} />
+      <ProjectCardOptionBlock ref={optionRef} onClick={handleToggleClick}>
+        <Options initialState={isOpen} />
       </ProjectCardOptionBlock>
     </ProjectCardWrapp>
   );
