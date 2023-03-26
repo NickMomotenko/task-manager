@@ -1,6 +1,8 @@
 import { Title } from "../../components/Title";
+import { Icon } from "../../components/Icon";
 
 import { FileAttachmentItem } from "./FileAttachmentItem";
+import { Accordion } from "../Accordion";
 
 import {
   FileAttachmentWrapp,
@@ -14,8 +16,6 @@ import {
 } from "./styled";
 
 import { files } from "./data";
-import { Accordion } from "../Accordion";
-import { Icon } from "../../components/Icon";
 
 import arrowIcon from "../../assets/icons/arrow.svg";
 

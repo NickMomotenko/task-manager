@@ -12,12 +12,12 @@ import {
   FileAttachmentItemCol,
 } from "./styled";
 
-interface FileAttachmentItemProps {
+type FileAttachmentItemProps = {
   icon: string;
   size: string;
   file_name: string;
   author: {};
-}
+};
 
 export const FileAttachmentItem: React.FC<FileAttachmentItemProps> = ({
   icon,

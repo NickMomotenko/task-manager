@@ -10,14 +10,14 @@ import {
   MemberItemPosition,
 } from "./styled";
 
-interface MemberItemProps {
+type MemberItemProps = {
   user: {
     id: number;
     fullname: string;
     position: string;
     avatar: string;
   };
-}
+};
 
 export const MemberItem: React.FC<MemberItemProps> = ({ user }) => {
   const { fullname, position, avatar } = user;

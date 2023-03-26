@@ -28,12 +28,13 @@ import {
   ProjectCardInviteButton,
   ProjectCardOptionBlock,
 } from "./styled";
+
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { useOpen } from "../../hooks/useOpen";
 
-interface ProjectCardProps {
+type ProjectCardProps = {
   as?: string | any;
-}
+};
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ as }) => {
   const { isOpen, setIsOpen, handleToggleClick } = useOpen();

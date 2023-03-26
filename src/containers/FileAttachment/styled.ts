@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { Row } from "../../components/Layout";
 import { PaperWrapp } from "../../components/Paper/styled";
 
@@ -18,10 +19,14 @@ export const FileAttachmentBody = styled.div`
 `;
 
 export const FileAttachmentDropSpace = styled.div`
-  height: 88px;
-  background: #f2f2f2;
+  --drop-h: 88px;
+  --drop-bg: #f2f2f2;
+  --drop-radius: 8px;
+
+  height: var(--drop-h);
+  background: var(--drop-bg);
   border: 1px dashed #bdbdbd;
-  border-radius: 8px;
+  border-radius: var(--drop-radius);
 
   display: flex;
   align-items: center;

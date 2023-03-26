@@ -22,12 +22,12 @@ import {
   ProjectStatusOptionBlock,
 } from "./styled";
 
-import { header, body } from "./mock";
+import { header, body } from "./data";
 
-interface ProjectStatusProps {
+type ProjectStatusProps = {
   handleTaskCreatorActive: () => void;
   handleWeeklyProgressActive: () => void;
-}
+};
 
 export const ProjectStatus: React.FC<ProjectStatusProps> = ({
   handleTaskCreatorActive,

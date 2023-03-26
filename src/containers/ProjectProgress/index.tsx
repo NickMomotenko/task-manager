@@ -20,10 +20,15 @@ import {
 
 import crossIcon from "../../assets/icons/cross.svg";
 
-export const ProjectProgress: React.FC<{
+type ProjectProgress = {
   initialState?: number;
   handleWeeklyProgressActive: () => void;
-}> = ({ initialState = 75, handleWeeklyProgressActive }) => {
+};
+
+export const ProjectProgress: React.FC<ProjectProgress> = ({
+  initialState = 75,
+  handleWeeklyProgressActive,
+}) => {
   return (
     <ProjectProgressWrapp>
       <ProjectProgressPaper>

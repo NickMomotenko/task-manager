@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Button } from "../../components/Button";
 import { Row } from "../../components/Layout";
 import { Paper } from "../../components/Paper";
 import { Textarea } from "../../components/Textarea";
 import { Title } from "../../components/Title";
+import { Icon } from "../../components/Icon";
+
+import { useTextarea } from "../../hooks/useTextarea";
 
 import {
   InviteBlockWrapp,
@@ -16,8 +19,6 @@ import {
 } from "./styled";
 
 import inviteIcon from "../../assets/icons/invite-link.svg";
-import { Icon } from "../../components/Icon";
-import { useTextarea } from "../../hooks/useTextarea";
 
 export const InviteBlock: React.FC = () => {
   const { value, handleChange, ref, isFocused, getFocus } = useTextarea();

@@ -28,7 +28,7 @@ import {
 import crossIcon from "../../assets/icons/cross.svg";
 import photo_1 from "../../assets/member/2.png";
 
-import { options } from "./mock";
+import { options } from "./data";
 
 export const TaskCreator: React.FC<{
   initialState?: boolean;

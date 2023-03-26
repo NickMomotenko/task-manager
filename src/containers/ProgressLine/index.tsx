@@ -6,11 +6,11 @@ import {
   ProgressLineOver,
 } from "./styled";
 
-interface ProgressLineProps {
+type ProgressLineProps = {
   initialValue: number;
   overLineColor?: string;
   baseLineColor?: string;
-}
+};
 
 export const ProgressLine: React.FC<ProgressLineProps> = ({
   initialValue,

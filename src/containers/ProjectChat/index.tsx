@@ -13,7 +13,7 @@ import textOutlineIcon from "../../assets/icons/text-outline.svg";
 import smileIcon from "../../assets/icons/smile.svg";
 import attachIcon from "../../assets/icons/attach.svg";
 
-import { chatList } from "./mock";
+import { chatList } from "./data";
 
 import {
   ProjectChatWrapp,

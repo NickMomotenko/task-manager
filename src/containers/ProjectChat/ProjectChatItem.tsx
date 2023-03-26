@@ -59,7 +59,7 @@ export const ProjectChatItemLikedCounter = styled.span`
 
 export const ProjectChatItemLikedIcon = styled.div``;
 
-interface ProjectChatItemProps {
+type ProjectChatItemProps = {
   id: number;
   user: {
     avatar: string;
@@ -74,7 +74,7 @@ interface ProjectChatItemProps {
     liked: number;
   };
   as: string;
-}
+};
 
 export const ProjectChatItem: React.FC<ProjectChatItemProps> = ({
   user,
