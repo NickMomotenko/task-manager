@@ -2,14 +2,18 @@ import React from "react";
 
 import { CheckboxWrapp, CheckboxInput, CheckboxFake } from "./styled";
 
+type TCheckboxView = "circle" | "round";
+
 export type ButtonProps = React.InputHTMLAttributes<HTMLInputElement> & {
-  initialState: boolean;
+  initialState?: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  view?: TCheckboxView;
 };
 
 export const Checkbox: React.FC<ButtonProps> = ({
-  initialState,
+  initialState = false,
   onChange,
+  view = "circle",
   ...rest
 }) => {
   return (
@@ -20,7 +24,7 @@ export const Checkbox: React.FC<ButtonProps> = ({
         onChange={onChange}
         {...rest}
       />
-      <CheckboxFake isChecked={initialState} />
+      <CheckboxFake isChecked={initialState} view={view} />
     </CheckboxWrapp>
   );
 };

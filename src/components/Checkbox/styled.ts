@@ -4,28 +4,52 @@ import checkIcon from "../../assets/icons/check.svg";
 
 export const CheckboxWrapp = styled.label``;
 
-export const CheckboxFake = styled.div<{ isChecked: boolean }>`
+export const CheckboxFake = styled.div<{ isChecked: boolean; view?: string }>`
+  --size: 16px;
+  --bg-circle: #219653;
+  --bg-round: #08a0f7;
+  --radius-round: 4px;
+
   display: inline-block;
-  width: 16px;
-  height: 16px;
-  background: #219653;
-  border: 1px solid #219653;
+  width: var(--size);
+  height: var(--size);
+  background: var(--bg-circle);
+  border: 1px solid var(--bg-circle);
 
   border-radius: 50%;
   position: relative;
 
-  ${({ isChecked }) =>
+  ${({ isChecked, view }) =>
     !isChecked &&
+    view === "circle" &&
     css`
       background: transparent;
-      border-color: #bdbdbd;
+      border-color: var(--bg-circle);
+    `}
+
+  ${({ view }) =>
+    view === "round" &&
+    css`
+      border-radius: var(--radius-round);
+      background: var(--bg-round);
+      border-color: var(--bg-round);
+    `}
+
+  ${({ isChecked, view }) =>
+    !isChecked &&
+    view === "round" &&
+    css`
+      background: transparent;
+      border-color: var(--bg-round);
     `}
 
   &:before {
+    --icon-h: 6.67px;
+    --icon-w: 8px;
     content: "";
     display: inline-block;
-    width: 8px;
-    height: 6.67px;
+    width: var(--icon-w);
+    height: var(--icon-h);
     background: url(${checkIcon}) center no-repeat;
     background-size: cover;
     position: absolute;
