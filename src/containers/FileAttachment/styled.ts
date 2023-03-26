@@ -11,7 +11,7 @@ export const FileAttachmentPaper = styled(PaperWrapp)`
   flex-direction: column;
 `;
 
-export const FileAttachmentHeader = styled.div``;
+export const FileAttachmentHeader = styled(Row)``;
 
 export const FileAttachmentBody = styled.div`
   margin-top: 28px;

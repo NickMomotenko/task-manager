@@ -13,8 +13,11 @@ import {
   FileAttachmentPaper,
 } from "./styled";
 
-import { files } from "./mock";
+import { files } from "./data";
 import { Accordion } from "../Accordion";
+import { Icon } from "../../components/Icon";
+
+import arrowIcon from "../../assets/icons/arrow.svg";
 
 export const FileAttachment = () => {
   return (
@@ -22,8 +25,13 @@ export const FileAttachment = () => {
       <FileAttachmentPaper>
         <Accordion
           header={
-            <FileAttachmentHeader>
+            <FileAttachmentHeader verticalSpace="between">
               <Title text="File Attachment" />
+              <Icon
+                src={arrowIcon}
+                alt="arrow icon"
+                size={{ h: "15px", w: "15px" }}
+              />
             </FileAttachmentHeader>
           }
         >

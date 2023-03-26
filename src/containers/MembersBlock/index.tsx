@@ -1,5 +1,8 @@
-import { Paper } from "../../components/Paper";
 import { Title } from "../../components/Title";
+import { Icon } from "../../components/Icon";
+
+import { MemberItem } from "./MemberItem";
+import { Accordion } from "../Accordion";
 
 import {
   MembersBlockWrapp,
@@ -9,10 +12,8 @@ import {
   MembersBlockPaper,
 } from "./styled";
 
-import { members } from "./mock";
-import { MemberItem } from "./MemberItem";
-
-import { Accordion } from "../Accordion";
+import arrowIcon from "../../assets/icons/arrow.svg";
+import { members } from "./data";
 
 export const MembersBlock = () => {
   return (
@@ -20,8 +21,13 @@ export const MembersBlock = () => {
       <MembersBlockPaper>
         <Accordion
           header={
-            <MembersBlockTitle>
+            <MembersBlockTitle verticalSpace="between">
               <Title text="Project Members" />
+              <Icon
+                src={arrowIcon}
+                alt="arrow icon"
+                size={{ h: "15px", w: "15px" }}
+              />
             </MembersBlockTitle>
           }
         >
