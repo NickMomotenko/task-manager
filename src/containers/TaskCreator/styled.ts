@@ -4,7 +4,7 @@ import { PaperWrapp } from "../../components/Paper/styled";
 
 export const TaskCreatorWrapp = styled.div`
   position: relative;
-  display: inline-block;
+  display: block;
 `;
 
 export const TaskCreatorPaper = styled(PaperWrapp)`
@@ -105,3 +105,7 @@ export const TaskCreatorImplementorTextName = styled(
 `;
 
 export const TaskCreatorImplementorCrossButton = styled.button``;
+
+export const TaskCreatorLabels = styled.div`
+  margin-bottom: 20px;
+`;

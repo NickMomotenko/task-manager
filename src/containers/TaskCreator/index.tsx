@@ -4,15 +4,15 @@ import { Textarea } from "../../components/Textarea";
 import { Title } from "../../components/Title";
 import { Avatar } from "../../components/Avatar";
 
+import { LabelsBlock } from "../LabelsBlock";
+
 import {
   TaskCreatorWrapp,
-  TaskCreatorPaper,
   TaskCreatorHead,
   TaskCreatorBody,
   TaskCreatorTextarea,
   TaskCreatorOptions,
   TaskCreatorButton,
-  TaskCreatorOptionsButton,
   TaskCreatorOptionsList,
   TaskCreatorOptionsItem,
   TaskCreatorImplementor,
@@ -23,6 +23,7 @@ import {
   TaskCreatorImplementorTextName,
   TaskCreatorImplementorContentWrappUser,
   TaskCreatorImplementorCrossButton,
+  TaskCreatorLabels,
 } from "./styled";
 
 import crossIcon from "../../assets/icons/cross.svg";
@@ -32,62 +33,63 @@ import { options } from "./data";
 
 export const TaskCreator: React.FC<{
   initialState?: boolean;
-  handleTaskCreatorActive: () => void;
+  handleTaskCreatorActive?: () => void;
 }> = ({ initialState = false, handleTaskCreatorActive }) => {
   return (
     <TaskCreatorWrapp>
-      <TaskCreatorPaper>
-        <TaskCreatorHead verticalSpace="between">
-          <Title text="Create New Task" />
-          <Button view="ghost">
-            <Icon src={crossIcon} alt="cross icon" />
-          </Button>
-        </TaskCreatorHead>
-        <TaskCreatorBody>
-          <TaskCreatorImplementor>
-            <TaskCreatorImplementorText>For</TaskCreatorImplementorText>
-            <TaskCreatorImplementorContentWrappUser>
-              <Avatar url={photo_1} alt="avatar icon" size={24} />
-              <TaskCreatorImplementorTextName>
-                Brooklyn
-              </TaskCreatorImplementorTextName>
-              <TaskCreatorImplementorCrossButton>
-                <Icon src={crossIcon} alt="cross icon" />
-              </TaskCreatorImplementorCrossButton>
-            </TaskCreatorImplementorContentWrappUser>
-            <TaskCreatorImplementorTextIn>In</TaskCreatorImplementorTextIn>
-            <TaskCreatorImplementorContentWrapp>
-              <TaskCreatorImplementorTextProject>
-                Project
-              </TaskCreatorImplementorTextProject>
-            </TaskCreatorImplementorContentWrapp>
-          </TaskCreatorImplementor>
-          <TaskCreatorTextarea>
-            <Textarea placeholder="Description..." />
-          </TaskCreatorTextarea>
-          <TaskCreatorOptions>
-            <TaskCreatorOptionsList>
-              {options.map(({ icon, id, alt }) => {
-                const personAddIconId = options?.at(-1)?.id;
+      <TaskCreatorHead verticalSpace="between">
+        <Title text="Create New Task" />
+        <Button view="ghost">
+          <Icon src={crossIcon} alt="cross icon" />
+        </Button>
+      </TaskCreatorHead>
+      <TaskCreatorBody>
+        <TaskCreatorImplementor>
+          <TaskCreatorImplementorText>For</TaskCreatorImplementorText>
+          <TaskCreatorImplementorContentWrappUser>
+            <Avatar url={photo_1} alt="avatar icon" size={24} />
+            <TaskCreatorImplementorTextName>
+              Brooklyn
+            </TaskCreatorImplementorTextName>
+            <TaskCreatorImplementorCrossButton>
+              <Icon src={crossIcon} alt="cross icon" />
+            </TaskCreatorImplementorCrossButton>
+          </TaskCreatorImplementorContentWrappUser>
+          <TaskCreatorImplementorTextIn>In</TaskCreatorImplementorTextIn>
+          <TaskCreatorImplementorContentWrapp>
+            <TaskCreatorImplementorTextProject>
+              Project
+            </TaskCreatorImplementorTextProject>
+          </TaskCreatorImplementorContentWrapp>
+        </TaskCreatorImplementor>
+        <TaskCreatorLabels>
+          <LabelsBlock />
+        </TaskCreatorLabels>
+        <TaskCreatorTextarea>
+          <Textarea placeholder="Description..." />
+        </TaskCreatorTextarea>
+        <TaskCreatorOptions>
+          <TaskCreatorOptionsList>
+            {options.map(({ icon, id, alt }) => {
+              const personAddIconId = options?.at(-1)?.id;
 
-                return (
-                  <TaskCreatorOptionsItem
-                    key={id}
-                    isLastIcon={personAddIconId === id}
-                  >
-                    <Button view="ghost">
-                      <Icon src={icon} alt={alt} />
-                    </Button>
-                  </TaskCreatorOptionsItem>
-                );
-              })}
-            </TaskCreatorOptionsList>
-          </TaskCreatorOptions>
-          <TaskCreatorButton>
-            <Button size="b">Create Task</Button>
-          </TaskCreatorButton>
-        </TaskCreatorBody>
-      </TaskCreatorPaper>
+              return (
+                <TaskCreatorOptionsItem
+                  key={id}
+                  isLastIcon={personAddIconId === id}
+                >
+                  <Button view="ghost">
+                    <Icon src={icon} alt={alt} />
+                  </Button>
+                </TaskCreatorOptionsItem>
+              );
+            })}
+          </TaskCreatorOptionsList>
+        </TaskCreatorOptions>
+        <TaskCreatorButton>
+          <Button size="b">Create Task</Button>
+        </TaskCreatorButton>
+      </TaskCreatorBody>
     </TaskCreatorWrapp>
   );
 };

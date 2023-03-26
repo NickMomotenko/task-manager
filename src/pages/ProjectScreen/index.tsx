@@ -1,5 +1,6 @@
 import { FileAttachment } from "../../containers/FileAttachment";
 import { MembersBlock } from "../../containers/MembersBlock";
+import { Modal } from "../../containers/Modal";
 import { ProjectCard } from "../../containers/ProjectCard";
 import { ProjectChat } from "../../containers/ProjectChat";
 import { ProjectProgress } from "../../containers/ProjectProgress";
@@ -64,6 +65,7 @@ export const ProjectScreen = () => {
           </ProjectScreenActivity>
         </ProjectScreenColumn>
       </ProjectScreenRow>
+      <Modal />
     </ProjectScreenWrapp>
   );
 };
