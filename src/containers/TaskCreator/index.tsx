@@ -1,21 +1,24 @@
 import { Button } from "../../components/Button";
 import { Icon } from "../../components/Icon";
-import { Textarea } from "../../components/Textarea";
-import { Title } from "../../components/Title";
 import { Avatar } from "../../components/Avatar";
 
-import { LabelsBlock } from "../LabelsBlock";
+import { AssignBlock } from "../AssignBlock";
+import { TaskCreatorHead } from "./TaskCreatorHead";
+import { TaskCreatorLabels } from "./TaskCreatorLabels";
+import { TaskCreatorTextarea } from "./TaskCreatorTextarea";
+
+import { useOpen } from "../../hooks/useOpen";
+import { useTextarea } from "../../hooks/useTextarea";
 
 import {
   TaskCreatorWrapp,
-  TaskCreatorHead,
   TaskCreatorBody,
-  TaskCreatorTextarea,
   TaskCreatorOptions,
   TaskCreatorButton,
   TaskCreatorOptionsList,
   TaskCreatorOptionsItem,
   TaskCreatorImplementor,
+  TaskCreatorImplementorWorkersWrapp,
   TaskCreatorImplementorText,
   TaskCreatorImplementorTextIn,
   TaskCreatorImplementorContentWrapp,
@@ -23,51 +26,64 @@ import {
   TaskCreatorImplementorTextName,
   TaskCreatorImplementorContentWrappUser,
   TaskCreatorImplementorCrossButton,
-  TaskCreatorLabels,
+  TaskCreatorImplementorWrapp,
 } from "./styled";
 
 import crossIcon from "../../assets/icons/cross.svg";
 import photo_1 from "../../assets/member/2.png";
 
 import { options } from "./data";
+import { useRef } from "react";
+import { useClickOutside } from "../../hooks/useClickOutside";
 
-export const TaskCreator: React.FC<{
-  initialState?: boolean;
-  handleTaskCreatorActive?: () => void;
-}> = ({ initialState = false, handleTaskCreatorActive }) => {
+export const TaskCreator = () => {
+  const workerList = useOpen();
+  const descriptionTextarea = useTextarea();
+
+  const assignRef = useRef<HTMLDivElement>(null);
+
+  const handleOpenWorkerList = () => {
+    workerList.handleToggleClick();
+  };
+
+  useClickOutside(assignRef, () => workerList.setIsOpen(false));
+
   return (
     <TaskCreatorWrapp>
-      <TaskCreatorHead verticalSpace="between">
-        <Title text="Create New Task" />
-        <Button view="ghost">
-          <Icon src={crossIcon} alt="cross icon" />
-        </Button>
-      </TaskCreatorHead>
+      <TaskCreatorHead />
       <TaskCreatorBody>
         <TaskCreatorImplementor>
-          <TaskCreatorImplementorText>For</TaskCreatorImplementorText>
-          <TaskCreatorImplementorContentWrappUser>
-            <Avatar url={photo_1} alt="avatar icon" size={24} />
-            <TaskCreatorImplementorTextName>
-              Brooklyn
-            </TaskCreatorImplementorTextName>
-            <TaskCreatorImplementorCrossButton>
-              <Icon src={crossIcon} alt="cross icon" />
-            </TaskCreatorImplementorCrossButton>
-          </TaskCreatorImplementorContentWrappUser>
-          <TaskCreatorImplementorTextIn>In</TaskCreatorImplementorTextIn>
-          <TaskCreatorImplementorContentWrapp>
-            <TaskCreatorImplementorTextProject>
-              Project
-            </TaskCreatorImplementorTextProject>
-          </TaskCreatorImplementorContentWrapp>
+          <TaskCreatorImplementorWrapp>
+            <TaskCreatorImplementorText>For</TaskCreatorImplementorText>
+            <TaskCreatorImplementorContentWrappUser
+              onClick={handleOpenWorkerList}
+            >
+              <Avatar url={photo_1} alt="avatar icon" size={24} />
+              <TaskCreatorImplementorTextName>
+                Brooklyn
+              </TaskCreatorImplementorTextName>
+              <TaskCreatorImplementorCrossButton>
+                <Icon src={crossIcon} alt="cross icon" />
+              </TaskCreatorImplementorCrossButton>
+            </TaskCreatorImplementorContentWrappUser>
+            <TaskCreatorImplementorTextIn>In</TaskCreatorImplementorTextIn>
+            <TaskCreatorImplementorContentWrapp>
+              <TaskCreatorImplementorTextProject>
+                Konsept design homepage
+              </TaskCreatorImplementorTextProject>
+            </TaskCreatorImplementorContentWrapp>
+          </TaskCreatorImplementorWrapp>
+          {workerList.isOpen && (
+            <TaskCreatorImplementorWorkersWrapp ref={assignRef}>
+              <AssignBlock />
+            </TaskCreatorImplementorWorkersWrapp>
+          )}
         </TaskCreatorImplementor>
-        <TaskCreatorLabels>
-          <LabelsBlock />
-        </TaskCreatorLabels>
-        <TaskCreatorTextarea>
-          <Textarea placeholder="Description..." />
-        </TaskCreatorTextarea>
+        <TaskCreatorLabels />
+        <TaskCreatorTextarea
+          value={descriptionTextarea.value}
+          onChange={descriptionTextarea.handleChange}
+        />
         <TaskCreatorOptions>
           <TaskCreatorOptionsList>
             {options.map(({ icon, id, alt }) => {

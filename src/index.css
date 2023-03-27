@@ -8,6 +8,8 @@
   --button-s-padding: 3px 15px;
   --button-m-padding: 8px 12px;
   --button-b-padding: 14px 36px;
+
+  --base-transition-s: 0.4s;
 }
 
 * {

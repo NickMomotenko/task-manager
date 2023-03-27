@@ -11,13 +11,13 @@ export const TaskCreatorPaper = styled(PaperWrapp)`
   min-width: 348px;
 `;
 
-export const TaskCreatorHead = styled(Row)`
+export const TaskCreatorHeadWrapp = styled(Row)`
   margin-bottom: 20px;
 `;
 
 export const TaskCreatorBody = styled.div``;
 
-export const TaskCreatorTextarea = styled.div`
+export const TaskCreatorTextareaWrapp = styled.div`
   margin-bottom: 16px;
 `;
 
@@ -50,9 +50,12 @@ export const TaskCreatorOptionsItem = styled.li<{
   }
 `;
 
-export const TaskCreatorImplementor = styled(Row)`
+export const TaskCreatorImplementor = styled.div`
   margin-bottom: 20px;
+  position: relative;
 `;
+
+export const TaskCreatorImplementorWorkersWrapp = styled.div``;
 
 export const TaskCreatorImplementorText = styled.span`
   font-weight: 300;
@@ -106,6 +109,8 @@ export const TaskCreatorImplementorTextName = styled(
 
 export const TaskCreatorImplementorCrossButton = styled.button``;
 
-export const TaskCreatorLabels = styled.div`
+export const TaskCreatorLabelsWrapp = styled.div`
   margin-bottom: 20px;
 `;
+
+export const TaskCreatorImplementorWrapp = styled(Row)``;
