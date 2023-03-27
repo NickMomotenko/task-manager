@@ -4,7 +4,7 @@ import { Textarea } from "../../components/Textarea";
 
 type TaskCreatorTextareaProps = {
   value?: string;
-  onChange?: () => void;
+  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
 export const TaskCreatorTextarea: React.FC<TaskCreatorTextareaProps> = ({

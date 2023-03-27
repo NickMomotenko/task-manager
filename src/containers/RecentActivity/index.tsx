@@ -1,14 +1,19 @@
 import { Icon } from "../../components/Icon";
 import { Title } from "../../components/Title";
 
+import { RecentActivityItem } from "./RecentActivityItem";
+
 import {
   RecentActivityWrapp,
   RecentActivityPaper,
   RecentActivityHead,
-  RecentActivityBody
+  RecentActivityBody,
+  RecentActivityList,
 } from "./styled";
 
 import arrowIcon from "../../assets/icons/arrow.svg";
+
+import { activityHistory } from "./data";
 
 export const RecentActivity = () => {
   return (
@@ -22,7 +27,13 @@ export const RecentActivity = () => {
             size={{ h: "15px", w: "15px" }}
           />
         </RecentActivityHead>
-        <RecentActivityBody></RecentActivityBody>
+        <RecentActivityBody>
+          <RecentActivityList>
+            {activityHistory.map(({ id, ...rest }) => (
+              <RecentActivityItem key={id} {...rest} />
+            ))}
+          </RecentActivityList>
+        </RecentActivityBody>
       </RecentActivityPaper>
     </RecentActivityWrapp>
   );

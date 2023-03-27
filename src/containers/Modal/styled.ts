@@ -19,8 +19,7 @@ export const ModalWrapp = styled.div<{ isOpen: boolean }>`
 `;
 
 export const ModalPaper = styled(PaperWrapp)`
-  opacity: 1;
   max-width: 45%;
   width: 100%;
-  height: 50vh;
+  /* height: 50vh; */
 `;

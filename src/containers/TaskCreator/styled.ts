@@ -50,11 +50,6 @@ export const TaskCreatorOptionsItem = styled.li<{
   }
 `;
 
-export const TaskCreatorImplementor = styled.div`
-  margin-bottom: 20px;
-  position: relative;
-`;
-
 export const TaskCreatorImplementorWorkersWrapp = styled.div``;
 
 export const TaskCreatorImplementorText = styled.span`
@@ -96,6 +91,7 @@ export const TaskCreatorImplementorTextProject = styled(
   color: #828282;
   text-align: center;
   margin-right: 0;
+  padding: 0 8px;
 `;
 
 export const TaskCreatorImplementorTextName = styled(
@@ -113,4 +109,9 @@ export const TaskCreatorLabelsWrapp = styled.div`
   margin-bottom: 20px;
 `;
 
-export const TaskCreatorImplementorWrapp = styled(Row)``;
+export const TaskCreatorImplementorWrapp = styled.div`
+  margin-bottom: 20px;
+  position: relative;
+`;
+
+export const TaskCreatorImplementorBody = styled(Row)``;

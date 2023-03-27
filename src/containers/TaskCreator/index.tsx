@@ -1,14 +1,16 @@
+import { useRef } from "react";
+
 import { Button } from "../../components/Button";
 import { Icon } from "../../components/Icon";
-import { Avatar } from "../../components/Avatar";
 
-import { AssignBlock } from "../AssignBlock";
 import { TaskCreatorHead } from "./TaskCreatorHead";
 import { TaskCreatorLabels } from "./TaskCreatorLabels";
 import { TaskCreatorTextarea } from "./TaskCreatorTextarea";
+import { TaskCreatorImplementor } from "./TaskCreatorImplementor";
 
 import { useOpen } from "../../hooks/useOpen";
 import { useTextarea } from "../../hooks/useTextarea";
+import { useClickOutside } from "../../hooks/useClickOutside";
 
 import {
   TaskCreatorWrapp,
@@ -17,24 +19,9 @@ import {
   TaskCreatorButton,
   TaskCreatorOptionsList,
   TaskCreatorOptionsItem,
-  TaskCreatorImplementor,
-  TaskCreatorImplementorWorkersWrapp,
-  TaskCreatorImplementorText,
-  TaskCreatorImplementorTextIn,
-  TaskCreatorImplementorContentWrapp,
-  TaskCreatorImplementorTextProject,
-  TaskCreatorImplementorTextName,
-  TaskCreatorImplementorContentWrappUser,
-  TaskCreatorImplementorCrossButton,
-  TaskCreatorImplementorWrapp,
 } from "./styled";
 
-import crossIcon from "../../assets/icons/cross.svg";
-import photo_1 from "../../assets/member/2.png";
-
 import { options } from "./data";
-import { useRef } from "react";
-import { useClickOutside } from "../../hooks/useClickOutside";
 
 export const TaskCreator = () => {
   const workerList = useOpen();
@@ -48,37 +35,27 @@ export const TaskCreator = () => {
 
   useClickOutside(assignRef, () => workerList.setIsOpen(false));
 
+  const createNewTask = () => {
+    let newTask = {
+      projectName: "",
+      projectUsersData: {
+        owner: {},
+        implementor: {},
+      },
+      projectLabels: [],
+      text: "",
+    };
+  };
+
   return (
     <TaskCreatorWrapp>
       <TaskCreatorHead />
       <TaskCreatorBody>
-        <TaskCreatorImplementor>
-          <TaskCreatorImplementorWrapp>
-            <TaskCreatorImplementorText>For</TaskCreatorImplementorText>
-            <TaskCreatorImplementorContentWrappUser
-              onClick={handleOpenWorkerList}
-            >
-              <Avatar url={photo_1} alt="avatar icon" size={24} />
-              <TaskCreatorImplementorTextName>
-                Brooklyn
-              </TaskCreatorImplementorTextName>
-              <TaskCreatorImplementorCrossButton>
-                <Icon src={crossIcon} alt="cross icon" />
-              </TaskCreatorImplementorCrossButton>
-            </TaskCreatorImplementorContentWrappUser>
-            <TaskCreatorImplementorTextIn>In</TaskCreatorImplementorTextIn>
-            <TaskCreatorImplementorContentWrapp>
-              <TaskCreatorImplementorTextProject>
-                Konsept design homepage
-              </TaskCreatorImplementorTextProject>
-            </TaskCreatorImplementorContentWrapp>
-          </TaskCreatorImplementorWrapp>
-          {workerList.isOpen && (
-            <TaskCreatorImplementorWorkersWrapp ref={assignRef}>
-              <AssignBlock />
-            </TaskCreatorImplementorWorkersWrapp>
-          )}
-        </TaskCreatorImplementor>
+        <TaskCreatorImplementor
+          isOpen={workerList.isOpen}
+          ref={assignRef}
+          handleOpenWorkerList={handleOpenWorkerList}
+        />
         <TaskCreatorLabels />
         <TaskCreatorTextarea
           value={descriptionTextarea.value}
@@ -103,7 +80,9 @@ export const TaskCreator = () => {
           </TaskCreatorOptionsList>
         </TaskCreatorOptions>
         <TaskCreatorButton>
-          <Button size="b">Create Task</Button>
+          <Button size="b" onClick={createNewTask}>
+            Create Task
+          </Button>
         </TaskCreatorButton>
       </TaskCreatorBody>
     </TaskCreatorWrapp>

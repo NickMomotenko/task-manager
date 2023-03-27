@@ -39,11 +39,6 @@ export const ProjectScreen = () => {
               handleWeeklyProgressActive={weeklyProgress.handleToggleClick}
             />
           </ProjectScreenStatusTable>
-          {taskCreator.isOpen && (
-            <TaskCreator
-              handleTaskCreatorActive={taskCreator.handleToggleClick}
-            />
-          )}
           {weeklyProgress.isOpen && (
             <ProjectProgress
               handleWeeklyProgressActive={weeklyProgress.handleToggleClick}
@@ -65,7 +60,7 @@ export const ProjectScreen = () => {
           </ProjectScreenActivity>
         </ProjectScreenColumn>
       </ProjectScreenRow>
-      <Modal />
+      {/* <Modal /> */}
     </ProjectScreenWrapp>
   );
 };
