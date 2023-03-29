@@ -59,3 +59,7 @@ export const AssignBlockTasksCounter = styled.span`
   color: #b8bac2;
   margin-left: auto;
 `;
+
+export const AssignBlockAvatar = styled.div`
+  flex-shrink: 0;
+`;

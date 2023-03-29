@@ -32,7 +32,7 @@ export const ProjectProgress: React.FC<ProjectProgress> = ({
   return (
     <ProjectProgressWrapp>
       <ProjectProgressPaper>
-        <ProjectProgressHead verticalSpace="between">
+        <ProjectProgressHead gorizontalSpace="between">
           <Title text="Weekly progress" />
           <ProjectProgressButtons>
             <ProjectProgressCrossButton onClick={handleWeeklyProgressActive}>

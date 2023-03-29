@@ -46,7 +46,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ as }) => {
   return (
     <ProjectCardWrapp as={as}>
       <ProjectCardPaper>
-        <ProjectCardHead verticalSpace="between">
+        <ProjectCardHead gorizontalSpace="between">
           <ProjectCardHeadTitle>
             <Title text="Konsept design homepage" />
           </ProjectCardHeadTitle>
@@ -62,7 +62,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ as }) => {
             asperiores tempore aut similique maiores?
           </ProjectCardDescription>
           <ProjectCardProgress>
-            <Row verticalSpace="between">
+            <Row gorizontalSpace="between">
               <ProjectCardProgressLabel>
                 Project Progress
               </ProjectCardProgressLabel>
@@ -76,7 +76,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ as }) => {
               />
             </ProjectCardProgressLine>
           </ProjectCardProgress>
-          <Row verticalSpace="between">
+          <Row gorizontalSpace="between">
             <ProjectCardMultiAvatar>
               <MultiAvatar />
               <ProjectCardMultiAvatarText>

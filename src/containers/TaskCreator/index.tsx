@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import { Button } from "../../components/Button";
 import { Icon } from "../../components/Icon";
@@ -21,9 +21,12 @@ import {
   TaskCreatorOptionsItem,
 } from "./styled";
 
-import { options } from "./data";
+import { labelData, options } from "./data";
 
 export const TaskCreator = () => {
+  const [labelList, setLabelList] = useState(labelData);
+  const [chosenImplementor, setChosenImplementor] = useState(null);
+
   const workerList = useOpen();
   const descriptionTextarea = useTextarea();
 
@@ -33,19 +36,35 @@ export const TaskCreator = () => {
     workerList.handleToggleClick();
   };
 
-  useClickOutside(assignRef, () => workerList.setIsOpen(false));
+  const toggleLabelChecked = (id: number) => {
+    const newLabelList = labelList.map((label) => {
+      if (label.id === id) {
+        return { ...label, checked: !label.checked };
+      }
+
+      return label;
+    });
+
+    setLabelList(newLabelList);
+  };
 
   const createNewTask = () => {
+    const checkedLabels = labelList.filter((item) => item.checked);
+
     let newTask = {
       projectName: "",
       projectUsersData: {
         owner: {},
         implementor: {},
       },
-      projectLabels: [],
-      text: "",
+      projectLabels: checkedLabels,
+      text: descriptionTextarea.value,
     };
+
+    console.log(newTask);
   };
+
+  useClickOutside(assignRef, () => workerList.setIsOpen(false));
 
   return (
     <TaskCreatorWrapp>
@@ -56,7 +75,10 @@ export const TaskCreator = () => {
           ref={assignRef}
           handleOpenWorkerList={handleOpenWorkerList}
         />
-        <TaskCreatorLabels />
+        <TaskCreatorLabels
+          labelList={labelList}
+          toggleLabelChecked={toggleLabelChecked}
+        />
         <TaskCreatorTextarea
           value={descriptionTextarea.value}
           onChange={descriptionTextarea.handleChange}

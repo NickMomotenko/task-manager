@@ -26,7 +26,7 @@ const Header: React.FC = () => {
   return (
     <HeaderWrapp>
       <Container>
-        <Row verticalSpace="between">
+        <Row gorizontalSpace="between">
           <HeaderLogo>
             <Logo />
           </HeaderLogo>

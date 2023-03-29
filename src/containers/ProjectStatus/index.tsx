@@ -49,7 +49,7 @@ export const ProjectStatus: React.FC<ProjectStatusProps> = ({
   return (
     <ProjectStatusWrapp>
       <ProjectStatusPaper>
-        <ProjectStatusHeader verticalSpace="between">
+        <ProjectStatusHeader gorizontalSpace="between">
           <Title text="Project Status" />
           <ProjectStatusTableHeadButtons>
             <ProjectStatusSearchButton>

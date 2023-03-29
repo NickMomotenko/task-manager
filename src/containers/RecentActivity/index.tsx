@@ -19,7 +19,7 @@ export const RecentActivity = () => {
   return (
     <RecentActivityWrapp>
       <RecentActivityPaper>
-        <RecentActivityHead verticalSpace="between">
+        <RecentActivityHead gorizontalSpace="between">
           <Title text="Recent Activity" />
           <Icon
             src={arrowIcon}

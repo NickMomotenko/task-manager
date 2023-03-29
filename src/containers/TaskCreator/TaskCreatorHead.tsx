@@ -8,7 +8,7 @@ import crossIcon from "../../assets/icons/cross.svg";
 
 export const TaskCreatorHead = () => {
   return (
-    <TaskCreatorHeadWrapp verticalSpace="between">
+    <TaskCreatorHeadWrapp gorizontalSpace="between">
       <Title text="Create New Task" />
       <Button view="ghost">
         <Icon src={crossIcon} alt="cross icon" />

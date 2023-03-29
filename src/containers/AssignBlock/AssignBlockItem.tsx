@@ -5,6 +5,7 @@ import {
   AssignBlockItemWrapp,
   AssignBlockFullname,
   AssignBlockTasksCounter,
+  AssignBlockAvatar
 } from "./styled";
 
 type AssignBlockItemProps = {
@@ -22,7 +23,9 @@ export const AssignBlockItem: React.FC<AssignBlockItemProps> = ({
   return (
     <AssignBlockItemWrapp>
       <Row>
-        <Avatar url={user.avatar} alt={`${user.fullname} avatar`} size={35} />
+        <AssignBlockAvatar>
+          <Avatar url={user.avatar} alt={`${user.fullname} avatar`} size={35} />
+        </AssignBlockAvatar>
         <AssignBlockFullname>{user.fullname}</AssignBlockFullname>
         <AssignBlockTasksCounter>
           {tasksCounter} {tasksCounter !== 1 ? "tasks" : "task"} on progress

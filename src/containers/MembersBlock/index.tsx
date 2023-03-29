@@ -21,7 +21,7 @@ export const MembersBlock = () => {
       <MembersBlockPaper>
         <Accordion
           header={
-            <MembersBlockTitle verticalSpace="between">
+            <MembersBlockTitle gorizontalSpace="between">
               <Title text="Project Members" />
               <Icon
                 src={arrowIcon}

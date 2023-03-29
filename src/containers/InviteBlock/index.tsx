@@ -45,7 +45,7 @@ export const InviteBlock: React.FC = () => {
           </InviteInfo>
         </InviteBody>
         <InviteButtons>
-          <Row verticalSpace="between">
+          <Row gorizontalSpace="between">
             <Button view="ghost">
               <InviteButtonIcon>
                 <Icon src={inviteIcon} alt="invite icon" />

@@ -1,12 +1,24 @@
 import { TaskCreatorLabelsWrapp } from "./styled";
 
 import { LabelsBlock } from "../LabelsBlock";
+import { ILabel } from "./types";
 
-export const TaskCreatorLabels = () => {
+type TaskCreatorLabels = {
+  labelList?: ILabel[];
+  toggleLabelChecked?: (id: number) => void;
+};
+
+export const TaskCreatorLabels: React.FC<TaskCreatorLabels> = ({
+  labelList,
+  toggleLabelChecked,
+}) => {
   return (
     <>
       <TaskCreatorLabelsWrapp>
-        <LabelsBlock />
+        <LabelsBlock
+          labelList={labelList}
+          toggleLabelChecked={toggleLabelChecked}
+        />
       </TaskCreatorLabelsWrapp>
     </>
   );

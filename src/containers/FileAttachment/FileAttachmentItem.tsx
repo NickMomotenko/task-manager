@@ -27,7 +27,7 @@ export const FileAttachmentItem: React.FC<FileAttachmentItemProps> = ({
 }) => {
   return (
     <FileAttachmentItemStyles>
-      <Row verticalSpace="between">
+      <Row gorizontalSpace="between">
         <FileAttachmentItemCol>
           <FileAttachmentItemIcon src={icon} alt="file icon" />
           <FileAttachmentItemFileName>{file_name}</FileAttachmentItemFileName>

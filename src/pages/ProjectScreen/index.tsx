@@ -23,7 +23,7 @@ import {
 } from "./styled";
 
 export const ProjectScreen = () => {
-  const taskCreator = useOpen();
+  const taskCreator = useOpen(false);
   const weeklyProgress = useOpen();
 
   return (
@@ -60,7 +60,7 @@ export const ProjectScreen = () => {
           </ProjectScreenActivity>
         </ProjectScreenColumn>
       </ProjectScreenRow>
-      {/* <Modal /> */}
+      {taskCreator.isOpen && <Modal />}
     </ProjectScreenWrapp>
   );
 };

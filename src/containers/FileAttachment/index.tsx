@@ -25,7 +25,7 @@ export const FileAttachment = () => {
       <FileAttachmentPaper>
         <Accordion
           header={
-            <FileAttachmentHeader verticalSpace="between">
+            <FileAttachmentHeader gorizontalSpace="between">
               <Title text="File Attachment" />
               <Icon
                 src={arrowIcon}

@@ -11,3 +11,12 @@ export const options = [
   { id: 4, alt: "calendar icon", icon: calendarIcon },
   { id: 5, alt: "person icon", icon: personAddIcon },
 ];
+
+export const labelData = [
+  { id: 1, title: "Copyright", icon: "", checked: false },
+  { id: 2, title: "Design", icon: "", checked: false },
+  { id: 3, title: "UI design", icon: "", checked: false },
+  { id: 4, title: "Web development", icon: "", checked: true },
+];
+
+export const implementorList = [];

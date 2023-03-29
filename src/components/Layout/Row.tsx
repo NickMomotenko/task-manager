@@ -4,16 +4,16 @@ import { VerticalTypes } from "./types";
 
 type RowProps = {
   children: React.ReactNode;
-  verticalSpace?: VerticalTypes;
+  gorizontalSpace?: VerticalTypes;
 };
 
 export const Row: React.FC<RowProps> = ({
   children,
-  verticalSpace = "",
+  gorizontalSpace = "",
   ...rest
 }) => {
   return (
-    <RowWrapp verticalSpace={verticalSpace} {...rest}>
+    <RowWrapp gorizontalSpace={gorizontalSpace} {...rest}>
       {children}
     </RowWrapp>
   );
