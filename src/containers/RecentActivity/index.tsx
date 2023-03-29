@@ -14,27 +14,44 @@ import {
 import arrowIcon from "../../assets/icons/arrow.svg";
 
 import { activityHistory } from "./data";
+import { withAnimate } from "../../HOC/AnimateHOC";
 
-export const RecentActivity = () => {
+const RecentActivityTitle = () => {
+  return (
+    <RecentActivityHead gorizontalSpace="between">
+      <Title text="Recent Activity" />
+      <Icon src={arrowIcon} alt="arrow icon" size={{ h: "15px", w: "15px" }} />
+    </RecentActivityHead>
+  );
+};
+
+const RecentActivityBodyT = (props: any) => {
+  console.log(props);
+
+  return (
+    <RecentActivityBody>
+      <RecentActivityList>
+        {activityHistory.map(({ id, ...rest }) => (
+          <RecentActivityItem key={id} {...rest} />
+        ))}
+      </RecentActivityList>
+    </RecentActivityBody>
+  );
+};
+
+const RecentActivity = (props: any) => {
   return (
     <RecentActivityWrapp>
       <RecentActivityPaper>
-        <RecentActivityHead gorizontalSpace="between">
-          <Title text="Recent Activity" />
-          <Icon
-            src={arrowIcon}
-            alt="arrow icon"
-            size={{ h: "15px", w: "15px" }}
-          />
-        </RecentActivityHead>
-        <RecentActivityBody>
-          <RecentActivityList>
-            {activityHistory.map(({ id, ...rest }) => (
-              <RecentActivityItem key={id} {...rest} />
-            ))}
-          </RecentActivityList>
-        </RecentActivityBody>
+        <RecentActivityAnimate />
       </RecentActivityPaper>
     </RecentActivityWrapp>
   );
 };
+
+const RecentActivityAnimate = withAnimate(
+  RecentActivityTitle,
+  RecentActivityBodyT
+);
+
+export default RecentActivity;

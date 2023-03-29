@@ -5,8 +5,7 @@ import { ProjectCard } from "../../containers/ProjectCard";
 import { ProjectChat } from "../../containers/ProjectChat";
 import { ProjectProgress } from "../../containers/ProjectProgress";
 import { ProjectStatus } from "../../containers/ProjectStatus";
-import { RecentActivity } from "../../containers/RecentActivity";
-import { TaskCreator } from "../../containers/TaskCreator";
+import RecentActivity from "../../containers/RecentActivity";
 
 import { useOpen } from "../../hooks/useOpen";
 
