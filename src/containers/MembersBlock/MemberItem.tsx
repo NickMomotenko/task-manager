@@ -10,14 +10,9 @@ import {
   MemberItemPosition,
 } from "./styled";
 
-type MemberItemProps = {
-  user: {
-    id: number;
-    fullname: string;
-    position: string;
-    avatar: string;
-  };
-};
+import { IMember } from "./types";
+
+type MemberItemProps = IMember;
 
 export const MemberItem: React.FC<MemberItemProps> = ({ user }) => {
   const { fullname, position, avatar } = user;

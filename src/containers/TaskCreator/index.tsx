@@ -38,11 +38,7 @@ export const TaskCreator = () => {
 
   const toggleLabelChecked = (id: number) => {
     const newLabelList = labelList.map((label) => {
-      if (label.id === id) {
-        return { ...label, checked: !label.checked };
-      }
-
-      return label;
+      return label.id === id ? { ...label, checked: !label.checked } : label;
     });
 
     setLabelList(newLabelList);

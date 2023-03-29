@@ -50,7 +50,6 @@ export const FileAttachmentDropSpaceTextSpan = styled.div`
 export const FileAttachmentList = styled.ul`
   margin-bottom: 28px;
   overflow: auto;
-  // max-height: 60%;
 `;
 
 export const FileAttachmentItemStyles = styled.li`

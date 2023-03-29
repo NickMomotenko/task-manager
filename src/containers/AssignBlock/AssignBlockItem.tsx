@@ -5,16 +5,12 @@ import {
   AssignBlockItemWrapp,
   AssignBlockFullname,
   AssignBlockTasksCounter,
-  AssignBlockAvatar
+  AssignBlockAvatar,
 } from "./styled";
 
-type AssignBlockItemProps = {
-  user: {
-    avatar: string;
-    fullname: string;
-  };
-  tasksCounter: number;
-};
+import { IAssignItem } from "./types";
+
+type AssignBlockItemProps = IAssignItem;
 
 export const AssignBlockItem: React.FC<AssignBlockItemProps> = ({
   user,

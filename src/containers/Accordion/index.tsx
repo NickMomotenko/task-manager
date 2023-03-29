@@ -8,7 +8,7 @@ type AccordionProps = {
 };
 
 export const Accordion: React.FC<AccordionProps> = ({ header, children }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [bodyStyles, setBodyStyles] = useState<any>(null);
 
   const bodyRef = useRef<HTMLDivElement>(null);

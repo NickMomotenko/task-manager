@@ -73,13 +73,13 @@ type ProjectChatItemProps = {
     };
     liked: number;
   };
-  as: string;
+  as?: string;
 };
 
 export const ProjectChatItem: React.FC<ProjectChatItemProps> = ({
   user,
   data,
-  as,
+  as = 'div',
 }) => {
   return (
     <ProjectChatItemWrapp as={as}>

@@ -13,6 +13,7 @@ import {
 } from "./styled";
 
 import arrowIcon from "../../assets/icons/arrow.svg";
+
 import { members } from "./data";
 
 export const MembersBlock = () => {

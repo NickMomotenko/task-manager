@@ -1,18 +1,6 @@
-import styled from "styled-components";
-
 import { ProjectCard } from "../ProjectCard";
 
-import { ProjectCardWrapp } from "../ProjectCard/styled";
-
-const ProjectListWrapp = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-right: -20px;
-
-  ${ProjectCardWrapp} {
-    margin-right: 20px;
-  }
-`;
+import { ProjectListWrapp } from "./styled";
 
 export const ProjectList = () => {
   return (

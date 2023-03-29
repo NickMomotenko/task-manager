@@ -7,8 +7,10 @@ import { AssignBlockItem } from "./AssignBlockItem";
 
 import { assignList } from "./data";
 
+import { IAssignItem } from "./types";
+
 type AssignBlockProps = {
-  data?: [];
+  data?: IAssignItem[];
 };
 
 export const AssignBlock: React.FC<AssignBlockProps> = () => {
