@@ -1,3 +1,5 @@
+import { useState, forwardRef } from "react";
+
 import { FileAttachment } from "../../containers/FileAttachment";
 import { MembersBlock } from "../../containers/MembersBlock";
 import { Modal } from "../../containers/Modal";
@@ -6,6 +8,8 @@ import { ProjectChat } from "../../containers/ProjectChat";
 import { ProjectProgress } from "../../containers/ProjectProgress";
 import { ProjectStatus } from "../../containers/ProjectStatus";
 import RecentActivity from "../../containers/RecentActivity";
+// import Select from "../../containers/Select/Select";
+import { Select } from "../../containers/Select";
 
 import { useOpen } from "../../hooks/useOpen";
 
@@ -22,7 +26,7 @@ import {
 } from "./styled";
 
 export const ProjectScreen = () => {
-  const taskCreator = useOpen(false);
+  const taskCreator = useOpen(true);
   const weeklyProgress = useOpen();
 
   return (

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, forwardRef } from "react";
 
 import { Button } from "../../components/Button";
 import { Icon } from "../../components/Icon";
@@ -21,11 +21,30 @@ import {
   TaskCreatorOptionsItem,
 } from "./styled";
 
-import { labelData, options } from "./data";
+import { labelData } from "./data";
+import { Select } from "../Select";
+import { Worker } from "../Worker";
+
+import { implementorList } from "./data";
+
+const Test = (props: any) => {
+  console.log(props);
+
+  const handleClick = () => {
+    props.onClick?.(props.value);
+  };
+
+  return (
+    <div className="test" onClick={handleClick}>
+      {props.label}
+    </div>
+  );
+};
 
 export const TaskCreator = () => {
   const [labelList, setLabelList] = useState(labelData);
-  const [chosenImplementor, setChosenImplementor] = useState(null);
+
+  const [selectedOption, setSelectedOption] = useState(null);
 
   const workerList = useOpen();
   const descriptionTextarea = useTextarea();
@@ -66,10 +85,11 @@ export const TaskCreator = () => {
     <TaskCreatorWrapp>
       <TaskCreatorHead />
       <TaskCreatorBody>
-        <TaskCreatorImplementor
-          isOpen={workerList.isOpen}
-          ref={assignRef}
-          handleOpenWorkerList={handleOpenWorkerList}
+        <Select
+          customInput={Worker}
+          options={implementorList}
+          onChange={setSelectedOption}
+          placeHolder="Add worker"
         />
         <TaskCreatorLabels
           labelList={labelList}
@@ -79,7 +99,7 @@ export const TaskCreator = () => {
           value={descriptionTextarea.value}
           onChange={descriptionTextarea.handleChange}
         />
-        <TaskCreatorOptions>
+        {/* <TaskCreatorOptions>
           <TaskCreatorOptionsList>
             {options.map(({ icon, id, alt }) => {
               const personAddIconId = options?.at(-1)?.id;
@@ -96,7 +116,7 @@ export const TaskCreator = () => {
               );
             })}
           </TaskCreatorOptionsList>
-        </TaskCreatorOptions>
+        </TaskCreatorOptions> */}
         <TaskCreatorButton>
           <Button size="b" onClick={createNewTask}>
             Create Task
