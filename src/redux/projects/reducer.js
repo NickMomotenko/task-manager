@@ -1,7 +1,7 @@
 import { projects } from "../../helpers/projects";
 
 const initialState = {
-  projects: [],
+  projects: projects,
 };
 
 export const projectsReducer = (state = initialState, action) => {

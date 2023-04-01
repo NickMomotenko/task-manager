@@ -26,8 +26,6 @@ const RecentActivityTitle = () => {
 };
 
 const RecentActivityBodyT = (props: any) => {
-  console.log(props);
-
   return (
     <RecentActivityBody>
       <RecentActivityList>

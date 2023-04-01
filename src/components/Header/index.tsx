@@ -20,9 +20,13 @@ import {
   HeaderLogo,
 } from "./styled";
 import { useInput } from "../../hooks/useInput";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 const Header: React.FC = () => {
   const { value, handleChange } = useInput();
+  const { authUser } = useSelector((state: RootState) => state.auth);
+
   return (
     <HeaderWrapp>
       <Container>
@@ -43,9 +47,13 @@ const Header: React.FC = () => {
           </HeaderMenu>
           <HeaderUser>
             <HeaderUserAvatar>
-              <Avatar url={avatar} alt="user avatar image" />
+              <Avatar
+                url={authUser.avatar}
+                alt={`${authUser.fullname} avatar`}
+                size={38}
+              />
             </HeaderUserAvatar>
-            <HeaderUserFullname>Samanta Bruh</HeaderUserFullname>
+            <HeaderUserFullname>{authUser.fullname}</HeaderUserFullname>
           </HeaderUser>
         </Row>
       </Container>

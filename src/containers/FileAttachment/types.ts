@@ -1,6 +1,6 @@
-export type IFileAttach = {
-  icon: string;
-  size: string;
+export type IFiles = {
+  id: string;
   file_name: string;
-  author: {};
+  file_size: string;
+  owner: {};
 };

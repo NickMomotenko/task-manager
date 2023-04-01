@@ -15,11 +15,15 @@ import {
   FileAttachmentPaper,
 } from "./styled";
 
-import { files } from "./data";
-
 import arrowIcon from "../../assets/icons/arrow.svg";
 
-export const FileAttachment = () => {
+import { IFiles } from "./types";
+
+type FileAttachmentProps = {
+  files: IFiles[];
+};
+
+export const FileAttachment: React.FC<FileAttachmentProps> = ({ files }) => {
   return (
     <FileAttachmentWrapp>
       <FileAttachmentPaper>
@@ -37,7 +41,7 @@ export const FileAttachment = () => {
         >
           <FileAttachmentBody>
             <FileAttachmentList>
-              {files.map((file) => (
+              {files?.map((file) => (
                 <FileAttachmentItem key={file.id} {...file} />
               ))}
             </FileAttachmentList>

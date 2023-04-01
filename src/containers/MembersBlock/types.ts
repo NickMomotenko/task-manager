@@ -1,8 +1,7 @@
 export type IMember = {
-  user: {
-    id: number;
-    fullname: string;
-    position: string;
-    avatar: string;
-  };
+  id: string;
+  fullname: string;
+  avatar: string;
+  position: string;
+  tasks?: never[];
 };

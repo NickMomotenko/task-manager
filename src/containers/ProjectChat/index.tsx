@@ -1,19 +1,10 @@
-import { Avatar } from "../../components/Avatar";
 import { Row } from "../../components/Layout";
 import { MultiAvatar } from "../../components/MultiAvatar";
 import { Title } from "../../components/Title";
 import { Textarea } from "../../components/Textarea";
-import { Button } from "../../components/Button";
 import { Icon } from "../../components/Icon";
 
 import { ProjectChatItem } from "./ProjectChatItem";
-
-import photo_1 from "../../assets/member/3.png";
-import textOutlineIcon from "../../assets/icons/text-outline.svg";
-import smileIcon from "../../assets/icons/smile.svg";
-import attachIcon from "../../assets/icons/attach.svg";
-
-import { chatList } from "./data";
 
 import {
   ProjectChatWrapp,
@@ -35,8 +26,24 @@ import {
 
 import { useTextarea } from "../../hooks/useTextarea";
 
-export const ProjectChat = () => {
+import { IChat } from "./types";
+import { ReplyTextarea } from "../../components/ReplyTextarea";
+
+type ProjectChatProps = {
+  chatData?: IChat[];
+  team?: {
+    id: string;
+    fullname: string;
+    avatar: string;
+    position: string;
+    tasks: never[];
+  }[];
+};
+
+export const ProjectChat: React.FC<ProjectChatProps> = ({ chatData, team }) => {
   const { value, handleChange } = useTextarea();
+
+  const handleSend = () => {};
 
   return (
     <ProjectChatWrapp>
@@ -49,45 +56,24 @@ export const ProjectChat = () => {
             <Row>
               <ProjectChatTeamLabelText>Team:</ProjectChatTeamLabelText>
               <ProjectChatTeamMultiAvatar>
-                <MultiAvatar size={30} />
+                <MultiAvatar size={30} data={team} />
               </ProjectChatTeamMultiAvatar>
             </Row>
           </ProjectChatTeamList>
           <ProjectChatBody>
             <ProjectChatBodyList>
-              {chatList.map((chat) => (
+              {chatData?.map((chat) => (
                 <ProjectChatItem key={chat.id} as="li" {...chat} />
               ))}
             </ProjectChatBodyList>
           </ProjectChatBody>
           <ProjectChatTextareaBlock>
-            <ProjectChatTextareaBlockRow>
-              <ProjectChatTextareaAvatar>
-                <Avatar url={photo_1} alt="avatar icon" size={30} />
-              </ProjectChatTextareaAvatar>
-              <ProjectChatTextarea>
-                <Textarea
-                  value={value}
-                  onChange={handleChange}
-                  placeholder="Reply or post an update"
-                >
-                  <ProjectChatTextareaBottom>
-                    <Row>
-                      <ProjectChatTextareaButton>
-                        <Icon src={textOutlineIcon} alt="text outline icon" />
-                      </ProjectChatTextareaButton>
-                      <ProjectChatTextareaButton>
-                        <Icon src={smileIcon} alt="smile icon" />
-                      </ProjectChatTextareaButton>
-                      <ProjectChatTextareaButton>
-                        <Icon src={attachIcon} alt="attach icon" />
-                      </ProjectChatTextareaButton>
-                    </Row>
-                    <Button size="s">Send</Button>
-                  </ProjectChatTextareaBottom>
-                </Textarea>
-              </ProjectChatTextarea>
-            </ProjectChatTextareaBlockRow>
+            <ReplyTextarea
+              value={value}
+              onChange={handleChange}
+              placeholder="Reply or post an update"
+              handleSend={handleSend}
+            />
           </ProjectChatTextareaBlock>
         </ProjectChatContent>
       </ProjectChatPaper>

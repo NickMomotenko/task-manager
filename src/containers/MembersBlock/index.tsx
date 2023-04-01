@@ -14,9 +14,13 @@ import {
 
 import arrowIcon from "../../assets/icons/arrow.svg";
 
-import { members } from "./data";
+import { IMember } from "./types";
 
-export const MembersBlock = () => {
+type MembersBlockProps = {
+  members?: IMember[];
+};
+
+export const MembersBlock: React.FC<MembersBlockProps> = ({ members }) => {
   return (
     <MembersBlockWrapp>
       <MembersBlockPaper>
@@ -34,7 +38,7 @@ export const MembersBlock = () => {
         >
           <MembersBlockBody>
             <MembersBlockList>
-              {members.map((member) => (
+              {members?.map((member) => (
                 <MemberItem key={member.id} {...member} />
               ))}
             </MembersBlockList>

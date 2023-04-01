@@ -31,46 +31,58 @@ import {
 
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { useOpen } from "../../hooks/useOpen";
+import { IProject } from "../../helpers/projects";
+import { useNavigate } from "react-router";
 
 type ProjectCardProps = {
   as?: string | any;
+  project: IProject;
 };
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ as }) => {
+export const ProjectCard: React.FC<ProjectCardProps> = ({
+  as = "div",
+  project,
+}) => {
+  const { id, data, team } = project;
+
   const { isOpen, setIsOpen, handleToggleClick } = useOpen();
+  const navigate = useNavigate();
 
   const optionRef = useRef<HTMLDivElement>(null);
+
+  const handleNavigateById = () => {
+    navigate(`/project/${id}`);
+  };
+
+  const teamTextLabel = team?.length <= 3 ? "" : `+ ${team?.length - 3} people`;
 
   useClickOutside(optionRef, () => setIsOpen(false));
 
   return (
-    <ProjectCardWrapp as={as}>
+    <ProjectCardWrapp as={as} onClick={handleNavigateById}>
       <ProjectCardPaper>
         <ProjectCardHead gorizontalSpace="between">
           <ProjectCardHeadTitle>
-            <Title text="Konsept design homepage" />
+            <Title text={data.title} />
           </ProjectCardHeadTitle>
           <ProjectCardCrossButton onClick={handleToggleClick}>
             <Icon src={optionIcon} alt="option icon" />
           </ProjectCardCrossButton>
         </ProjectCardHead>
         <ProjectCardBody>
-          <ProjectCardDescription>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-            quas, praesentium repudiandae sed maxime velit. Natus mollitia
-            distinctio atque laudantium debitis odio dolore excepturi! Porro
-            asperiores tempore aut similique maiores?
-          </ProjectCardDescription>
+          <ProjectCardDescription>{data.description}</ProjectCardDescription>
           <ProjectCardProgress>
             <Row gorizontalSpace="between">
               <ProjectCardProgressLabel>
                 Project Progress
               </ProjectCardProgressLabel>
-              <ProjectCardProgressCounter>33%</ProjectCardProgressCounter>
+              <ProjectCardProgressCounter>
+                {data.progress}%
+              </ProjectCardProgressCounter>
             </Row>
             <ProjectCardProgressLine>
               <ProgressLine
-                initialValue={33}
+                initialValue={data.progress}
                 overLineColor="#46bd84"
                 baseLineColor="#dee3ec"
               />
@@ -78,9 +90,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ as }) => {
           </ProjectCardProgress>
           <Row gorizontalSpace="between">
             <ProjectCardMultiAvatar>
-              <MultiAvatar />
+              <MultiAvatar data={team} />
               <ProjectCardMultiAvatarText>
-                + 15 people
+                {teamTextLabel}
               </ProjectCardMultiAvatarText>
             </ProjectCardMultiAvatar>
             <ProjectCardInviteButton>

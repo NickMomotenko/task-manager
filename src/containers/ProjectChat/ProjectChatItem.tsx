@@ -4,6 +4,7 @@ import { Icon } from "../../components/Icon";
 import { Row } from "../../components/Layout";
 
 import likedIcon from "../../assets/icons/like.svg";
+import { IChat } from "./types";
 
 export const ProjectChatItemWrapp = styled.div`
   margin-bottom: 5px;
@@ -59,50 +60,29 @@ export const ProjectChatItemLikedCounter = styled.span`
 
 export const ProjectChatItemLikedIcon = styled.div``;
 
-type ProjectChatItemProps = {
-  id: number;
-  user: {
-    avatar: string;
-    fullname: string;
-  };
-  data: {
-    text: string;
-    created_at: {
-      date: string;
-      time: string;
-    };
-    liked: number;
-  };
-  as?: string;
-};
+type ProjectChatItemProps = IChat & { as: string };
 
-export const ProjectChatItem: React.FC<ProjectChatItemProps> = ({
-  user,
-  data,
-  as = 'div',
-}) => {
+export const ProjectChatItem: React.FC<ProjectChatItemProps> = (props) => {
+  const { as = "div", text, created_at, liked, user } = props;
+
   return (
-    <ProjectChatItemWrapp as={as}>
+    <ProjectChatItemWrapp>
       <ProjectChatItemTopRow>
         <ProjectChatItemAvatar>
-          <Avatar
-            url={user?.avatar}
-            alt={`${user?.fullname} image`}
-            size={30}
-          />
+          <Avatar url={user.avatar} alt={`${user.fullname} image`} size={30} />
         </ProjectChatItemAvatar>
         <ProjectChatItemInfo>
           <ProjectChatItemUserFullname>
-            {user?.fullname}
+            {user.fullname}
           </ProjectChatItemUserFullname>
           <ProjectChatItemUserMessageText>
-            {data?.text}
+            {text}
           </ProjectChatItemUserMessageText>
           <ProjectChatItemBottom>
-            <ProjectChatItemDate>{data?.created_at?.time}</ProjectChatItemDate>
+            <ProjectChatItemDate>{created_at?.time}</ProjectChatItemDate>
             <ProjectChatItemLiked>
               <ProjectChatItemLikedCounter>
-                {data?.liked}
+                {liked?.length}
               </ProjectChatItemLikedCounter>
               <ProjectChatItemLikedIcon>
                 <Icon src={likedIcon} alt="like icon" />

@@ -21,8 +21,8 @@ export const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<MainContent />}>
-          {/* <Route path="/" element={<Projects />} /> */}
-          <Route path="/" element={<ProjectScreen />} />
+          <Route path="/" element={<Projects />} />
+          <Route path="/project/:id" element={<ProjectScreen />} />
         </Route>
       </Routes>
     </AppWrapp>

@@ -12,25 +12,49 @@ import {
   FileAttachmentItemCol,
 } from "./styled";
 
-import { IFileAttach } from "./types";
+import pdfIcon from "../../assets/icons/pdf.png";
+import csvIcon from "../../assets/icons/csv.png";
+import xlsIcon from "../../assets/icons/xls.png";
+import jpgIcon from "../../assets/icons/jpg.png";
 
-type FileAttachmentItemProps = IFileAttach;
+import { IFiles } from "./types";
 
-export const FileAttachmentItem: React.FC<FileAttachmentItemProps> = ({
-  icon,
-  size,
-  file_name,
-  author,
+export const FileAttachmentItem: React.FC<IFiles> = ({
+  // icon,
+  file_size,
+  file_name = "",
+  owner,
 }) => {
+  const getIcon = (type: string) => {
+    if (type === "xls") {
+      return xlsIcon;
+    }
+
+    if (type === "pdf") {
+      return pdfIcon;
+    }
+
+    if (type === "csv") {
+      return csvIcon;
+    }
+
+    if (type === "jpg") {
+      return jpgIcon;
+    }
+  };
+
   return (
     <FileAttachmentItemStyles>
       <Row gorizontalSpace="between">
         <FileAttachmentItemCol>
-          <FileAttachmentItemIcon src={icon} alt="file icon" />
+          <FileAttachmentItemIcon
+            src={getIcon(file_name.split(".").at(-1))}
+            alt="file icon"
+          />
           <FileAttachmentItemFileName>{file_name}</FileAttachmentItemFileName>
         </FileAttachmentItemCol>
         <FileAttachmentItemCol>
-          <FileAttachmentItemSize>{size}</FileAttachmentItemSize>
+          <FileAttachmentItemSize>{file_size}</FileAttachmentItemSize>
           <FileAttachmentItemButton>
             <Button view="ghost">Download</Button>
           </FileAttachmentItemButton>

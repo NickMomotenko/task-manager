@@ -1,13 +1,14 @@
+import { IProject } from "../../helpers/projects";
 import { ProjectCard } from "../ProjectCard";
 
 import { ProjectListWrapp } from "./styled";
 
-export const ProjectList = () => {
+export const ProjectList: React.FC<{ data: IProject[] }> = ({ data }) => {
   return (
     <ProjectListWrapp as="ul">
-      <ProjectCard as="li" />
-      <ProjectCard as="li" />
-      <ProjectCard as="li" />
+      {data?.map((project: IProject) => (
+        <ProjectCard key={project.id} as="li" project={project} />
+      ))}
     </ProjectListWrapp>
   );
 };

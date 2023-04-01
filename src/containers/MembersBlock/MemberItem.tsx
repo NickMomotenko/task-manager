@@ -14,9 +14,11 @@ import { IMember } from "./types";
 
 type MemberItemProps = IMember;
 
-export const MemberItem: React.FC<MemberItemProps> = ({ user }) => {
-  const { fullname, position, avatar } = user;
-
+export const MemberItem: React.FC<MemberItemProps> = ({
+  fullname,
+  avatar,
+  position,
+}) => {
   return (
     <MemberItemWrapp>
       <Row>

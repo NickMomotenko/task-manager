@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { FileAttachment } from "../../containers/FileAttachment";
 import { MembersBlock } from "../../containers/MembersBlock";
 import { Modal } from "../../containers/Modal";
@@ -20,17 +21,28 @@ import {
   ProjectScreenActivity,
   ProjectScreenStatusTable,
 } from "./styled";
+import { RootState } from "../../redux/store";
+import { useParams } from "react-router";
 
 export const ProjectScreen = () => {
   const taskCreator = useOpen(false);
   const weeklyProgress = useOpen();
+
+  const { projects } = useSelector((state: RootState) => state.projects);
+  const params = useParams<{
+    id: string;
+  }>();
+
+  const projectData = projects.find(({ id }) => id === Number(params.id));
+
+  console.log(projectData);
 
   return (
     <ProjectScreenWrapp>
       <ProjectScreenRow>
         <ProjectScreenColumn>
           <ProjectScreenCard>
-            <ProjectCard />
+            <ProjectCard project={projectData} />
           </ProjectScreenCard>
           <ProjectScreenStatusTable>
             <ProjectStatus
@@ -46,13 +58,16 @@ export const ProjectScreen = () => {
         </ProjectScreenColumn>
         <ProjectScreenColumn>
           <ProjectScreenChat>
-            <ProjectChat />
+            <ProjectChat
+              chatData={projectData?.chat}
+              team={projectData?.team}
+            />
           </ProjectScreenChat>
           <ProjectScreenAttachments>
-            <FileAttachment />
+            <FileAttachment files={projectData?.files} />
           </ProjectScreenAttachments>
           <ProjectScreenMembers>
-            <MembersBlock />
+            <MembersBlock members={projectData?.team} />
           </ProjectScreenMembers>
           <ProjectScreenActivity>
             <RecentActivity />

@@ -3,8 +3,15 @@ import { useState, useEffect } from "react";
 import { Button } from "../Button";
 
 import { OptionsWrapp, OptionsList, OptionsItem } from "./styled";
+import { useNavigate } from "react-router";
 
-const mockList = [{ id: 1, title: "Project info", onClick: () => {} }];
+const mockList = [
+  {
+    id: 1,
+    title: "Project info",
+    onClick: () => {},
+  },
+];
 
 type ListItem = { id: number; title: string; onClick: () => void };
 
@@ -17,6 +24,8 @@ export const Options: React.FC<OptionsProps> = ({
   initialState,
   list = mockList,
 }) => {
+  const navigate = useNavigate();
+
   const [isOpen, setIsOpen] = useState(initialState);
 
   useEffect(() => {
