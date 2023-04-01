@@ -1,4 +1,9 @@
 import { useSelector } from "react-redux";
+
+import { useParams } from "react-router";
+
+import { RootState } from "../../redux/store";
+
 import { FileAttachment } from "../../containers/FileAttachment";
 import { MembersBlock } from "../../containers/MembersBlock";
 import { Modal } from "../../containers/Modal";
@@ -21,8 +26,6 @@ import {
   ProjectScreenActivity,
   ProjectScreenStatusTable,
 } from "./styled";
-import { RootState } from "../../redux/store";
-import { useParams } from "react-router";
 
 export const ProjectScreen = () => {
   const taskCreator = useOpen(false);
@@ -34,8 +37,6 @@ export const ProjectScreen = () => {
   }>();
 
   const projectData = projects.find(({ id }) => id === Number(params.id));
-
-  console.log(projectData);
 
   return (
     <ProjectScreenWrapp>

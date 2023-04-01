@@ -11,8 +11,6 @@ import {
 
 import { Tooltip } from "../Tooltip";
 
-import { multiData } from "./data";
-
 interface MultiAvatarProps {
   data?: {
     id: string;
@@ -22,16 +20,23 @@ interface MultiAvatarProps {
     tasks: never[];
   }[];
   size?: number;
+  showTooltip?: boolean;
 }
 
-export const MultiAvatar: React.FC<MultiAvatarProps> = ({ size, data }) => {
+export const MultiAvatar: React.FC<MultiAvatarProps> = ({
+  data,
+  size,
+  showTooltip = true,
+}) => {
+  const renderData = data?.slice(0, 3);
+
   return (
     <MultiAvatarWrapp>
       <MultiAvatarList>
-        {data?.map(({ id, fullname, avatar }, ind) => (
+        {renderData?.map(({ id, fullname, avatar }, ind) => (
           <MultiAvatarItem key={id} zIndex={ind + 1}>
             <MultiAvatarLink href="#">
-              <Tooltip>{fullname}</Tooltip>
+              {showTooltip && <Tooltip>{fullname}</Tooltip>}
               <Avatar url={avatar} alt={`${fullname} avatar`} size={size} />
             </MultiAvatarLink>
           </MultiAvatarItem>

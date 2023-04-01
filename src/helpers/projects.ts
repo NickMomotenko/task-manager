@@ -64,6 +64,13 @@ export const projects = [
         position: "Project Owner",
         tasks: [],
       },
+      {
+        id: uuid(),
+        fullname: "Nickola Briks 3",
+        avatar: ph_3,
+        position: "Project Owner",
+        tasks: [],
+      },
     ],
     chat: [
       {

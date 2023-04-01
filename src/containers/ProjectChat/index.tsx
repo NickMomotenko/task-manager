@@ -1,8 +1,8 @@
+import { v4 as uuid } from "uuid";
+
 import { Row } from "../../components/Layout";
 import { MultiAvatar } from "../../components/MultiAvatar";
 import { Title } from "../../components/Title";
-import { Textarea } from "../../components/Textarea";
-import { Icon } from "../../components/Icon";
 
 import { ProjectChatItem } from "./ProjectChatItem";
 
@@ -14,13 +14,8 @@ import {
   ProjectChatTeamLabelText,
   ProjectChatTeamMultiAvatar,
   ProjectChatTextareaBlock,
-  ProjectChatTextareaBlockRow,
-  ProjectChatTextareaAvatar,
-  ProjectChatTextareaBottom,
   ProjectChatBody,
   ProjectChatBodyList,
-  ProjectChatTextarea,
-  ProjectChatTextareaButton,
   ProjectChatPaper,
 } from "./styled";
 
@@ -28,6 +23,12 @@ import { useTextarea } from "../../hooks/useTextarea";
 
 import { IChat } from "./types";
 import { ReplyTextarea } from "../../components/ReplyTextarea";
+import { useDate } from "../../hooks/useDate";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import { useDispatch } from "react-redux";
+import { ADD_MESSAGE } from "../../redux/projects/types";
+import { useParams } from "react-router-dom";
 
 type ProjectChatProps = {
   chatData?: IChat[];
@@ -41,9 +42,35 @@ type ProjectChatProps = {
 };
 
 export const ProjectChat: React.FC<ProjectChatProps> = ({ chatData, team }) => {
-  const { value, handleChange } = useTextarea();
+  const { authUser } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
+  const params = useParams<{ id: string }>();
 
-  const handleSend = () => {};
+  const { value, handleChange, clearValue } = useTextarea();
+
+  const { hours, minutes, dayNumber, monthName, year, month } = useDate();
+
+  const handleSend = () => {
+    if (!value) return;
+
+    const messageData = {
+      id: uuid(),
+      user: authUser,
+      text: value,
+      created_at: {
+        date: `${dayNumber}.${month}.${year}`,
+        time: `${hours}:${minutes}`,
+      },
+      liked: [],
+    };
+
+    dispatch({
+      type: ADD_MESSAGE,
+      payload: { messageData, projectId: Number(params?.id) },
+    });
+
+    clearValue();
+  };
 
   return (
     <ProjectChatWrapp>
