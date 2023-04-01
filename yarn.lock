@@ -332,6 +332,11 @@
     "@types/react" "*"
     "csstype" "^3.0.2"
 
+"@types/uuid@^9.0.1":
+  "integrity" "sha512-rFT3ak0/2trgvp4yYZo5iKFEPsET7vKydKF+VRCxlQ9bpheehyAJH89dAkaLEq/j/RZXJIqcgsmPJKUP1Z28HA=="
+  "resolved" "https://registry.npmjs.org/@types/uuid/-/uuid-9.0.1.tgz"
+  "version" "9.0.1"
+
 "@vitejs/plugin-react@^3.1.0":
   "integrity" "sha512-AfgcRL8ZBhAlc3BFdigClmTUMISmmzHn7sB2h9U1odvc5U/MjWXsAaz18b/WoppUTDBzxOJwo2VdClfUcItu9g=="
   "resolved" "https://registry.npmjs.org/@vitejs/plugin-react/-/plugin-react-3.1.0.tgz"
@@ -730,6 +735,11 @@
   dependencies:
     "escalade" "^3.1.1"
     "picocolors" "^1.0.0"
+
+"uuid@^9.0.0":
+  "integrity" "sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg=="
+  "resolved" "https://registry.npmjs.org/uuid/-/uuid-9.0.0.tgz"
+  "version" "9.0.0"
 
 "vite@^4.1.0-beta.0", "vite@^4.2.0":
   "integrity" "sha512-AbDTyzzwuKoRtMIRLGNxhLRuv1FpRgdIw+1y6AQG73Q5+vtecmvzKo/yk8X/vrHDpETRTx01ABijqUHIzBXi0g=="
