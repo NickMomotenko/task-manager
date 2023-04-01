@@ -118,13 +118,13 @@ export const Select: React.FC<SelectProps> = ({
       {showMenu && (
         <SelectOptions className={optionsClassName}>
           {options?.map((option, ind) => {
-            console.log(ind);
+            console.log(String(option.value.name));
 
             return (
               <>
                 {option.customOption && (
                   <option.customOption
-                    key={ind}
+                    key={String(option.value.name)}
                     onClick={() => onItemClick(option)}
                     isSelected={isSelected(option)}
                     {...option}
