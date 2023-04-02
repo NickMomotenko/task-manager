@@ -5,6 +5,7 @@ import { Row } from "../../components/Layout";
 
 import likedIcon from "../../assets/icons/like.svg";
 import { IChat } from "./types";
+import { Button } from "../../components/Button";
 
 export const ProjectChatItemWrapp = styled.div`
   margin-bottom: 5px;
@@ -22,7 +23,9 @@ export const ProjectChatItemAvatar = styled.div`
   margin-right: 13px;
 `;
 
-export const ProjectChatItemInfo = styled.div``;
+export const ProjectChatItemInfo = styled.div`
+  flex: 1;
+`;
 
 export const ProjectChatItemUserFullname = styled.span`
   font-weight: 600;
@@ -60,13 +63,30 @@ export const ProjectChatItemLikedCounter = styled.span`
 
 export const ProjectChatItemLikedIcon = styled.div``;
 
-type ProjectChatItemProps = IChat & { as: string };
+export const ProjectChatDeleteButton = styled.div`
+  margin-left: auto;
+`;
 
-export const ProjectChatItem: React.FC<ProjectChatItemProps> = (props) => {
-  const { as = "div", text, created_at, liked, user } = props;
+type ProjectChatItemProps = IChat & {
+  parentTag?: string;
+  isMyMessage?: boolean;
+  onDelete?: (id: number | string) => void;
+  toggleLike?: (id: number | string) => void;
+};
 
+export const ProjectChatItem: React.FC<ProjectChatItemProps> = ({
+  id,
+  parentTag = "div",
+  text,
+  created_at,
+  liked,
+  user,
+  isMyMessage,
+  onDelete,
+  toggleLike,
+}) => {
   return (
-    <ProjectChatItemWrapp>
+    <ProjectChatItemWrapp as={parentTag}>
       <ProjectChatItemTopRow>
         <ProjectChatItemAvatar>
           <Avatar url={user.avatar} alt={`${user.fullname} image`} size={30} />
@@ -80,14 +100,21 @@ export const ProjectChatItem: React.FC<ProjectChatItemProps> = (props) => {
           </ProjectChatItemUserMessageText>
           <ProjectChatItemBottom>
             <ProjectChatItemDate>{created_at?.time}</ProjectChatItemDate>
-            <ProjectChatItemLiked>
+            <Button view="ghost" onClick={() => toggleLike(id)}>
               <ProjectChatItemLikedCounter>
                 {liked?.length}
               </ProjectChatItemLikedCounter>
               <ProjectChatItemLikedIcon>
                 <Icon src={likedIcon} alt="like icon" />
               </ProjectChatItemLikedIcon>
-            </ProjectChatItemLiked>
+            </Button>
+            {isMyMessage && (
+              <ProjectChatDeleteButton>
+                <Button view="ghost" size="s" onClick={() => onDelete(id)}>
+                  delete
+                </Button>
+              </ProjectChatDeleteButton>
+            )}
           </ProjectChatItemBottom>
         </ProjectChatItemInfo>
       </ProjectChatItemTopRow>

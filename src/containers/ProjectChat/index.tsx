@@ -1,10 +1,20 @@
 import { v4 as uuid } from "uuid";
 
+import { useSelector } from "react-redux";
+
+import { useDispatch } from "react-redux";
+
+import { RootState } from "../../redux/store";
+
 import { Row } from "../../components/Layout";
 import { MultiAvatar } from "../../components/MultiAvatar";
 import { Title } from "../../components/Title";
+import { ReplyTextarea } from "../../components/ReplyTextarea";
 
 import { ProjectChatItem } from "./ProjectChatItem";
+
+import { useTextarea } from "../../hooks/useTextarea";
+import { useDate } from "../../hooks/useDate";
 
 import {
   ProjectChatWrapp,
@@ -19,16 +29,13 @@ import {
   ProjectChatPaper,
 } from "./styled";
 
-import { useTextarea } from "../../hooks/useTextarea";
-
 import { IChat } from "./types";
-import { ReplyTextarea } from "../../components/ReplyTextarea";
-import { useDate } from "../../hooks/useDate";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-import { useDispatch } from "react-redux";
-import { ADD_MESSAGE } from "../../redux/projects/types";
-import { useParams } from "react-router-dom";
+
+import {
+  ADD_MESSAGE,
+  DELETE_MESSAGE,
+  SET_LIKE,
+} from "../../redux/projects/types";
 
 type ProjectChatProps = {
   chatData?: IChat[];
@@ -44,7 +51,6 @@ type ProjectChatProps = {
 export const ProjectChat: React.FC<ProjectChatProps> = ({ chatData, team }) => {
   const { authUser } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
-  const params = useParams<{ id: string }>();
 
   const { value, handleChange, clearValue } = useTextarea();
 
@@ -66,10 +72,21 @@ export const ProjectChat: React.FC<ProjectChatProps> = ({ chatData, team }) => {
 
     dispatch({
       type: ADD_MESSAGE,
-      payload: { messageData, projectId: Number(params?.id) },
+      payload: messageData,
     });
 
     clearValue();
+  };
+
+  const handleDeleteMessage = (id: number | string) => {
+    dispatch({
+      type: DELETE_MESSAGE,
+      payload: id,
+    });
+  };
+
+  const handleToggleLike = (id: number | string) => {
+    dispatch({ type: SET_LIKE, payload: { messageId: id, user: authUser } });
   };
 
   return (
@@ -89,9 +106,20 @@ export const ProjectChat: React.FC<ProjectChatProps> = ({ chatData, team }) => {
           </ProjectChatTeamList>
           <ProjectChatBody>
             <ProjectChatBodyList>
-              {chatData?.map((chat) => (
-                <ProjectChatItem key={chat.id} as="li" {...chat} />
-              ))}
+              {chatData?.map((chat) => {
+                const isMyMessage = authUser?.id === chat?.user.id;
+
+                return (
+                  <ProjectChatItem
+                    key={chat.id}
+                    parentTag="li"
+                    isMyMessage={isMyMessage}
+                    onDelete={handleDeleteMessage}
+                    toggleLike={handleToggleLike}
+                    {...chat}
+                  />
+                );
+              })}
             </ProjectChatBodyList>
           </ProjectChatBody>
           <ProjectChatTextareaBlock>

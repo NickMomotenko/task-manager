@@ -26,24 +26,35 @@ import {
   ProjectScreenActivity,
   ProjectScreenStatusTable,
 } from "./styled";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { SET_ACTIVE_PROJECT } from "../../redux/projects/types";
 
 export const ProjectScreen = () => {
   const taskCreator = useOpen(false);
   const weeklyProgress = useOpen();
 
-  const { projects } = useSelector((state: RootState) => state.projects);
+  const { projects, activeProject } = useSelector(
+    (state: RootState) => state.projects
+  );
   const params = useParams<{
     id: string;
   }>();
 
-  const projectData = projects.find(({ id }) => id === Number(params.id));
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const projectData = projects.find(({ id }) => id === Number(params.id));
+
+    dispatch({ type: SET_ACTIVE_PROJECT, payload: projectData });
+  }, [params?.id]);
 
   return (
     <ProjectScreenWrapp>
       <ProjectScreenRow>
         <ProjectScreenColumn>
           <ProjectScreenCard>
-            <ProjectCard project={projectData} />
+            <ProjectCard project={activeProject !== null && activeProject} />
           </ProjectScreenCard>
           <ProjectScreenStatusTable>
             <ProjectStatus
@@ -60,15 +71,15 @@ export const ProjectScreen = () => {
         <ProjectScreenColumn>
           <ProjectScreenChat>
             <ProjectChat
-              chatData={projectData?.chat}
-              team={projectData?.team}
+              chatData={activeProject?.chat}
+              team={activeProject?.team}
             />
           </ProjectScreenChat>
           <ProjectScreenAttachments>
-            <FileAttachment files={projectData?.files} />
+            <FileAttachment files={activeProject?.files} />
           </ProjectScreenAttachments>
           <ProjectScreenMembers>
-            <MembersBlock members={projectData?.team} />
+            <MembersBlock members={activeProject?.team} />
           </ProjectScreenMembers>
           <ProjectScreenActivity>
             <RecentActivity />

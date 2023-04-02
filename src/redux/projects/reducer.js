@@ -1,25 +1,71 @@
 import { projects } from "../../helpers/projects";
 
-import { ADD_MESSAGE } from "./types";
+import {
+  ADD_MESSAGE,
+  DELETE_MESSAGE,
+  SET_LIKE,
+  SET_ACTIVE_PROJECT,
+} from "./types";
 
 const initialState = {
   projects: projects,
+  activeProject: null,
 };
 
 export const projectsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_MESSAGE:
-      const { messageData, projectId } = action.payload;
+    case ADD_MESSAGE: {
+      const updatedProject = {
+        ...state.activeProject,
+        chat: [...state.activeProject.chat, action.payload],
+      };
 
-      const updatedProjectsData = state.projects.map((project) => {
-        if (project.id === projectId) {
-          return { ...project, chat: [...project.chat, messageData] };
-        }
+      return { ...state, activeProject: { ...updatedProject } };
+    }
 
-        return project;
-      });
+    case DELETE_MESSAGE: {
+      const messageId = action.payload;
 
-      return { ...state, projects: [...updatedProjectsData] };
+      const updatedProject = {
+        ...state.activeProject,
+        chat: [
+          ...state.activeProject.chat.filter((item) => item.id !== messageId),
+        ],
+      };
+
+      return { ...state, activeProject: { ...updatedProject } };
+    }
+
+    case SET_LIKE: {
+      const { messageId, user } = action.payload;
+
+      const updatedProject = {
+        ...state.activeProject,
+        chat: [
+          ...state.activeProject.chat.map((item) => {
+            if (item.id === messageId) {
+              return {
+                ...item,
+                liked: [...item.liked, user],
+              };
+            }
+
+            return item;
+          }),
+        ],
+      };
+
+      return { ...state, activeProject: { ...updatedProject } };
+    }
+
+    // case SET_UNLIKE: {
+    // }
+
+    case SET_ACTIVE_PROJECT: {
+      const project = action.payload;
+
+      return { ...state, activeProject: project };
+    }
   }
 
   return state;

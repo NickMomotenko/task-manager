@@ -63,26 +63,26 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       <ProjectCardPaper>
         <ProjectCardHead gorizontalSpace="between">
           <ProjectCardHeadTitle>
-            <Title text={data.title} />
+            <Title text={project?.data?.title} />
           </ProjectCardHeadTitle>
           <ProjectCardCrossButton onClick={handleToggleClick}>
             <Icon src={optionIcon} alt="option icon" />
           </ProjectCardCrossButton>
         </ProjectCardHead>
         <ProjectCardBody>
-          <ProjectCardDescription>{data.description}</ProjectCardDescription>
+          <ProjectCardDescription>{data?.description}</ProjectCardDescription>
           <ProjectCardProgress>
             <Row gorizontalSpace="between">
               <ProjectCardProgressLabel>
                 Project Progress
               </ProjectCardProgressLabel>
               <ProjectCardProgressCounter>
-                {data.progress}%
+                {data?.progress}%
               </ProjectCardProgressCounter>
             </Row>
             <ProjectCardProgressLine>
               <ProgressLine
-                initialValue={data.progress}
+                initialValue={data?.progress}
                 overLineColor="#46bd84"
                 baseLineColor="#dee3ec"
               />
