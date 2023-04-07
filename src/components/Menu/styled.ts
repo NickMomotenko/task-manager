@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const MenuWrapp = styled.nav``;
 
@@ -17,17 +17,17 @@ export const MenuItem = styled.li`
   }
 `;
 
-export const MenuLinkText = styled.span<{ active: boolean }>`
-  color: ${({ active }) => (active ? "#24abf8" : "black")};
+export const MenuLink = styled(NavLink)`
+  color: "#24abf8";
   font-size: 15px;
   font-weight: 500;
-`;
+  transition: color 0.4s;
 
-export const MenuLink = styled(Link)`
+  &.active {
+    color: #24abf8;
+  }
+
   &:hover {
-    ${MenuLinkText} {
-      transition:color 0.5s;
-      color: #24abf8;
-    }
+    color: #24abf8;
   }
 `;

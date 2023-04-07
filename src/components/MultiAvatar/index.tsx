@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Avatar } from "../Avatar";
+import { Tooltip } from "../Tooltip";
 
 import {
   MultiAvatarWrapp,
@@ -9,19 +10,13 @@ import {
   MultiAvatarLink,
 } from "./styled";
 
-import { Tooltip } from "../Tooltip";
+import { TData } from "./types";
 
-interface MultiAvatarProps {
-  data?: {
-    id: string;
-    fullname: string;
-    avatar: string;
-    position: string;
-    tasks: never[];
-  }[];
+type MultiAvatarProps = {
+  data?: TData[];
   size?: number;
   showTooltip?: boolean;
-}
+};
 
 export const MultiAvatar: React.FC<MultiAvatarProps> = ({
   data,

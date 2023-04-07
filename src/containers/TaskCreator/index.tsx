@@ -3,7 +3,6 @@ import { useRef, useState } from "react";
 import { Button } from "../../components/Button";
 import { Icon } from "../../components/Icon";
 
-import { TaskCreatorHead } from "./TaskCreatorHead";
 import { TaskCreatorLabels } from "./TaskCreatorLabels";
 import { TaskCreatorTextarea } from "./TaskCreatorTextarea";
 import { TaskCreatorImplementor } from "./TaskCreatorImplementor";
@@ -64,7 +63,6 @@ export const TaskCreator = () => {
 
   return (
     <TaskCreatorWrapp>
-      <TaskCreatorHead />
       <TaskCreatorBody>
         <TaskCreatorImplementor
           isOpen={workerList.isOpen}

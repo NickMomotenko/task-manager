@@ -1,19 +1,13 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 import { Button } from "../Button";
 
+import { optionList } from "./data";
+
+import { ListItem } from "./types";
+
 import { OptionsWrapp, OptionsList, OptionsItem } from "./styled";
-import { useNavigate } from "react-router";
-
-const mockList = [
-  {
-    id: 1,
-    title: "Project info",
-    onClick: () => {},
-  },
-];
-
-type ListItem = { id: number; title: string; onClick: () => void };
 
 interface OptionsProps {
   list?: ListItem[];
@@ -22,7 +16,7 @@ interface OptionsProps {
 
 export const Options: React.FC<OptionsProps> = ({
   initialState,
-  list = mockList,
+  list = optionList,
 }) => {
   const navigate = useNavigate();
 

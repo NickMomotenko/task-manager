@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import {
   AlertBlock,
@@ -9,13 +9,13 @@ import {
   AlertCrossButton,
 } from "./styled";
 
-import crossIcon from "../../assets/icons/cross.svg";
-
 import { Icon } from "../Icon";
 
 import { errorText } from "./data";
 
-type AlertType = "info" | "success" | "wrong" | "warning";
+import { AlertType } from "./types";
+
+import crossIcon from "../../assets/icons/cross.svg";
 
 interface AlertProps {
   type: AlertType;
@@ -26,12 +26,6 @@ export const Alert: React.FC<AlertProps> = ({ type }) => {
 
   const alertData = errorText[type];
   const { textColor, wrappColor } = alertData.colorTheme;
-
-  // useEffect(() => {
-  //   setTimeout(() => setIsActive(true), 3000);
-  // }, []);
-
-  const getColorThemeForItem = (type: string) => {};
 
   const handleCrossClick = () => setIsActive(false);
 

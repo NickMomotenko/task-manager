@@ -1,18 +1,5 @@
 import styled, { css } from "styled-components";
 
-import { Row } from "../../components/Layout";
-import { PaperWrapp } from "../../components/Paper/styled";
-
-export const RecentActivityWrapp = styled.div``;
-
-export const RecentActivityPaper = styled(PaperWrapp)`
-  width: 100%;
-`;
-
-export const RecentActivityHead = styled(Row)`
-  margin-bottom: 20px;
-`;
-
 export const RecentActivityBody = styled.div``;
 
 export const RecentActivityList = styled.ul``;

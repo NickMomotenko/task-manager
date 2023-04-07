@@ -1,50 +1,9 @@
 import styled from "styled-components";
 
 import { Row } from "../../components/Layout";
-import { PaperWrapp } from "../../components/Paper/styled";
-
-export const FileAttachmentWrapp = styled.div``;
-
-export const FileAttachmentPaper = styled(PaperWrapp)`
-  min-width: 400px;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-`;
-
-export const FileAttachmentHeader = styled(Row)``;
 
 export const FileAttachmentBody = styled.div`
-  margin-top: 28px;
-`;
-
-export const FileAttachmentDropSpace = styled.div`
-  --drop-h: 88px;
-  --drop-bg: #f2f2f2;
-  --drop-radius: 8px;
-
-  height: var(--drop-h);
-  background: var(--drop-bg);
-  border: 1px dashed #bdbdbd;
-  border-radius: var(--drop-radius);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-`;
-
-export const FileAttachmentDropSpaceText = styled.div`
-  font-weight: 700;
-  font-size: 12px;
-  color: #4f4f4f;
-  display: inline-flex;
-`;
-
-export const FileAttachmentDropSpaceTextSpan = styled.div`
-  font-size: 12px;
-  color: #828282;
-  margin-left: 3.5px;
+  margin-top: 15px;
 `;
 
 export const FileAttachmentList = styled.ul`

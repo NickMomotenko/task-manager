@@ -1,16 +1,5 @@
 import styled from "styled-components";
 
-import { Row } from "../../components/Layout";
-import { PaperWrapp } from "../../components/Paper/styled";
-
-export const MembersBlockWrapp = styled.div``;
-
-export const MembersBlockPaper = styled(PaperWrapp)`
-  min-width: 400px;
-`;
-
-export const MembersBlockTitle = styled(Row)``;
-
 export const MembersBlockBody = styled.div`
   margin-top: 24px;
 `;

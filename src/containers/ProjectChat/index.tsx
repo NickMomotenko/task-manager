@@ -1,8 +1,6 @@
 import { v4 as uuid } from "uuid";
 
-import { useSelector } from "react-redux";
-
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { RootState } from "../../redux/store";
 
@@ -85,6 +83,8 @@ export const ProjectChat: React.FC<ProjectChatProps> = ({ chatData, team }) => {
     });
   };
 
+  const handleChangeMessage = () => {};
+
   const handleToggleLike = (id: number | string) => {
     dispatch({ type: SET_LIKE, payload: { messageId: id, user: authUser } });
   };
@@ -107,7 +107,7 @@ export const ProjectChat: React.FC<ProjectChatProps> = ({ chatData, team }) => {
           <ProjectChatBody>
             <ProjectChatBodyList>
               {chatData?.map((chat) => {
-                const isMyMessage = authUser?.id === chat?.user.id;
+                const isMyMessage = authUser.id === chat?.user.id;
 
                 return (
                   <ProjectChatItem
@@ -115,6 +115,7 @@ export const ProjectChat: React.FC<ProjectChatProps> = ({ chatData, team }) => {
                     parentTag="li"
                     isMyMessage={isMyMessage}
                     onDelete={handleDeleteMessage}
+                    onChangeMessage={handleChangeMessage}
                     toggleLike={handleToggleLike}
                     {...chat}
                   />

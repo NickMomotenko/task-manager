@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { PaperWrapp } from "../../components/Paper/styled";
+import { Row } from "../../components/Layout";
 
 export const ModalWrapp = styled.div<{ isOpen: boolean }>`
   position: fixed;
@@ -22,4 +23,8 @@ export const ModalPaper = styled(PaperWrapp)`
   max-width: 45%;
   width: 100%;
   /* height: 50vh; */
+`;
+
+export const ModalHead = styled(Row)`
+  margin-bottom: 20px;
 `;

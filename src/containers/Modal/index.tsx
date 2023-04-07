@@ -1,13 +1,30 @@
 import { useEffect } from "react";
 
 import { useOpen } from "../../hooks/useOpen";
+
 import { TaskCreator } from "../TaskCreator";
 
-import { ModalWrapp, ModalPaper } from "./styled";
+import { Title } from "../../components/Title";
+import { Button } from "../../components/Button";
+import { Icon } from "../../components/Icon";
 
-export const Modal = () => {
-  const { isOpen, handleToggleClick } = useOpen(true);
+import crossIcon from "../../assets/icons/cross.svg";
 
+import { ModalWrapp, ModalPaper, ModalHead } from "./styled";
+
+type ModalProps = {
+  title: string;
+  children: React.ReactNode;
+  isOpen: boolean;
+  handleToggleActive: () => void;
+};
+
+export const Modal: React.FC<ModalProps> = ({
+  title,
+  children,
+  isOpen,
+  handleToggleActive,
+}) => {
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
   }, [isOpen]);
@@ -15,7 +32,13 @@ export const Modal = () => {
   return (
     <ModalWrapp isOpen={isOpen}>
       <ModalPaper>
-        <TaskCreator />
+        <ModalHead gorizontalSpace="between">
+          <Title text={title} />
+          <Button view="ghost" onClick={handleToggleActive}>
+            <Icon src={crossIcon} alt="cross icon" />
+          </Button>
+        </ModalHead>
+        {children}
       </ModalPaper>
     </ModalWrapp>
   );

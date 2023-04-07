@@ -29,9 +29,10 @@ import {
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { SET_ACTIVE_PROJECT } from "../../redux/projects/types";
+import { TaskCreator } from "../../containers/TaskCreator";
 
 export const ProjectScreen = () => {
-  const taskCreator = useOpen(false);
+  const taskCreator = useOpen();
   const weeklyProgress = useOpen();
 
   const { projects, activeProject } = useSelector(
@@ -62,11 +63,6 @@ export const ProjectScreen = () => {
               handleWeeklyProgressActive={weeklyProgress.handleToggleClick}
             />
           </ProjectScreenStatusTable>
-          {weeklyProgress.isOpen && (
-            <ProjectProgress
-              handleWeeklyProgressActive={weeklyProgress.handleToggleClick}
-            />
-          )}
         </ProjectScreenColumn>
         <ProjectScreenColumn>
           <ProjectScreenChat>
@@ -86,7 +82,24 @@ export const ProjectScreen = () => {
           </ProjectScreenActivity>
         </ProjectScreenColumn>
       </ProjectScreenRow>
-      {taskCreator.isOpen && <Modal />}
+      {taskCreator.isOpen && (
+        <Modal
+          title="Create New Task"
+          isOpen={taskCreator.isOpen}
+          handleToggleActive={taskCreator.handleToggleClick}
+        >
+          <TaskCreator />
+        </Modal>
+      )}
+      {weeklyProgress.isOpen && (
+        <Modal
+          title="Weekly progress"
+          isOpen={weeklyProgress.isOpen}
+          handleToggleActive={weeklyProgress.handleToggleClick}
+        >
+          <ProjectProgress />
+        </Modal>
+      )}
     </ProjectScreenWrapp>
   );
 };

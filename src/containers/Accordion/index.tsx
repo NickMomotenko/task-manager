@@ -1,13 +1,24 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import { AccordionWrapp, AccordionHeader, AccordionBody } from "./styled";
+import {
+  AccordionWrapp,
+  AccordionHeader,
+  AccordionBody,
+  AccordionPaper,
+  AccordionIcon,
+} from "./styled";
+
+import { Title } from "../../components/Title";
+import { Icon } from "../../components/Icon";
+
+import arrowIcon from "../../assets/icons/arrow.svg";
 
 type AccordionProps = {
-  header: React.ReactNode;
   children: React.ReactNode;
+  title: string;
 };
 
-export const Accordion: React.FC<AccordionProps> = ({ header, children }) => {
+export const Accordion: React.FC<AccordionProps> = ({ children, title }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [bodyStyles, setBodyStyles] = useState<any>(null);
 
@@ -21,12 +32,25 @@ export const Accordion: React.FC<AccordionProps> = ({ header, children }) => {
 
   return (
     <AccordionWrapp>
-      <AccordionHeader onClick={() => setIsOpen(!isOpen)}>
-        {header}
-      </AccordionHeader>
-      <AccordionBody isOpen={isOpen} ref={bodyRef} height={bodyStyles?.height}>
-        {children}
-      </AccordionBody>
+      <AccordionPaper>
+        <AccordionHeader onClick={() => setIsOpen(!isOpen)}>
+          <Title text={title} />
+          <AccordionIcon isOpen={isOpen}>
+            <Icon
+              src={arrowIcon}
+              alt="arrow icon"
+              size={{ h: "15px", w: "15px" }}
+            />
+          </AccordionIcon>
+        </AccordionHeader>
+        <AccordionBody
+          isOpen={isOpen}
+          ref={bodyRef}
+          height={bodyStyles?.height}
+        >
+          {children}
+        </AccordionBody>
+      </AccordionPaper>
     </AccordionWrapp>
   );
 };

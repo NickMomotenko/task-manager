@@ -15,9 +15,11 @@ const initialState = {
 export const projectsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_MESSAGE: {
+      const messageData = action.payload;
+
       const updatedProject = {
         ...state.activeProject,
-        chat: [...state.activeProject.chat, action.payload],
+        chat: [...state.activeProject.chat, messageData],
       };
 
       return { ...state, activeProject: { ...updatedProject } };
@@ -44,10 +46,23 @@ export const projectsReducer = (state = initialState, action) => {
         chat: [
           ...state.activeProject.chat.map((item) => {
             if (item.id === messageId) {
-              return {
-                ...item,
-                liked: [...item.liked, user],
-              };
+              const searchableUser = item.liked.find(
+                (likeObj) => likeObj.id === user.id
+              );
+
+              if (searchableUser) {
+                return {
+                  ...item,
+                  liked: [
+                    ...item.liked.filter((likeObj) => likeObj.id !== user.id),
+                  ],
+                };
+              } else {
+                return {
+                  ...item,
+                  liked: [...item.liked, user],
+                };
+              }
             }
 
             return item;
@@ -57,9 +72,6 @@ export const projectsReducer = (state = initialState, action) => {
 
       return { ...state, activeProject: { ...updatedProject } };
     }
-
-    // case SET_UNLIKE: {
-    // }
 
     case SET_ACTIVE_PROJECT: {
       const project = action.payload;

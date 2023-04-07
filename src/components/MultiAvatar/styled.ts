@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Tooltip } from "../Tooltip";
 import { TooltipWrapp } from "../Tooltip/styled";
 
 export const MultiAvatarWrapp = styled.div``;

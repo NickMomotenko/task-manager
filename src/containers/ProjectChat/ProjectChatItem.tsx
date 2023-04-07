@@ -6,72 +6,26 @@ import { Row } from "../../components/Layout";
 import likedIcon from "../../assets/icons/like.svg";
 import { IChat } from "./types";
 import { Button } from "../../components/Button";
-
-export const ProjectChatItemWrapp = styled.div`
-  margin-bottom: 5px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;
-
-export const ProjectChatItemTopRow = styled(Row)`
-  align-items: flex-start;
-`;
-
-export const ProjectChatItemAvatar = styled.div`
-  margin-right: 13px;
-`;
-
-export const ProjectChatItemInfo = styled.div`
-  flex: 1;
-`;
-
-export const ProjectChatItemUserFullname = styled.span`
-  font-weight: 600;
-  font-size: 13px;
-  color: #333333;
-  margin-bottom: 6px;
-`;
-
-export const ProjectChatItemUserMessageText = styled.div`
-  font-size: 13px;
-  line-height: 20px;
-  color: #4f4f4f;
-  margin-bottom: 5px;
-`;
-
-export const ProjectChatItemBottom = styled(Row)``;
-
-export const ProjectChatItemDate = styled.span`
-  font-size: 10px;
-  line-height: 15px;
-  color: #828282;
-  margin-right: 10px;
-`;
-
-export const ProjectChatItemLiked = styled.button`
-  display: flex;
-  align-items: center;
-`;
-
-export const ProjectChatItemLikedCounter = styled.span`
-  font-size: 10px;
-  color: #2f80ed;
-  margin-right: 3px;
-`;
-
-export const ProjectChatItemLikedIcon = styled.div``;
-
-export const ProjectChatDeleteButton = styled.div`
-  margin-left: auto;
-`;
+import {
+  ProjectChatItemAvatar,
+  ProjectChatItemBottom,
+  ProjectChatItemDate,
+  ProjectChatItemInfo,
+  ProjectChatItemLikedCounter,
+  ProjectChatItemLikedIcon,
+  ProjectChatItemTopRow,
+  ProjectChatItemUserFullname,
+  ProjectChatItemUserMessageText,
+  ProjectChatItemWrapp,
+  ProjectChatMyButton,
+} from "./styled";
 
 type ProjectChatItemProps = IChat & {
   parentTag?: string;
-  isMyMessage?: boolean;
+  isMyMessage: boolean;
   onDelete?: (id: number | string) => void;
   toggleLike?: (id: number | string) => void;
+  onChangeMessage?: () => void;
 };
 
 export const ProjectChatItem: React.FC<ProjectChatItemProps> = ({
@@ -84,6 +38,7 @@ export const ProjectChatItem: React.FC<ProjectChatItemProps> = ({
   isMyMessage,
   onDelete,
   toggleLike,
+  onChangeMessage,
 }) => {
   return (
     <ProjectChatItemWrapp as={parentTag}>
@@ -109,11 +64,18 @@ export const ProjectChatItem: React.FC<ProjectChatItemProps> = ({
               </ProjectChatItemLikedIcon>
             </Button>
             {isMyMessage && (
-              <ProjectChatDeleteButton>
+              <ProjectChatMyButton>
+                <Button
+                  view="ghost"
+                  size="s"
+                  onClick={() => onChangeMessage(id)}
+                >
+                  change
+                </Button>
                 <Button view="ghost" size="s" onClick={() => onDelete(id)}>
                   delete
                 </Button>
-              </ProjectChatDeleteButton>
+              </ProjectChatMyButton>
             )}
           </ProjectChatItemBottom>
         </ProjectChatItemInfo>

@@ -60,3 +60,73 @@ export const ProjectChatTextareaButton = styled.button`
     margin-right: 0;
   }
 `;
+
+export const ProjectChatItemWrapp = styled.div`
+  margin-bottom: 5px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+export const ProjectChatItemTopRow = styled(Row)`
+  align-items: flex-start;
+`;
+
+export const ProjectChatItemAvatar = styled.div`
+  margin-right: 13px;
+`;
+
+export const ProjectChatItemInfo = styled.div`
+  flex: 1;
+`;
+
+export const ProjectChatItemUserFullname = styled.span`
+  font-weight: 600;
+  font-size: 13px;
+  color: #333333;
+  margin-bottom: 6px;
+`;
+
+export const ProjectChatItemUserMessageText = styled.div`
+  font-size: 13px;
+  line-height: 20px;
+  color: #4f4f4f;
+  margin-bottom: 5px;
+`;
+
+export const ProjectChatItemBottom = styled(Row)``;
+
+export const ProjectChatItemDate = styled.span`
+  font-size: 10px;
+  line-height: 15px;
+  color: #828282;
+  margin-right: 10px;
+`;
+
+export const ProjectChatItemLiked = styled.button`
+  display: flex;
+  align-items: center;
+`;
+
+export const ProjectChatItemLikedCounter = styled.span`
+  font-size: 10px;
+  color: #2f80ed;
+  margin-right: 3px;
+`;
+
+export const ProjectChatItemLikedIcon = styled.div``;
+
+export const ProjectChatMyButton = styled.div`
+  button {
+    padding: 0;
+
+    margin-right: 8px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  margin-left: auto;
+`;

@@ -1,5 +1,7 @@
 import React from "react";
 
+import { useSelector } from "react-redux";
+
 import { Avatar } from "../Avatar";
 import { Container } from "../Container";
 import { Menu } from "../Menu";
@@ -7,7 +9,9 @@ import { Row } from "../Layout";
 import { Input } from "../Input";
 import { Logo } from "../Logo";
 
-import avatar from "../../assets/member/2.png";
+import { RootState } from "../../redux/store";
+import { useInput } from "../../hooks/useInput";
+
 import lypaIcon from "../../assets/icons/lypa.svg";
 
 import {
@@ -19,9 +23,6 @@ import {
   HeaderInput,
   HeaderLogo,
 } from "./styled";
-import { useInput } from "../../hooks/useInput";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
 
 const Header: React.FC = () => {
   const { value, handleChange } = useInput();

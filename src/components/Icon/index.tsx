@@ -2,14 +2,14 @@ import React from "react";
 
 import { IconWrapp } from "./styled";
 
-interface IconProps {
+type IconProps = {
   src: string | any;
   alt: string;
   size?: {
     h: string;
     w: string;
   };
-}
+};
 
 export const Icon: React.FC<IconProps> = ({
   src,

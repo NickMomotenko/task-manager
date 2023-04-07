@@ -1,18 +1,8 @@
 import styled from "styled-components";
 import { Row } from "../../components/Layout";
-import { PaperWrapp } from "../../components/Paper/styled";
 
 export const TaskCreatorWrapp = styled.div`
   position: relative;
-  display: block;
-`;
-
-export const TaskCreatorPaper = styled(PaperWrapp)`
-  min-width: 348px;
-`;
-
-export const TaskCreatorHeadWrapp = styled(Row)`
-  margin-bottom: 20px;
 `;
 
 export const TaskCreatorBody = styled.div``;

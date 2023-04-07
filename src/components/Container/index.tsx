@@ -1,7 +1,9 @@
 import { ContainerWrapp } from "./styled";
 
-export const Container: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+type ContainerProps = {
+  children: React.ReactNode;
+};
+
+export const Container: React.FC<ContainerProps> = ({ children }) => {
   return <ContainerWrapp>{children}</ContainerWrapp>;
 };

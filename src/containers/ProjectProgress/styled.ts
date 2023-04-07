@@ -4,8 +4,6 @@ import { Paper } from "../../components/Paper";
 
 export const ProjectProgressWrapp = styled.div``;
 
-export const ProjectProgressPaper = styled(Paper)``;
-
 export const ProjectProgressHead = styled(Row)`
   margin-bottom: 10px;
 `;
@@ -16,14 +14,6 @@ export const ProjectProgressDate = styled.div`
   font-size: 13px;
   color: rgb(189, 189, 189);
   margin-bottom: 20px;
-`;
-
-export const ProjectProgressCircle = styled.div`
-  display: block;
-  height: 150px;
-  width: 150px;
-  position: relative;
-  margin: 0 auto;
 `;
 
 export const ProjectProgressCircleData = styled.div`

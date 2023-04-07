@@ -1,6 +1,9 @@
 import { ProgressLine } from "../../containers/ProgressLine";
 import { Avatar } from "../Avatar";
 import { Checkbox } from "../Checkbox";
+
+import { TableProps } from "./types";
+
 import {
   TableWrapp,
   TableHeader,
@@ -17,27 +20,6 @@ import {
   TableProgressLineCounter,
   TableList,
 } from "./styled";
-
-interface TableProps {
-  head: string[];
-  body: {
-    id: number;
-    user: {
-      fullname: string;
-      avatar: string;
-    };
-    data: {
-      created_at: string;
-      status_type: {
-        title: string;
-        textColor: string;
-      };
-      title: string;
-      status_percent: number;
-    };
-  }[];
-  layoutRules: number[];
-}
 
 export const Table: React.FC<TableProps> = ({ head, layoutRules, body }) => {
   return (
@@ -64,7 +46,10 @@ export const Table: React.FC<TableProps> = ({ head, layoutRules, body }) => {
               <TableItem key={id} as="li">
                 <TableColumn flex={layoutRules[0]}>
                   <TableCheckbox>
-                    <Checkbox initialState={data?.status_percent === 100} onChange={() => {}}  />
+                    <Checkbox
+                      initialState={data?.status_percent === 100}
+                      onChange={() => {}}
+                    />
                   </TableCheckbox>
                   <TableData>
                     <TableDataTitle>{data?.title}</TableDataTitle>
