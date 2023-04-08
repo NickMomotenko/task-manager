@@ -1,58 +1,38 @@
-import { useRef, useState, forwardRef } from "react";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+
+import { RootState } from "../../redux/store";
 
 import { Button } from "../../components/Button";
-import { Icon } from "../../components/Icon";
 
 import { TaskCreatorLabels } from "./TaskCreatorLabels";
 import { TaskCreatorTextarea } from "./TaskCreatorTextarea";
-import { TaskCreatorImplementor } from "./TaskCreatorImplementor";
-
-import { useOpen } from "../../hooks/useOpen";
-import { useTextarea } from "../../hooks/useTextarea";
-import { useClickOutside } from "../../hooks/useClickOutside";
+import { TaskCreatorOptionList } from "./TaskCreatorOptionList";
+import { Select } from "../Select";
+import { Worker } from "../Worker";
 
 import {
   TaskCreatorWrapp,
   TaskCreatorBody,
   TaskCreatorOptions,
   TaskCreatorButton,
-  TaskCreatorOptionsList,
-  TaskCreatorOptionsItem,
 } from "./styled";
 
-import { labelData } from "./data";
-import { Select } from "../Select";
-import { Worker } from "../Worker";
+import { useInput } from "../../hooks/useInput";
 
-import { implementorList } from "./data";
-
-const Test = (props: any) => {
-  console.log(props);
-
-  const handleClick = () => {
-    props.onClick?.(props.value);
-  };
-
-  return (
-    <div className="test" onClick={handleClick}>
-      {props.label}
-    </div>
-  );
-};
+import { implementorList, labelData } from "./data";
 
 export const TaskCreator = () => {
+  const {
+    projects: { activeProject },
+    auth: { authUser },
+  } = useSelector((state: RootState) => state);
+
   const [labelList, setLabelList] = useState(labelData);
 
   const [selectedOption, setSelectedOption] = useState(null);
 
-  const workerList = useOpen();
-  const descriptionTextarea = useTextarea();
-
-  const assignRef = useRef<HTMLDivElement>(null);
-
-  const handleOpenWorkerList = () => {
-    workerList.handleToggleClick();
-  };
+  const descriptionTextarea = useInput();
 
   const toggleLabelChecked = (id: number) => {
     const newLabelList = labelList.map((label) => {
@@ -66,19 +46,17 @@ export const TaskCreator = () => {
     const checkedLabels = labelList.filter((item) => item.checked);
 
     let newTask = {
-      projectName: "",
-      projectUsersData: {
-        owner: {},
+      projectName: activeProject?.data.title,
+      projectUsers: {
+        owner: authUser,
         implementor: {},
       },
       projectLabels: checkedLabels,
-      text: descriptionTextarea.value,
+      projectDescription: descriptionTextarea.value,
     };
 
-    console.log(newTask);
+    descriptionTextarea.clearValue();
   };
-
-  useClickOutside(assignRef, () => workerList.setIsOpen(false));
 
   return (
     <TaskCreatorWrapp>
@@ -97,24 +75,9 @@ export const TaskCreator = () => {
           value={descriptionTextarea.value}
           onChange={descriptionTextarea.handleChange}
         />
-        {/* <TaskCreatorOptions>
-          <TaskCreatorOptionsList>
-            {options.map(({ icon, id, alt }) => {
-              const personAddIconId = options?.at(-1)?.id;
-
-              return (
-                <TaskCreatorOptionsItem
-                  key={id}
-                  isLastIcon={personAddIconId === id}
-                >
-                  <Button view="ghost">
-                    <Icon src={icon} alt={alt} />
-                  </Button>
-                </TaskCreatorOptionsItem>
-              );
-            })}
-          </TaskCreatorOptionsList>
-        </TaskCreatorOptions> */}
+        <TaskCreatorOptions>
+          <TaskCreatorOptionList />
+        </TaskCreatorOptions>
         <TaskCreatorButton>
           <Button size="b" onClick={createNewTask}>
             Create Task

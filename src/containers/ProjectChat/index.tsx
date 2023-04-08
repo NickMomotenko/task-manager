@@ -10,7 +10,6 @@ import { Accordion } from "../Accordion";
 import { ProjectChatTeam } from "./ProjectChatTeam";
 import { ProjectChatList } from "./ProjectChatList";
 
-import { useTextarea } from "../../hooks/useTextarea";
 import { useDate } from "../../hooks/useDate";
 
 import {
@@ -26,6 +25,7 @@ import {
   DELETE_MESSAGE,
   SET_LIKE,
 } from "../../redux/projects/types";
+import { useInput } from "../../hooks/useInput";
 
 type ProjectChatProps = {
   chatData?: IChat[];
@@ -42,7 +42,7 @@ export const ProjectChat: React.FC<ProjectChatProps> = ({ chatData, team }) => {
   const { authUser } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
-  const { value, handleChange, clearValue } = useTextarea();
+  const { value, handleChange, clearValue } = useInput();
 
   const { hours, minutes, dayNumber, monthName, year, month } = useDate();
 

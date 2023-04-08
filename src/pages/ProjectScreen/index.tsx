@@ -32,7 +32,7 @@ import { TaskCreator } from "../../containers/TaskCreator";
 import { useParams } from "react-router";
 
 export const ProjectScreen = () => {
-  const taskCreator = useOpen();
+  const taskCreator = useOpen(true);
   const weeklyProgress = useOpen();
 
   const { projects, activeProject } = useSelector(

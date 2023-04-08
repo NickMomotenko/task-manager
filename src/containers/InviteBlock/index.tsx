@@ -7,8 +7,6 @@ import { Textarea } from "../../components/Textarea";
 import { Title } from "../../components/Title";
 import { Icon } from "../../components/Icon";
 
-import { useTextarea } from "../../hooks/useTextarea";
-
 import {
   InviteBlockWrapp,
   InviteHeader,
@@ -19,9 +17,10 @@ import {
 } from "./styled";
 
 import inviteIcon from "../../assets/icons/invite-link.svg";
+import { useInput } from "../../hooks/useInput";
 
 export const InviteBlock: React.FC = () => {
-  const { value, handleChange, ref, isFocused, getFocus } = useTextarea();
+  const { value, handleChange, ref } = useInput();
 
   return (
     <InviteBlockWrapp>
