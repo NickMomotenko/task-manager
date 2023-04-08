@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 
 import { SelectInput, SelectInputProps } from "./SelectInput";
 
-import { SelectOptions, SelectOptionWrapp, SelectWrapp } from "./styled";
+import { SelectOptions, SelectWrapp } from "./styled";
 
 import { TOption } from "./types";
 
@@ -21,19 +21,6 @@ export type SelectProps = {
   onChange?: (value: any) => void;
   selectedValue?: TOption;
   placeHolder?: string;
-};
-
-const SelectOption: React.FC<TOption> = ({
-  value,
-  label,
-  isSelected,
-  onClick,
-}) => {
-  const handleClick = () => {
-    onClick?.(value);
-  };
-
-  return <SelectOptionWrapp onClick={handleClick}>{label}</SelectOptionWrapp>;
 };
 
 export const Select: React.FC<SelectProps> = ({
@@ -118,13 +105,11 @@ export const Select: React.FC<SelectProps> = ({
       {showMenu && (
         <SelectOptions className={optionsClassName}>
           {options?.map((option, ind) => {
-            console.log(String(option.value.name));
-
             return (
               <>
                 {option.customOption && (
                   <option.customOption
-                    key={String(option.value.name)}
+                    key={ind}
                     onClick={() => onItemClick(option)}
                     isSelected={isSelected(option)}
                     {...option}
@@ -138,12 +123,3 @@ export const Select: React.FC<SelectProps> = ({
     </SelectWrapp>
   );
 };
-
-// ) : (
-//   <SelectOption
-//     key={String(option.value)}
-//     onClick={() => onItemClick(option)}
-//     isSelected={isSelected(option)}
-//     {...option}
-//   />
-// )}

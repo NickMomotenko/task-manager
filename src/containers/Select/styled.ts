@@ -4,7 +4,8 @@ export const SelectWrapp = styled.div``;
 
 export const SelectOptions = styled.div`
   border-radius: var(--button-radius);
-  max-width: 60%;
+  max-width: 300px;
+  width: 100%;
   box-shadow: rgb(175, 184, 207) 0px 0px 8px;
   padding-bottom: 10px;
 

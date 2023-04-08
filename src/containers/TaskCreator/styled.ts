@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Row } from "../../components/Layout";
+import { WorkerWrapp } from "../Worker/styled";
 
 export const TaskCreatorWrapp = styled.div`
   position: relative;
@@ -105,3 +106,21 @@ export const TaskCreatorImplementorWrapp = styled.div`
 `;
 
 export const TaskCreatorImplementorBody = styled(Row)``;
+
+export const TaskCreatorSelectWrapp = styled(Row)`
+  margin-bottom: 20px;
+`;
+
+export const TaskCreatorSelectText = styled.span`
+  margin-right: 10px;
+`;
+
+export const TaskCreatorSelectBlock = styled(Row)`
+  margin-right: 10px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+`;
+
+export const TaskCreatorSelectProject = styled(WorkerWrapp)``;

@@ -8,8 +8,7 @@ import { Button } from "../../components/Button";
 import { TaskCreatorLabels } from "./TaskCreatorLabels";
 import { TaskCreatorTextarea } from "./TaskCreatorTextarea";
 import { TaskCreatorOptionList } from "./TaskCreatorOptionList";
-import { Select } from "../Select";
-import { Worker } from "../Worker";
+import { TaskCreatorSelect } from "./TaskCreatorSelect";
 
 import {
   TaskCreatorWrapp,
@@ -20,7 +19,7 @@ import {
 
 import { useInput } from "../../hooks/useInput";
 
-import { implementorList, labelData } from "./data";
+import { labelData } from "./data";
 
 export const TaskCreator = () => {
   const {
@@ -49,7 +48,7 @@ export const TaskCreator = () => {
       projectName: activeProject?.data.title,
       projectUsers: {
         owner: authUser,
-        implementor: {},
+        implementor: selectedOption,
       },
       projectLabels: checkedLabels,
       projectDescription: descriptionTextarea.value,
@@ -61,12 +60,7 @@ export const TaskCreator = () => {
   return (
     <TaskCreatorWrapp>
       <TaskCreatorBody>
-        <Select
-          customInput={Worker}
-          options={implementorList}
-          onChange={setSelectedOption}
-          placeHolder="Add worker"
-        />
+        <TaskCreatorSelect setSelectedOption={setSelectedOption} />
         <TaskCreatorLabels
           labelList={labelList}
           toggleLabelChecked={toggleLabelChecked}
