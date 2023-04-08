@@ -1,12 +1,5 @@
-<<<<<<< HEAD
 import { useSelector } from "react-redux";
-
-import { useParams } from "react-router";
-
 import { RootState } from "../../redux/store";
-=======
-import { useState, forwardRef } from "react";
->>>>>>> select-test
 
 import { FileAttachment } from "../../containers/FileAttachment";
 import { MembersBlock } from "../../containers/MembersBlock";
@@ -36,13 +29,10 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { SET_ACTIVE_PROJECT } from "../../redux/projects/types";
 import { TaskCreator } from "../../containers/TaskCreator";
+import { useParams } from "react-router";
 
 export const ProjectScreen = () => {
-<<<<<<< HEAD
   const taskCreator = useOpen();
-=======
-  const taskCreator = useOpen(true);
->>>>>>> select-test
   const weeklyProgress = useOpen();
 
   const { projects, activeProject } = useSelector(
