@@ -5,6 +5,7 @@ TASK MANAGER - небольшое pet приложение, которое по�
 # Tech stack
  - React.js 
  - Redux (no Redux Toolkit)
+ - Typescript
  - Styled-components
  - Vite
 
