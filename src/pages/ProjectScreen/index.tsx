@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 import { useSelector } from "react-redux";
 
 import { useParams } from "react-router";
 
 import { RootState } from "../../redux/store";
+=======
+import { useState, forwardRef } from "react";
+>>>>>>> select-test
 
 import { FileAttachment } from "../../containers/FileAttachment";
 import { MembersBlock } from "../../containers/MembersBlock";
@@ -12,6 +16,8 @@ import { ProjectChat } from "../../containers/ProjectChat";
 import { ProjectProgress } from "../../containers/ProjectProgress";
 import { ProjectStatus } from "../../containers/ProjectStatus";
 import RecentActivity from "../../containers/RecentActivity";
+// import Select from "../../containers/Select/Select";
+import { Select } from "../../containers/Select";
 
 import { useOpen } from "../../hooks/useOpen";
 
@@ -32,7 +38,11 @@ import { SET_ACTIVE_PROJECT } from "../../redux/projects/types";
 import { TaskCreator } from "../../containers/TaskCreator";
 
 export const ProjectScreen = () => {
+<<<<<<< HEAD
   const taskCreator = useOpen();
+=======
+  const taskCreator = useOpen(true);
+>>>>>>> select-test
   const weeklyProgress = useOpen();
 
   const { projects, activeProject } = useSelector(

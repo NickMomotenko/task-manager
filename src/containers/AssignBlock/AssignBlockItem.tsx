@@ -8,21 +8,20 @@ import {
   AssignBlockAvatar,
 } from "./styled";
 
-import { IAssignItem } from "./types";
+export const AssignBlockItem = (props: any) => {
+  const { name, avatar, tasksCounter } = props.value;
 
-type AssignBlockItemProps = IAssignItem;
+  const handleClick = () => {
+    props?.onClick(props.value);
+  };
 
-export const AssignBlockItem: React.FC<AssignBlockItemProps> = ({
-  user,
-  tasksCounter,
-}) => {
   return (
-    <AssignBlockItemWrapp>
+    <AssignBlockItemWrapp onClick={handleClick}>
       <Row>
         <AssignBlockAvatar>
-          <Avatar url={user.avatar} alt={`${user.fullname} avatar`} size={35} />
+          <Avatar url={avatar} alt={`${name} avatar`} size={35} />
         </AssignBlockAvatar>
-        <AssignBlockFullname>{user.fullname}</AssignBlockFullname>
+        <AssignBlockFullname>{name}</AssignBlockFullname>
         <AssignBlockTasksCounter>
           {tasksCounter} {tasksCounter !== 1 ? "tasks" : "task"} on progress
         </AssignBlockTasksCounter>
