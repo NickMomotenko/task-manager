@@ -4,27 +4,19 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { RootState } from "../../redux/store";
 
-import { Row } from "../../components/Layout";
-import { MultiAvatar } from "../../components/MultiAvatar";
-import { Title } from "../../components/Title";
 import { ReplyTextarea } from "../../components/ReplyTextarea";
 
-import { ProjectChatItem } from "./ProjectChatItem";
+import { Accordion } from "../Accordion";
+import { ProjectChatTeam } from "./ProjectChatTeam";
+import { ProjectChatList } from "./ProjectChatList";
 
 import { useTextarea } from "../../hooks/useTextarea";
 import { useDate } from "../../hooks/useDate";
 
 import {
-  ProjectChatWrapp,
-  ProjectChatTitle,
   ProjectChatContent,
-  ProjectChatTeamList,
-  ProjectChatTeamLabelText,
-  ProjectChatTeamMultiAvatar,
   ProjectChatTextareaBlock,
   ProjectChatBody,
-  ProjectChatBodyList,
-  ProjectChatPaper,
 } from "./styled";
 
 import { IChat } from "./types";
@@ -90,49 +82,26 @@ export const ProjectChat: React.FC<ProjectChatProps> = ({ chatData, team }) => {
   };
 
   return (
-    <ProjectChatWrapp>
-      <ProjectChatPaper>
-        <ProjectChatTitle>
-          <Title text="Project Chat" />
-        </ProjectChatTitle>
-        <ProjectChatContent>
-          <ProjectChatTeamList>
-            <Row>
-              <ProjectChatTeamLabelText>Team:</ProjectChatTeamLabelText>
-              <ProjectChatTeamMultiAvatar>
-                <MultiAvatar size={30} data={team} />
-              </ProjectChatTeamMultiAvatar>
-            </Row>
-          </ProjectChatTeamList>
-          <ProjectChatBody>
-            <ProjectChatBodyList>
-              {chatData?.map((chat) => {
-                const isMyMessage = authUser.id === chat?.user.id;
-
-                return (
-                  <ProjectChatItem
-                    key={chat.id}
-                    parentTag="li"
-                    isMyMessage={isMyMessage}
-                    onDelete={handleDeleteMessage}
-                    onChangeMessage={handleChangeMessage}
-                    toggleLike={handleToggleLike}
-                    {...chat}
-                  />
-                );
-              })}
-            </ProjectChatBodyList>
-          </ProjectChatBody>
-          <ProjectChatTextareaBlock>
-            <ReplyTextarea
-              value={value}
-              onChange={handleChange}
-              placeholder="Reply or post an update"
-              handleSend={handleSend}
-            />
-          </ProjectChatTextareaBlock>
-        </ProjectChatContent>
-      </ProjectChatPaper>
-    </ProjectChatWrapp>
+    <Accordion title="Project Chat" noAcco>
+      <ProjectChatContent>
+        <ProjectChatTeam team={team} />
+        <ProjectChatBody>
+          <ProjectChatList
+            chatData={chatData}
+            handleDeleteMessage={handleDeleteMessage}
+            handleChangeMessage={handleChangeMessage}
+            handleToggleLike={handleToggleLike}
+          />
+        </ProjectChatBody>
+        <ProjectChatTextareaBlock>
+          <ReplyTextarea
+            value={value}
+            onChange={handleChange}
+            placeholder="Reply or post an update"
+            handleSend={handleSend}
+          />
+        </ProjectChatTextareaBlock>
+      </ProjectChatContent>
+    </Accordion>
   );
 };

@@ -1,15 +1,6 @@
 import styled from "styled-components";
 
 import { Row } from "../../components/Layout";
-import { Paper } from "../../components/Paper";
-
-export const ProjectChatWrapp = styled.div``;
-
-export const ProjectChatPaper = styled(Paper)``;
-
-export const ProjectChatTitle = styled.div`
-  margin-bottom: 20px;
-`;
 
 export const ProjectChatContent = styled.div``;
 

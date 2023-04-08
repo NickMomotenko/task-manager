@@ -16,10 +16,15 @@ import arrowIcon from "../../assets/icons/arrow.svg";
 type AccordionProps = {
   children: React.ReactNode;
   title: string;
+  noAcco?: boolean;
 };
 
-export const Accordion: React.FC<AccordionProps> = ({ children, title }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+export const Accordion: React.FC<AccordionProps> = ({
+  children,
+  title,
+  noAcco,
+}) => {
+  const [isOpen, setIsOpen] = useState<boolean>(noAcco ? true : false);
   const [bodyStyles, setBodyStyles] = useState<any>(null);
 
   const bodyRef = useRef<HTMLDivElement>(null);
@@ -30,23 +35,32 @@ export const Accordion: React.FC<AccordionProps> = ({ children, title }) => {
     }
   }, []);
 
+  const handleHeaderClick = () => {
+    if (!noAcco) {
+      setIsOpen(!isOpen);
+    } else return;
+  };
+
   return (
     <AccordionWrapp>
       <AccordionPaper>
-        <AccordionHeader onClick={() => setIsOpen(!isOpen)}>
+        <AccordionHeader onClick={handleHeaderClick} noAcco={noAcco}>
           <Title text={title} />
-          <AccordionIcon isOpen={isOpen}>
-            <Icon
-              src={arrowIcon}
-              alt="arrow icon"
-              size={{ h: "15px", w: "15px" }}
-            />
-          </AccordionIcon>
+          {!noAcco && (
+            <AccordionIcon isOpen={isOpen}>
+              <Icon
+                src={arrowIcon}
+                alt="arrow icon"
+                size={{ h: "15px", w: "15px" }}
+              />
+            </AccordionIcon>
+          )}
         </AccordionHeader>
         <AccordionBody
           isOpen={isOpen}
           ref={bodyRef}
           height={bodyStyles?.height}
+          noAcco={noAcco}
         >
           {children}
         </AccordionBody>

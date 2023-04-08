@@ -22,7 +22,7 @@ import {
 
 type ProjectChatItemProps = IChat & {
   parentTag?: string;
-  isMyMessage: boolean;
+  isMyMessage: boolean | string;
   onDelete?: (id: number | string) => void;
   toggleLike?: (id: number | string) => void;
   onChangeMessage?: () => void;

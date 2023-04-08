@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { PaperWrapp } from "../../components/Paper/styled";
 
 export const AccordionWrapp = styled.div``;
@@ -10,19 +10,24 @@ export const AccordionPaper = styled(PaperWrapp)`
 
 export const AccordionIcon = styled.div<{ isOpen: boolean }>`
   transform: ${({ isOpen }) => (isOpen ? `rotate(180deg)` : `rotate(0)`)};
-  transition:transform .5s;
+  transition: transform 0.5s;
 `;
 
-export const AccordionHeader = styled.div`
-  cursor: pointer;
+export const AccordionHeader = styled.div<{ noAcco?: boolean }>`
+  cursor: ${({ noAcco }) => !noAcco && "pointer"};
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px;
 `;
 
-export const AccordionBody = styled.div<{ isOpen: boolean; height: string }>`
-  height: ${({ isOpen, height }) => (isOpen ? `${height}` : "0")};
+export const AccordionBody = styled.div<{
+  isOpen: boolean;
+  height: string;
+  noAcco?: boolean;
+}>`
+  height: ${({ isOpen, height, noAcco }) =>
+    noAcco ? "auto" : isOpen ? `${height}` : "0"};
   visibility: ${({ isOpen }) => (isOpen ? "visible" : "hidden")};
   overflow: ${({ isOpen }) => (isOpen ? "" : "hidden")};
   opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
