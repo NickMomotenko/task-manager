@@ -6,8 +6,6 @@ import infoIcon from "../../assets/icons/info.svg";
 export const errorText = {
   wrong: {
     id: 1,
-    text: "Something wrong",
-    desc: "Ea dolor esse non anim laboris.",
     type: "wrong",
     icon: wrongIcon,
     colorTheme: {
@@ -17,8 +15,6 @@ export const errorText = {
   },
   success: {
     id: 2,
-    text: "Success!",
-    desc: "Ea dolor esse non anim laboris.",
     type: "success",
     icon: successIcon,
     colorTheme: {
@@ -28,8 +24,6 @@ export const errorText = {
   },
   warning: {
     id: 3,
-    text: "Warning",
-    desc: "Ea dolor esse non anim laboris.",
     type: "warning",
     icon: warningIcon,
     colorTheme: {
@@ -39,8 +33,6 @@ export const errorText = {
   },
   info: {
     id: 4,
-    text: "Info",
-    desc: "Ea dolor esse non anim laboris.",
     type: "info",
     icon: infoIcon,
     colorTheme: {

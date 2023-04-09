@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Button } from "../../components/Button";
 import { Row } from "../../components/Layout";
@@ -16,6 +16,7 @@ import {
 } from "./styled";
 
 import inviteIcon from "../../assets/icons/invite-link.svg";
+import { AlertContext } from "../../context/AlertContext";
 
 type InviteBlockProps = {
   handleToggleActive?: () => void;
@@ -27,6 +28,7 @@ export const InviteBlock: React.FC<InviteBlockProps> = ({
   const { value, handleChange, ref } = useInput(
     "test@mail.ru , pradd208@mail.ru"
   );
+  const { generateAlert } = useContext(AlertContext);
 
   const handleSendInvites = () => {
     if (!value) {
@@ -35,9 +37,13 @@ export const InviteBlock: React.FC<InviteBlockProps> = ({
 
     const inviteData = value.split(",").map((link) => link.trim());
 
-    alert("Success!");
+    generateAlert({
+      type: "success",
+      title: "Success",
+      text: "Invitations have been sent out",
+    });
 
-    handleToggleActive();
+    handleToggleActive;
   };
 
   return (

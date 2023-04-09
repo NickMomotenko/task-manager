@@ -18,16 +18,24 @@ import { AlertType } from "./types";
 import crossIcon from "../../assets/icons/cross.svg";
 
 interface AlertProps {
+  id: number;
   type: AlertType;
+  title: string;
+  text: string;
+  handleDelete?: (id: number) => void;
 }
 
-export const Alert: React.FC<AlertProps> = ({ type }) => {
+export const Alert: React.FC<AlertProps> = ({
+  id,
+  type = "success",
+  title,
+  text,
+  handleDelete,
+}) => {
   const [isActive, setIsActive] = useState<boolean>(true);
 
   const alertData = errorText[type];
   const { textColor, wrappColor } = alertData.colorTheme;
-
-  const handleCrossClick = () => setIsActive(false);
 
   return (
     <AlertWrapp isActive={isActive} style={{ background: wrappColor }}>
@@ -37,10 +45,10 @@ export const Alert: React.FC<AlertProps> = ({ type }) => {
         </AlertIcon>
       </AlertBlock>
       <AlertBlock>
-        <AlertTitle style={{ color: textColor }}>{alertData?.text}</AlertTitle>
-        <AlertDesc style={{ color: textColor }}>{alertData?.desc}</AlertDesc>
+        <AlertTitle style={{ color: textColor }}>{title}</AlertTitle>
+        <AlertDesc style={{ color: textColor }}>{text}</AlertDesc>
       </AlertBlock>
-      <AlertCrossButton onClick={handleCrossClick}>
+      <AlertCrossButton onClick={() => handleDelete(id)}>
         <Icon src={crossIcon} alt={`${alertData?.type} icon`} />
       </AlertCrossButton>
     </AlertWrapp>

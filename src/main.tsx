@@ -8,11 +8,14 @@ import { store } from "./redux/store";
 import { App } from "./App";
 
 import "./index.css";
+import { AlertProvider } from "./context/AlertContext";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <BrowserRouter>
     <Provider store={store}>
-      <App />
+      <AlertProvider>
+        <App />
+      </AlertProvider>
     </Provider>
   </BrowserRouter>
 );

@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import { MainContent } from "./components/MainContent";
 import { Projects } from "./pages/Projects";
 import { ProjectScreen } from "./pages/ProjectScreen";
+import { AlertContainer } from "./containers/AlertContainer";
 
 const AppWrapp = styled.div`
   height: 100%;
@@ -25,6 +26,7 @@ export const App = () => {
           <Route path="/project/:id" element={<ProjectScreen />} />
         </Route>
       </Routes>
+      <AlertContainer />
     </AppWrapp>
   );
 };
