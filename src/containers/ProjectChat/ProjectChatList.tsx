@@ -11,7 +11,7 @@ import { IChat } from "./types";
 type ProjectChatListProps = {
   chatData?: IChat[];
   handleDeleteMessage?: (id: number | string) => void;
-  handleChangeMessage?: () => void;
+  handleChangeMessage?: (id: number | string) => void;
   handleToggleLike?: (id: number | string) => void;
 };
 

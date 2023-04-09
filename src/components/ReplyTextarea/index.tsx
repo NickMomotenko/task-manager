@@ -24,6 +24,7 @@ type ReplyTextareaProps = {
   onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   placeholder?: string;
   handleSend?: () => void;
+  submitButtonText?: string;
 };
 
 export const ReplyTextarea: React.FC<ReplyTextareaProps> = ({
@@ -31,6 +32,7 @@ export const ReplyTextarea: React.FC<ReplyTextareaProps> = ({
   placeholder,
   onChange,
   handleSend,
+  submitButtonText = "Send",
 }) => {
   const { authUser } = useSelector((state: RootState) => state.auth);
 
@@ -58,7 +60,7 @@ export const ReplyTextarea: React.FC<ReplyTextareaProps> = ({
               </Button>
             </ReplyTextareaButtons>
             <Button size="m" onClick={handleSend}>
-              Send
+              {submitButtonText}
             </Button>
           </ReplyTextareaBar>
         </Textarea>

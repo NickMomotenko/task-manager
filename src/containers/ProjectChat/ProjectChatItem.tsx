@@ -25,7 +25,7 @@ type ProjectChatItemProps = IChat & {
   isMyMessage: boolean | string;
   onDelete?: (id: number | string) => void;
   toggleLike?: (id: number | string) => void;
-  onChangeMessage?: () => void;
+  onChangeMessage?: (id: number | string) => void;
 };
 
 export const ProjectChatItem: React.FC<ProjectChatItemProps> = ({

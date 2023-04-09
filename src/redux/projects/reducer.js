@@ -5,6 +5,7 @@ import {
   DELETE_MESSAGE,
   SET_LIKE,
   SET_ACTIVE_PROJECT,
+  CHANGE_MESSAGE,
 } from "./types";
 
 const initialState = {
@@ -32,6 +33,31 @@ export const projectsReducer = (state = initialState, action) => {
         ...state.activeProject,
         chat: [
           ...state.activeProject.chat.filter((item) => item.id !== messageId),
+        ],
+      };
+
+      return { ...state, activeProject: { ...updatedProject } };
+    }
+
+    case CHANGE_MESSAGE: {
+      const { id, text } = action.payload;
+
+      const searchableMessage = state.activeProject.chat.find(
+        (chatMessage) => chatMessage.id === id
+      );
+
+      if (!searchableMessage) return;
+
+      const updatedProject = {
+        ...state.activeProject,
+        chat: [
+          ...state.activeProject.chat.map((message) => {
+            if (message.id === id) {
+              return { ...message, text: text };
+            }
+
+            return message;
+          }),
         ],
       };
 

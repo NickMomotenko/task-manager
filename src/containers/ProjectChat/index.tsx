@@ -22,10 +22,12 @@ import { IChat } from "./types";
 
 import {
   ADD_MESSAGE,
+  CHANGE_MESSAGE,
   DELETE_MESSAGE,
   SET_LIKE,
 } from "../../redux/projects/types";
 import { useInput } from "../../hooks/useInput";
+import { useState } from "react";
 
 type ProjectChatProps = {
   chatData?: IChat[];
@@ -39,11 +41,13 @@ type ProjectChatProps = {
 };
 
 export const ProjectChat: React.FC<ProjectChatProps> = ({ chatData, team }) => {
+  const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [editableMessage, setEditableMessage] = useState<IChat | null>(null);
+
   const { authUser } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
-  const { value, handleChange, clearValue } = useInput();
-
+  const { value, handleChange, clearValue, setValue } = useInput();
   const { hours, minutes, dayNumber, monthName, year, month } = useDate();
 
   const handleSend = () => {
@@ -75,7 +79,34 @@ export const ProjectChat: React.FC<ProjectChatProps> = ({ chatData, team }) => {
     });
   };
 
-  const handleChangeMessage = () => {};
+  const handleChangeMessage = (id: number | string) => {
+    setIsEdit((prev) => !prev);
+
+    const message = chatData?.find((message) => message.id === id);
+
+    if (message) {
+      setValue(message.text);
+      setEditableMessage(message);
+    }
+  };
+
+  const handleOnChange = () => {
+    if (editableMessage?.text === value) {
+      clearValue();
+      setIsEdit(false);
+      setEditableMessage(null);
+      return;
+    } else {
+      clearValue();
+      setIsEdit(false);
+      setEditableMessage(null);
+
+      dispatch({
+        type: CHANGE_MESSAGE,
+        payload: { id: editableMessage?.id, text: value },
+      });
+    }
+  };
 
   const handleToggleLike = (id: number | string) => {
     dispatch({ type: SET_LIKE, payload: { messageId: id, user: authUser } });
@@ -98,7 +129,8 @@ export const ProjectChat: React.FC<ProjectChatProps> = ({ chatData, team }) => {
             value={value}
             onChange={handleChange}
             placeholder="Reply or post an update"
-            handleSend={handleSend}
+            handleSend={isEdit ? handleOnChange : handleSend}
+            submitButtonText={isEdit ? "Change" : "Send"}
           />
         </ProjectChatTextareaBlock>
       </ProjectChatContent>
