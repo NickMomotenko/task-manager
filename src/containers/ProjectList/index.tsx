@@ -7,7 +7,7 @@ export const ProjectList: React.FC<{ data: IProject[] }> = ({ data }) => {
   return (
     <ProjectListWrapp as="ul">
       {data?.map((project: IProject) => (
-        <ProjectCard key={project.id} as="li" project={project} />
+        <ProjectCard key={project.id} as="li" project={project} defaultCard />
       ))}
     </ProjectListWrapp>
   );

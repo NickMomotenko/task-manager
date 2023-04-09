@@ -30,10 +30,12 @@ import { useDispatch } from "react-redux";
 import { SET_ACTIVE_PROJECT } from "../../redux/projects/types";
 import { TaskCreator } from "../../containers/TaskCreator";
 import { useParams } from "react-router";
+import { InviteBlock } from "../../containers/InviteBlock";
 
 export const ProjectScreen = () => {
   const taskCreator = useOpen();
   const weeklyProgress = useOpen();
+  const inviteBlock = useOpen();
 
   const { projects, activeProject } = useSelector(
     (state: RootState) => state.projects
@@ -55,7 +57,10 @@ export const ProjectScreen = () => {
       <ProjectScreenRow>
         <ProjectScreenColumn>
           <ProjectScreenCard>
-            <ProjectCard project={activeProject !== null && activeProject} />
+            <ProjectCard
+              project={activeProject !== null && activeProject}
+              handleInvitePeople={inviteBlock.handleToggleClick}
+            />
           </ProjectScreenCard>
           <ProjectScreenStatusTable>
             <ProjectStatus
@@ -98,6 +103,15 @@ export const ProjectScreen = () => {
           handleToggleActive={weeklyProgress.handleToggleClick}
         >
           <ProjectProgress />
+        </Modal>
+      )}
+      {inviteBlock.isOpen && (
+        <Modal
+          title="Invite people to Team"
+          isOpen={inviteBlock.isOpen}
+          handleToggleActive={inviteBlock.handleToggleClick}
+        >
+          <InviteBlock handleToggleActive={inviteBlock?.handleToggleClick} />
         </Modal>
       )}
     </ProjectScreenWrapp>

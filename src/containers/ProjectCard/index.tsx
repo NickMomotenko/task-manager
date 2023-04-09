@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router";
 
 import { Icon } from "../../components/Icon";
 import { Title } from "../../components/Title";
@@ -9,7 +10,10 @@ import { Options } from "../../components/Options";
 
 import { ProgressLine } from "../ProgressLine";
 
-import optionIcon from "../../assets/icons/option-dots.svg";
+import { useClickOutside } from "../../hooks/useClickOutside";
+import { useOpen } from "../../hooks/useOpen";
+
+import { IProject } from "../../helpers/projects";
 
 import {
   ProjectCardWrapp,
@@ -29,19 +33,21 @@ import {
   ProjectCardOptionBlock,
 } from "./styled";
 
-import { useClickOutside } from "../../hooks/useClickOutside";
-import { useOpen } from "../../hooks/useOpen";
-import { IProject } from "../../helpers/projects";
-import { useNavigate } from "react-router";
+import optionIcon from "../../assets/icons/option-dots.svg";
+import { Accordion } from "../Accordion";
 
 type ProjectCardProps = {
   as?: string | any;
+  defaultCard?: boolean;
   project: IProject;
+  handleInvitePeople?: () => void;
 };
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
   as = "div",
+  defaultCard = false,
   project,
+  handleInvitePeople,
 }) => {
   const { id, data, team } = project;
 
@@ -59,16 +65,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   useClickOutside(optionRef, () => setIsOpen(false));
 
   return (
-    <ProjectCardWrapp as={as} onClick={handleNavigateById}>
-      <ProjectCardPaper>
-        <ProjectCardHead gorizontalSpace="between">
-          <ProjectCardHeadTitle>
-            <Title text={project?.data?.title} />
-          </ProjectCardHeadTitle>
+    <ProjectCardWrapp
+      as={as}
+      onClick={handleNavigateById}
+      defaultCard={defaultCard}
+    >
+      <Accordion title={project?.data?.title} noAcco>
+        {/* <ProjectCardHead gorizontalSpace="between">
           <ProjectCardCrossButton onClick={handleToggleClick}>
             <Icon src={optionIcon} alt="option icon" />
           </ProjectCardCrossButton>
-        </ProjectCardHead>
+        </ProjectCardHead> */}
         <ProjectCardBody>
           <ProjectCardDescription>{data?.description}</ProjectCardDescription>
           <ProjectCardProgress>
@@ -95,15 +102,19 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 {teamTextLabel}
               </ProjectCardMultiAvatarText>
             </ProjectCardMultiAvatar>
-            <ProjectCardInviteButton>
-              <Button view="ghost">Invite</Button>
-            </ProjectCardInviteButton>
+            {!defaultCard && (
+              <ProjectCardInviteButton>
+                <Button view="ghost" onClick={handleInvitePeople}>
+                  Invite
+                </Button>
+              </ProjectCardInviteButton>
+            )}
           </Row>
         </ProjectCardBody>
-      </ProjectCardPaper>
-      <ProjectCardOptionBlock ref={optionRef} onClick={handleToggleClick}>
-        <Options initialState={isOpen} />
-      </ProjectCardOptionBlock>
+        {/* <ProjectCardOptionBlock ref={optionRef} onClick={handleToggleClick}>
+          <Options initialState={isOpen} />
+        </ProjectCardOptionBlock> */}
+      </Accordion>
     </ProjectCardWrapp>
   );
 };

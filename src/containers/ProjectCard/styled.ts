@@ -3,10 +3,12 @@ import styled from "styled-components";
 import { Row } from "../../components/Layout";
 import { Paper } from "../../components/Paper";
 
-export const ProjectCardWrapp = styled.div`
+export const ProjectCardWrapp = styled.div<{ defaultCard: boolean }>`
   position: relative;
   display: inline-block;
   width: 100%;
+
+  cursor: ${({ defaultCard }) => defaultCard && "pointer"};
 `;
 
 export const ProjectCardPaper = styled(Paper)``;
