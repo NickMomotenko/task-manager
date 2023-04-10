@@ -7,6 +7,8 @@ import { Icon } from "../../components/Icon";
 
 import { useInput } from "../../hooks/useInput";
 
+import { AlertContext } from "../../context/AlertContext";
+
 import {
   InviteBlockWrapp,
   InviteBody,
@@ -16,7 +18,6 @@ import {
 } from "./styled";
 
 import inviteIcon from "../../assets/icons/invite-link.svg";
-import { AlertContext } from "../../context/AlertContext";
 
 type InviteBlockProps = {
   handleToggleActive?: () => void;
@@ -46,6 +47,20 @@ export const InviteBlock: React.FC<InviteBlockProps> = ({
     handleToggleActive();
   };
 
+  const handleCopyInviteLink = () => {
+    const basePath = window.location.href;
+
+    const inviteLink = `${basePath}?invite-to-project`;
+
+    navigator.clipboard.writeText(inviteLink);
+
+    generateAlert({
+      type: "success",
+      title: "Copied",
+      text: "Copied to clipboard",
+    });
+  };
+
   return (
     <InviteBlockWrapp>
       <InviteBody>
@@ -61,7 +76,7 @@ export const InviteBlock: React.FC<InviteBlockProps> = ({
       </InviteBody>
       <InviteButtons>
         <Row gorizontalSpace="between">
-          <Button view="ghost">
+          <Button view="ghost" onClick={handleCopyInviteLink}>
             <InviteButtonIcon>
               <Icon src={inviteIcon} alt="invite icon" />
             </InviteButtonIcon>
