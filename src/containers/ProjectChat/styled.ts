@@ -121,3 +121,10 @@ export const ProjectChatMyButton = styled.div`
 
   margin-left: auto;
 `;
+
+export const ProjectChatChangedLabel = styled.span`
+  font-size: 10px;
+  line-height: 15px;
+  color: rgb(130, 130, 130);
+  margin-left: 10px;
+`;

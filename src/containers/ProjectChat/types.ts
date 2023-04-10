@@ -12,5 +12,6 @@ export type IChat = {
     date: string;
     time: string;
   };
+  changed?: boolean;
   liked: never[];
 };

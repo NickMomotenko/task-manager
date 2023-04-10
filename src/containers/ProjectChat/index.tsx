@@ -1,8 +1,9 @@
 import { v4 as uuid } from "uuid";
 
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { RootState } from "../../redux/store";
+
 
 import { ReplyTextarea } from "../../components/ReplyTextarea";
 
@@ -11,6 +12,7 @@ import { ProjectChatTeam } from "./ProjectChatTeam";
 import { ProjectChatList } from "./ProjectChatList";
 
 import { useDate } from "../../hooks/useDate";
+import { useInput } from "../../hooks/useInput";
 
 import {
   ProjectChatContent,
@@ -26,8 +28,6 @@ import {
   DELETE_MESSAGE,
   SET_LIKE,
 } from "../../redux/projects/types";
-import { useInput } from "../../hooks/useInput";
-import { useState } from "react";
 
 type ProjectChatProps = {
   chatData?: IChat[];

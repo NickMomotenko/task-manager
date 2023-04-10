@@ -43,7 +43,7 @@ export const InviteBlock: React.FC<InviteBlockProps> = ({
       text: "Invitations have been sent out",
     });
 
-    handleToggleActive;
+    handleToggleActive();
   };
 
   return (

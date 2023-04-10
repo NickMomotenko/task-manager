@@ -53,7 +53,7 @@ export const projectsReducer = (state = initialState, action) => {
         chat: [
           ...state.activeProject.chat.map((message) => {
             if (message.id === id) {
-              return { ...message, text: text };
+              return { ...message, text: text, changed: true };
             }
 
             return message;

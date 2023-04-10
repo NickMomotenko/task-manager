@@ -1,11 +1,10 @@
-import styled from "styled-components";
 import { Avatar } from "../../components/Avatar";
 import { Icon } from "../../components/Icon";
-import { Row } from "../../components/Layout";
+import { Button } from "../../components/Button";
+
+import { IChat } from "./types";
 
 import likedIcon from "../../assets/icons/like.svg";
-import { IChat } from "./types";
-import { Button } from "../../components/Button";
 import {
   ProjectChatItemAvatar,
   ProjectChatItemBottom,
@@ -18,10 +17,11 @@ import {
   ProjectChatItemUserMessageText,
   ProjectChatItemWrapp,
   ProjectChatMyButton,
+  ProjectChatChangedLabel,
 } from "./styled";
 
 type ProjectChatItemProps = IChat & {
-  parentTag?: string;
+  parentTag?: string | any;
   isMyMessage: boolean | string;
   onDelete?: (id: number | string) => void;
   toggleLike?: (id: number | string) => void;
@@ -35,6 +35,7 @@ export const ProjectChatItem: React.FC<ProjectChatItemProps> = ({
   created_at,
   liked,
   user,
+  changed,
   isMyMessage,
   onDelete,
   toggleLike,
@@ -63,6 +64,10 @@ export const ProjectChatItem: React.FC<ProjectChatItemProps> = ({
                 <Icon src={likedIcon} alt="like icon" />
               </ProjectChatItemLikedIcon>
             </Button>
+            {changed && (
+              <ProjectChatChangedLabel>{`(changed)`}</ProjectChatChangedLabel>
+            )}
+
             {isMyMessage && (
               <ProjectChatMyButton>
                 <Button
