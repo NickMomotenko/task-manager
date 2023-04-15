@@ -1,4 +1,7 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useParams } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+
 import { RootState } from "../../redux/store";
 
 import { FileAttachment } from "../../containers/FileAttachment";
@@ -9,10 +12,12 @@ import { ProjectChat } from "../../containers/ProjectChat";
 import { ProjectProgress } from "../../containers/ProjectProgress";
 import { ProjectStatus } from "../../containers/ProjectStatus";
 import RecentActivity from "../../containers/RecentActivity";
-// import Select from "../../containers/Select/Select";
-import { Select } from "../../containers/Select";
+import { TaskCreator } from "../../containers/TaskCreator";
+import { InviteBlock } from "../../containers/InviteBlock";
 
 import { useOpen } from "../../hooks/useOpen";
+
+import { SET_ACTIVE_PROJECT } from "../../redux/projects/types";
 
 import {
   ProjectScreenWrapp,
@@ -25,21 +30,16 @@ import {
   ProjectScreenActivity,
   ProjectScreenStatusTable,
 } from "./styled";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { SET_ACTIVE_PROJECT } from "../../redux/projects/types";
-import { TaskCreator } from "../../containers/TaskCreator";
-import { useParams } from "react-router";
-import { InviteBlock } from "../../containers/InviteBlock";
 
 export const ProjectScreen = () => {
+  const { projects, activeProject } = useSelector(
+    (state: RootState) => state.projects
+  );
+
   const taskCreator = useOpen();
   const weeklyProgress = useOpen();
   const inviteBlock = useOpen();
 
-  const { projects, activeProject } = useSelector(
-    (state: RootState) => state.projects
-  );
   const params = useParams<{
     id: string;
   }>();

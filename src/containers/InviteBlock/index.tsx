@@ -26,14 +26,13 @@ type InviteBlockProps = {
 export const InviteBlock: React.FC<InviteBlockProps> = ({
   handleToggleActive,
 }) => {
-  const { value, handleChange, ref } = useInput(
-    "test@mail.ru , pradd208@mail.ru"
-  );
+  const { value, handleChange, ref } = useInput();
   const { generateAlert } = useContext(AlertContext);
 
   const handleSendInvites = () => {
     if (!value) {
       ref?.current.focus();
+      return;
     }
 
     const inviteData = value.split(",").map((link) => link.trim());

@@ -4,17 +4,13 @@ import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import { MainContent } from "./components/MainContent";
+
 import { Projects } from "./pages/Projects";
 import { ProjectScreen } from "./pages/ProjectScreen";
+
 import { AlertContainer } from "./containers/AlertContainer";
 
-const AppWrapp = styled.div`
-  height: 100%;
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-`;
+import { AppWrapp } from "./AppStyles";
 
 export const App = () => {
   return (

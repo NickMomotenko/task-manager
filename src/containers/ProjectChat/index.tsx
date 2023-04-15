@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux/store";
 
-
 import { ReplyTextarea } from "../../components/ReplyTextarea";
 
 import { Accordion } from "../Accordion";
@@ -36,7 +35,7 @@ type ProjectChatProps = {
     fullname: string;
     avatar: string;
     position: string;
-    tasks: never[];
+    tasks: any[];
   }[];
 };
 
@@ -79,7 +78,7 @@ export const ProjectChat: React.FC<ProjectChatProps> = ({ chatData, team }) => {
     });
   };
 
-  const handleChangeMessage = (id: number | string) => {
+  const handleEditMessage = (id: number | string) => {
     setIsEdit((prev) => !prev);
 
     const message = chatData?.find((message) => message.id === id);
@@ -90,22 +89,22 @@ export const ProjectChat: React.FC<ProjectChatProps> = ({ chatData, team }) => {
     }
   };
 
-  const handleOnChange = () => {
+  const handleChangeMessage = () => {
     if (editableMessage?.text === value) {
       clearValue();
       setIsEdit(false);
       setEditableMessage(null);
       return;
-    } else {
-      clearValue();
-      setIsEdit(false);
-      setEditableMessage(null);
-
-      dispatch({
-        type: CHANGE_MESSAGE,
-        payload: { id: editableMessage?.id, text: value },
-      });
     }
+
+    clearValue();
+    setIsEdit(false);
+    setEditableMessage(null);
+
+    dispatch({
+      type: CHANGE_MESSAGE,
+      payload: { id: editableMessage?.id, text: value },
+    });
   };
 
   const handleToggleLike = (id: number | string) => {
@@ -120,7 +119,7 @@ export const ProjectChat: React.FC<ProjectChatProps> = ({ chatData, team }) => {
           <ProjectChatList
             chatData={chatData}
             handleDeleteMessage={handleDeleteMessage}
-            handleChangeMessage={handleChangeMessage}
+            handleChangeMessage={handleEditMessage}
             handleToggleLike={handleToggleLike}
           />
         </ProjectChatBody>
@@ -129,7 +128,7 @@ export const ProjectChat: React.FC<ProjectChatProps> = ({ chatData, team }) => {
             value={value}
             onChange={handleChange}
             placeholder="Reply or post an update"
-            handleSend={isEdit ? handleOnChange : handleSend}
+            handleSend={isEdit ? handleChangeMessage : handleSend}
             submitButtonText={isEdit ? "Change" : "Send"}
           />
         </ProjectChatTextareaBlock>
