@@ -4,7 +4,7 @@ export const useInput = (initialValue?: string, name?: string) => {
   const [value, setValue] = useState<string>(initialValue ?? "");
   const [error, setError] = useState<string>("");
 
-  const ref = useRef<any>(null);
+  const ref = useRef<any>();
 
   const handleChange = (
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>

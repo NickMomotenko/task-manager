@@ -1,12 +1,14 @@
 import { routes } from "../../helpers/routes";
 
-import { LogoLink, LogoText, LogoWrapp } from "./styled";
+import { LogoLink, LogoWrapp, LogoIcon } from "./styled";
+
+import logoIcon from "../../assets/logo/task.png";
 
 export const Logo = () => {
   return (
     <LogoWrapp>
       <LogoLink href={routes.base.path}>
-        <LogoText>Task Manager App</LogoText>
+        <LogoIcon src={logoIcon} alt="Logo Icon" />
       </LogoLink>
     </LogoWrapp>
   );
