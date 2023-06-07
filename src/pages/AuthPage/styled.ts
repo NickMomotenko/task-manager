@@ -92,3 +92,7 @@ export const AuthPageSliderText = styled.div`
   font-size: 16px;
   margin-bottom: 30px;
 `;
+
+export const AuthWrapperTitle = styled.div`
+  margin-bottom: 20px;
+`;

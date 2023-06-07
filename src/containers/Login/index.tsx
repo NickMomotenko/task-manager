@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import { LoginWrapp, LoginInput, LoginButton } from "./styled";
 
@@ -9,12 +8,10 @@ import { MobileApprove } from "../../components/MobileApprove";
 import { useInput } from "../../hooks/useInput";
 
 export const Login = () => {
-  const [isCorrect, setIsCorrect] = useState(true);
+  const [isCorrect, setIsCorrect] = useState(false);
 
   const email = useInput();
   const password = useInput();
-
-  const navigate = useNavigate();
 
   const handleSubmitLogin = () => {
     if (!email.value) {
@@ -53,11 +50,11 @@ export const Login = () => {
               ref={password.ref}
             />
           </LoginInput>
+          <LoginButton>
+            <Button onClick={handleSubmitLogin}>Login</Button>
+          </LoginButton>
         </>
       )}
-      <LoginButton>
-        <Button onClick={handleSubmitLogin}>Login</Button>
-      </LoginButton>
     </LoginWrapp>
   );
 };

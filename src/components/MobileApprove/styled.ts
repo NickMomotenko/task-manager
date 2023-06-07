@@ -14,3 +14,12 @@ export const MobileApproveRow = styled.div`
     }
   }
 `;
+
+export const MobileApproveSubmit = styled.div`
+  margin-top: 20px;
+
+  button {
+    max-width: 100%;
+    width: 100%;
+  }
+`;

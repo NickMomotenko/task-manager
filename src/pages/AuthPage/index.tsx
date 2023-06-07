@@ -1,24 +1,31 @@
+import { useEffect, useState } from "react";
+
 import { useLocation } from "react-router-dom";
+
 import { Logo } from "../../components/Logo";
 import { Separator } from "../../components/Separator";
-import { Title } from "../../components/Title";
+import { MobileApprove } from "../../components/MobileApprove";
+
 import { Login } from "../../containers/Login";
+import { Registration } from "../../containers/Registration";
+
 import { AuthSlider } from "./AuthSlider";
+import { AuthWrapper } from "./AuthWrapper";
 
 import {
   AuthPageWrapp,
   AuthPageContent,
   AuthPageImage,
-  AuthPageForm,
-  AuthPageTitle,
   AuthPageLogo,
 } from "./styled";
-import { useEffect, useState } from "react";
 
 export const AuthPage = () => {
   const [title, setTitle] = useState("");
 
   const location = useLocation();
+  const isLoginPath = location.pathname === "/auth/login";
+  const isRegistrationPath = location.pathname === "/auth/registration";
+  const isVerifyMobilePath = location.pathname === "/auth/mobile";
 
   useEffect(() => {
     generateTitle();
@@ -50,12 +57,11 @@ export const AuthPage = () => {
         <AuthPageLogo>
           <Logo />
         </AuthPageLogo>
-        <AuthPageTitle>
-          <Title text={title} size={28} />
-        </AuthPageTitle>
-        <AuthPageForm>
-          <Login />
-        </AuthPageForm>
+        <AuthWrapper title={title}>
+          {isLoginPath && <Login />}
+          {isRegistrationPath && <Registration />}
+          {isVerifyMobilePath && <MobileApprove />}
+        </AuthWrapper>
         <Separator />
       </AuthPageContent>
       <AuthPageImage>

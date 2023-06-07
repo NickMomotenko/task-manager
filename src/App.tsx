@@ -24,7 +24,9 @@ export const App = () => {
           <Route path="/" element={<Projects />} />
           <Route path="/project/:id" element={<ProjectScreen />} />
         </Route>
-        <Route path="/auth/login" element={<AuthPage />} />
+        <Route path="/auth" element={<AuthPage />}>
+          <Route path="*" element={<AuthPage />} />
+        </Route>
       </Routes>
       <AlertContainer />
       {/* <Loader active={isPreloaderActive} /> */}

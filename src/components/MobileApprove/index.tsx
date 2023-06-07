@@ -1,8 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { useInput } from "../../hooks/useInput";
 import { Input } from "../Input";
 
-import { MobileApproveRow, MobileApproveWrapp } from "./styled";
+import {
+  MobileApproveRow,
+  MobileApproveWrapp,
+  MobileApproveSubmit,
+} from "./styled";
+import { Button } from "../Button";
 
 export const MobileApprove = () => {
   const [index, setIndex] = useState(0);
@@ -13,6 +20,8 @@ export const MobileApprove = () => {
   const fourth = useInput();
 
   const inputs = [first, second, third, fourth];
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     inputs[index].ref.current.focus();
@@ -38,6 +47,16 @@ export const MobileApprove = () => {
     },
     inputs.map((item) => item.value)
   );
+
+  const handleValidateMobileCode = () => {
+    const isValid = inputs.filter((item) => !item.value);
+
+    if (!isValid.length) {
+      const mobileCode = inputs.map((item) => item.value).join("");
+
+      navigate("/");
+    }
+  };
 
   return (
     <MobileApproveWrapp>
@@ -67,6 +86,9 @@ export const MobileApprove = () => {
           maxLength={1}
         />
       </MobileApproveRow>
+      <MobileApproveSubmit>
+        <Button onClick={handleValidateMobileCode}>Validate</Button>
+      </MobileApproveSubmit>
     </MobileApproveWrapp>
   );
 };
