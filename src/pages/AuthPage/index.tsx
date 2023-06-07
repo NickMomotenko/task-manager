@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import { Logo } from "../../components/Logo";
-import { Separator } from "../../components/Separator";
 import { MobileApprove } from "../../components/MobileApprove";
 
 import { Login } from "../../containers/Login";
@@ -62,7 +61,6 @@ export const AuthPage = () => {
           {isRegistrationPath && <Registration />}
           {isVerifyMobilePath && <MobileApprove />}
         </AuthWrapper>
-        <Separator />
       </AuthPageContent>
       <AuthPageImage>
         <AuthSlider />

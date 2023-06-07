@@ -1,17 +1,18 @@
 import styled, { keyframes } from "styled-components";
 
-export const LoaderWrapp = styled.div`
+export const LoaderWrapp = styled.div<{ active?: boolean }>`
   height: 100%;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  background: #fff;
   z-index: 15;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  pointer-events: none;
 `;
 
 export const logoKeyframes = keyframes`
@@ -43,6 +44,8 @@ export const LoaderLogo = styled.div<{ active?: boolean }>`
   z-index: 1;
 
   animation: ${logoKeyframes} 5s ease-in-out infinite;
+
+  animation-play-state: ${({ active }) => !active && "paused"};
 
   opacity: ${({ active }) => (active ? 1 : 0)};
   transition: opacity 0.4s 0.4s;

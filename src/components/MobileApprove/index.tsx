@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useInput } from "../../hooks/useInput";
@@ -8,16 +8,26 @@ import {
   MobileApproveRow,
   MobileApproveWrapp,
   MobileApproveSubmit,
+  MobileApproveTimer,
+  MobileApproveTimerText,
+  MobileApproveMessage,
 } from "./styled";
 import { Button } from "../Button";
+import { useTimer } from "../../hooks/useTimer";
+import { LoaderContext } from "../../context/LoaderContext";
 
 export const MobileApprove = () => {
   const [index, setIndex] = useState(0);
+  const [sending, setSending] = useState(false);
 
   const first = useInput();
   const second = useInput();
   const third = useInput();
   const fourth = useInput();
+
+  const { startTimer, seconds, started } = useTimer({ initialValue: 5 });
+
+  const loader = useContext(LoaderContext);
 
   const inputs = [first, second, third, fourth];
 
@@ -52,14 +62,25 @@ export const MobileApprove = () => {
     const isValid = inputs.filter((item) => !item.value);
 
     if (!isValid.length) {
+      setSending(true);
+
       const mobileCode = inputs.map((item) => item.value).join("");
 
-      navigate("/");
+      startTimer();
+
+      loader.handleToggleOpen();
+
+      setTimeout(() => {
+        navigate("/");
+      }, 500);
     }
   };
 
   return (
     <MobileApproveWrapp>
+      <MobileApproveMessage>
+        We have sent the code on your mobile phone
+      </MobileApproveMessage>
       <MobileApproveRow>
         <Input
           value={first.value}
@@ -87,8 +108,17 @@ export const MobileApprove = () => {
         />
       </MobileApproveRow>
       <MobileApproveSubmit>
-        <Button onClick={handleValidateMobileCode}>Validate</Button>
+        <Button onClick={handleValidateMobileCode} disabled={sending}>
+          Validate
+        </Button>
       </MobileApproveSubmit>
+      {sending && (
+        <MobileApproveTimer>
+          <MobileApproveTimerText>
+            <Button view="ghost">Try again</Button> after {seconds}
+          </MobileApproveTimerText>
+        </MobileApproveTimer>
+      )}
     </MobileApproveWrapp>
   );
 };

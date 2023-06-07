@@ -23,3 +23,16 @@ export const MobileApproveSubmit = styled.div`
     width: 100%;
   }
 `;
+
+export const MobileApproveTimer = styled.div`
+  margin-top: 10px;
+`;
+
+export const MobileApproveTimerText = styled.div`
+  text-align: center;
+`;
+
+export const MobileApproveMessage = styled.div`
+  font-size: 14px;
+  margin-bottom: 15px;
+`;

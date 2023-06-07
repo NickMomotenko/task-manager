@@ -7,14 +7,18 @@ import { store } from "./redux/store";
 
 import { App } from "./App";
 
-import "./index.css";
 import { AlertProvider } from "./context/AlertContext";
+import { LoaderProvider } from "./context/LoaderContext";
+
+import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <BrowserRouter>
     <Provider store={store}>
       <AlertProvider>
-        <App />
+        <LoaderProvider>
+          <App />
+        </LoaderProvider>
       </AlertProvider>
     </Provider>
   </BrowserRouter>

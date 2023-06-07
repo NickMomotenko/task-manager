@@ -15,6 +15,11 @@ export const ButtonWrapp = styled.button<{ view: string; size: string }>`
   padding: var(--button-m-padding);
   max-width: 302px;
 
+  &:disabled {
+    background: #2f80ed52;
+    cursor: no-drop;
+  }
+
   ${({ view }) =>
     view === "ghost" &&
     css`

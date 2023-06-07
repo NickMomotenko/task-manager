@@ -1,6 +1,10 @@
+import { useEffect } from "react";
+
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
+
 import { useInput } from "../../hooks/useInput";
+
 import {
   RegistrationWrapp,
   RegistrationButton,
@@ -32,6 +36,10 @@ export const Registration = () => {
       console.log(data);
     }
   };
+
+  useEffect(() => {
+    inputs[0].ref.current.focus();
+  }, []);
 
   return (
     <RegistrationWrapp>

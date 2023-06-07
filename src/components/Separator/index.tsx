@@ -1,5 +1,5 @@
 import { SeparatorWrapp } from "./styled";
 
-export const Separator = ({}) => {
+export const Separator = () => {
   return <SeparatorWrapp></SeparatorWrapp>;
 };

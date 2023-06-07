@@ -14,8 +14,6 @@ import { AppWrapp } from "./AppStyles";
 import { Loader } from "./components/Loader";
 
 export const App = () => {
-  const [isPreloaderActive, setIsPreloaderActive] = useState(true);
-
   return (
     <AppWrapp>
       {/* <Header /> */}
@@ -29,7 +27,7 @@ export const App = () => {
         </Route>
       </Routes>
       <AlertContainer />
-      {/* <Loader active={isPreloaderActive} /> */}
+      <Loader />
     </AppWrapp>
   );
 };
