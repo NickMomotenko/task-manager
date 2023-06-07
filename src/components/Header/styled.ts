@@ -27,4 +27,8 @@ export const HeaderInput = styled.div`
   max-width: 350px;
 `;
 
-export const HeaderLogo = styled.div``;
+export const HeaderLogo = styled.div`
+  img {
+    max-width: 70px;
+  }
+`;

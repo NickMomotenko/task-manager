@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Header from "./components/Header";
 import { MainContent } from "./components/MainContent";
 
 import { Projects } from "./pages/Projects";
@@ -16,7 +14,6 @@ import { Loader } from "./components/Loader";
 export const App = () => {
   return (
     <AppWrapp>
-      {/* <Header /> */}
       <Routes>
         <Route path="/" element={<MainContent />}>
           <Route path="/" element={<Projects />} />
