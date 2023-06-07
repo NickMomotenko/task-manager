@@ -1,40 +1,43 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useInput } from "../../hooks/useInput";
 import { Input } from "../Input";
 
 import { MobileApproveRow, MobileApproveWrapp } from "./styled";
 
 export const MobileApprove = () => {
+  const [index, setIndex] = useState(0);
+
   const first = useInput();
   const second = useInput();
   const third = useInput();
   const fourth = useInput();
 
+  const inputs = [first, second, third, fourth];
+
   useEffect(() => {
-    first.ref.current.focus();
+    inputs[index].ref.current.focus();
   }, []);
 
-  useEffect(() => {
-    if (checkLength(first.value)) {
-      second.ref.current.focus();
-    }
+  useEffect(
+    () => {
+      for (let i = 0; i < inputs.length; i++) {
+        const current = inputs[index];
 
-    if (checkLength(second.value)) {
-      third.ref.current.focus();
-    }
-
-    if (checkLength(third.value)) {
-      fourth.ref.current.focus();
-    }
-
-    if (checkLength(fourth.value)) {
-      console.log(111);
-    } else return;
-  }, [first.value, second.value, third.value, fourth.value]);
-
-  function checkLength(value: string) {
-    return value.length === 1;
-  }
+        if (current.value.length) {
+          if (index === inputs.length - 1) {
+            inputs[inputs.length - 1].ref.current.focus();
+          } else {
+            inputs[index + 1].ref.current.focus();
+            setIndex((prev) => prev + 1);
+            break;
+          }
+        } else {
+          inputs[index].ref.current.focus();
+        }
+      }
+    },
+    inputs.map((item) => item.value)
+  );
 
   return (
     <MobileApproveWrapp>
@@ -43,21 +46,25 @@ export const MobileApprove = () => {
           value={first.value}
           onChange={first.handleChange}
           ref={first.ref}
+          maxLength={1}
         />
         <Input
           value={second.value}
           onChange={second.handleChange}
           ref={second.ref}
+          maxLength={1}
         />
         <Input
           value={third.value}
           onChange={third.handleChange}
           ref={third.ref}
+          maxLength={1}
         />
         <Input
           value={fourth.value}
           onChange={fourth.handleChange}
           ref={fourth.ref}
+          maxLength={1}
         />
       </MobileApproveRow>
     </MobileApproveWrapp>

@@ -9,7 +9,7 @@ import { MobileApprove } from "../../components/MobileApprove";
 import { useInput } from "../../hooks/useInput";
 
 export const Login = () => {
-  const [isCorrect, setIsCorrect] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(true);
 
   const email = useInput();
   const password = useInput();
