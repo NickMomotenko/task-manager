@@ -1,7 +1,9 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
+import { Separator } from "../../components/Separator";
 
 import { useInput } from "../../hooks/useInput";
 
@@ -9,6 +11,7 @@ import {
   RegistrationWrapp,
   RegistrationButton,
   RegistrationInput,
+  RegistrationOtherBtn,
 } from "./styled";
 
 export const Registration = () => {
@@ -18,7 +21,17 @@ export const Registration = () => {
   const password = useInput();
   const repeatPassword = useInput();
 
+  const navigate = useNavigate();
+
   const inputs = [email, firstName, secondName, password, repeatPassword];
+
+  useEffect(() => {
+    inputs[0].ref.current.focus();
+  }, []);
+
+  const handleNavigateToLogin = () => {
+    navigate("/auth/login");
+  };
 
   const handleSubmitLogin = () => {
     if (password.value !== repeatPassword.value) return;
@@ -36,10 +49,6 @@ export const Registration = () => {
       console.log(data);
     }
   };
-
-  useEffect(() => {
-    inputs[0].ref.current.focus();
-  }, []);
 
   return (
     <RegistrationWrapp>
@@ -88,6 +97,12 @@ export const Registration = () => {
       <RegistrationButton>
         <Button onClick={handleSubmitLogin}>Registration</Button>
       </RegistrationButton>
+      <Separator />
+      <RegistrationOtherBtn>
+        <Button view="ghost" onClick={handleNavigateToLogin}>
+          Go to login
+        </Button>
+      </RegistrationOtherBtn>
     </RegistrationWrapp>
   );
 };

@@ -16,3 +16,7 @@ export const RegistrationButton = styled.div`
     width: 100%;
   }
 `;
+
+export const RegistrationOtherBtn = styled.div`
+  text-align: center;
+`;

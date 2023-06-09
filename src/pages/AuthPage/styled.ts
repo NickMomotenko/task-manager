@@ -1,15 +1,19 @@
 import styled from "styled-components";
 
-import bgMain from "../../assets/bg/main.png";
-
 export const AuthPageWrapp = styled.div`
   height: 100%;
   width: 100%;
   background: #fff;
 
-  display: flex;
-
   padding: 2%;
+`;
+
+export const AuthPageContainer = styled.div`
+  max-width: 1400px;
+  display: flex;
+  height: 100%;
+
+  margin: 0 auto;
 `;
 
 export const AuthPageContent = styled.div`
@@ -24,10 +28,6 @@ export const AuthPageContent = styled.div`
 export const AuthPageImage = styled.div`
   flex: 1.5;
   border-radius: 40px 0 40px 0;
-
-  /* background: url(${bgMain}) no-repeat; */
-  background-size: cover;
-  background-color: #c29199;
 `;
 
 export const AuthPageSlider = styled.div`
@@ -35,40 +35,41 @@ export const AuthPageSlider = styled.div`
   padding: 30px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 export const AuthPageSliderBtns = styled.div`
-  text-align: right;
+  display: flex;
 `;
 
-export const AuthPageSliderBtn = styled.button`
-  display: inline-block;
-  height: 45px;
-  width: 45px;
-  border: 1px solid #fff;
-  border-radius: 50%;
-  position: relative;
+export const AuthPageSliderBtn = styled.div`
   margin-right: 13px;
 
   &:last-child {
     margin-right: 0;
   }
 
-  /* &::after {
-    content: "";
-    display: inline-block;
-    height: 26px;
-    width: 26px;
-    background: transparent;
-
-    position: absolute;
-    bottom: -1px;
-    right: -1px;
-  } */
+  svg {
+    transform: rotate(90deg);
+  }
 `;
 
-export const AuthPageSliderContent = styled.div``;
+export const AuthPageSliderBtnNext = styled(AuthPageSliderBtn)`
+  svg {
+    transform: rotate(-90deg);
+  }
+`;
+
+export const AuthPageSliderContent = styled.div`
+  background: #fff;
+  padding: 15px 20px;
+  border-radius: 20px;
+  box-shadow: rgba(177, 174, 210, 0.6) 0px 0px 10px;
+`;
 
 export const AuthPageLogo = styled.div`
   text-align: center;
@@ -85,12 +86,15 @@ export const AuthPageTitle = styled.div`
 
 export const AuthPageSliderTitle = styled.div`
   margin-bottom: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const AuthPageSliderText = styled.div`
-  color: #fff;
+  color: black;
   font-size: 16px;
-  margin-bottom: 30px;
 `;
 
 export const AuthWrapperTitle = styled.div`

@@ -7,6 +7,7 @@ import { MobileApprove } from "../../components/MobileApprove";
 
 import { Login } from "../../containers/Login";
 import { Registration } from "../../containers/Registration";
+import { ForgotPassword } from "../../containers/ForgotPassword";
 
 import { AuthSlider } from "./AuthSlider";
 import { AuthWrapper } from "./AuthWrapper";
@@ -16,6 +17,7 @@ import {
   AuthPageContent,
   AuthPageImage,
   AuthPageLogo,
+  AuthPageContainer,
 } from "./styled";
 
 export const AuthPage = () => {
@@ -25,6 +27,7 @@ export const AuthPage = () => {
   const isLoginPath = location.pathname === "/auth/login";
   const isRegistrationPath = location.pathname === "/auth/registration";
   const isVerifyMobilePath = location.pathname === "/auth/mobile";
+  const isForgotPasswordPath = location.pathname === "/auth/forgot-password";
 
   useEffect(() => {
     generateTitle();
@@ -44,6 +47,10 @@ export const AuthPage = () => {
         setTitle("Verification by mobile");
         break;
 
+      case "/auth/forgot-password":
+        setTitle("Forgot password");
+        break;
+
       default:
         setTitle("Title");
         break;
@@ -52,19 +59,22 @@ export const AuthPage = () => {
 
   return (
     <AuthPageWrapp>
-      <AuthPageContent>
-        <AuthPageLogo>
-          <Logo />
-        </AuthPageLogo>
-        <AuthWrapper title={title}>
-          {isLoginPath && <Login />}
-          {isRegistrationPath && <Registration />}
-          {isVerifyMobilePath && <MobileApprove />}
-        </AuthWrapper>
-      </AuthPageContent>
-      <AuthPageImage>
-        <AuthSlider />
-      </AuthPageImage>
+      <AuthPageContainer>
+        <AuthPageContent>
+          <AuthPageLogo>
+            <Logo />
+          </AuthPageLogo>
+          <AuthWrapper title={title}>
+            {isLoginPath && <Login />}
+            {isRegistrationPath && <Registration />}
+            {isVerifyMobilePath && <MobileApprove />}
+            {isForgotPasswordPath && <ForgotPassword />}
+          </AuthWrapper>
+        </AuthPageContent>
+        <AuthPageImage>
+          <AuthSlider />
+        </AuthPageImage>
+      </AuthPageContainer>
     </AuthPageWrapp>
   );
 };

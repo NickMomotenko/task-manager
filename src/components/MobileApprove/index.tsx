@@ -2,7 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useInput } from "../../hooks/useInput";
+import { useTimer } from "../../hooks/useTimer";
+
 import { Input } from "../Input";
+import { Button } from "../Button";
+
+import { LoaderContext } from "../../context/LoaderContext";
 
 import {
   MobileApproveRow,
@@ -12,9 +17,6 @@ import {
   MobileApproveTimerText,
   MobileApproveMessage,
 } from "./styled";
-import { Button } from "../Button";
-import { useTimer } from "../../hooks/useTimer";
-import { LoaderContext } from "../../context/LoaderContext";
 
 export const MobileApprove = () => {
   const [index, setIndex] = useState(0);

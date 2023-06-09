@@ -1,12 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { LoginWrapp, LoginInput, LoginButton } from "./styled";
+import {
+  LoginWrapp,
+  LoginInput,
+  LoginButton,
+  LoginOtherBtns,
+  LoginCreateAccountBtn,
+} from "./styled";
 
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
-import { useInput } from "../../hooks/useInput";
 import { Separator } from "../../components/Separator";
-import { useNavigate } from "react-router-dom";
+
+import { useInput } from "../../hooks/useInput";
 
 export const Login = () => {
   const email = useInput();
@@ -34,6 +41,14 @@ export const Login = () => {
     navigate("/auth/mobile");
   };
 
+  const handleCreateNewAccount = () => {
+    navigate("/auth/registration");
+  };
+
+  const handleForgotPassword = () => {
+    navigate("/auth/forgot-password");
+  };
+
   return (
     <LoginWrapp>
       <>
@@ -58,6 +73,16 @@ export const Login = () => {
           <Button onClick={handleSubmitLogin}>Login</Button>
         </LoginButton>
         <Separator />
+        <LoginOtherBtns>
+          <LoginCreateAccountBtn>
+            <Button view="ghost" onClick={handleCreateNewAccount}>
+              Create a new account?
+            </Button>
+          </LoginCreateAccountBtn>
+          <Button view="ghost" onClick={handleForgotPassword}>
+            Forgot password
+          </Button>
+        </LoginOtherBtns>
       </>
     </LoginWrapp>
   );

@@ -4,17 +4,13 @@ import { IconWrapp } from "./styled";
 
 type IconProps = {
   src: string | any;
-  alt: string;
   size?: {
     h: string;
     w: string;
   };
+  fill?: string;
 };
 
-export const Icon: React.FC<IconProps> = ({
-  src,
-  alt,
-  size = { h: "initial", w: "initial" },
-}) => {
-  return <IconWrapp src={src} alt={alt} size={size} />;
+export const Icon: React.FC<IconProps> = ({ src, size, fill = "#fff" }) => {
+  return <IconWrapp src={src} size={size} fill={fill} />;
 };
