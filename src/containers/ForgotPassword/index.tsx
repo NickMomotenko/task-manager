@@ -14,6 +14,8 @@ import {
   ForgotPasswordWrapp,
 } from "./styled";
 
+import { authPathes } from "../../helpers/routes";
+
 export const ForgotPassword = () => {
   const email = useInput();
 
@@ -31,11 +33,11 @@ export const ForgotPassword = () => {
       return;
     }
 
-    navigate("/auth/login");
+    navigate(authPathes.login);
   };
 
   const handleNavigateToLogin = () => {
-    navigate("/auth/login");
+    navigate(authPathes.login);
   };
 
   return (

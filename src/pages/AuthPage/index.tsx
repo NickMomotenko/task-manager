@@ -19,15 +19,17 @@ import {
   AuthPageLogo,
   AuthPageContainer,
 } from "./styled";
+import { authPathes } from "../../helpers/routes";
 
 export const AuthPage = () => {
   const [title, setTitle] = useState("");
 
   const location = useLocation();
-  const isLoginPath = location.pathname === "/auth/login";
-  const isRegistrationPath = location.pathname === "/auth/registration";
-  const isVerifyMobilePath = location.pathname === "/auth/mobile";
-  const isForgotPasswordPath = location.pathname === "/auth/forgot-password";
+
+  const isLoginPath = location.pathname === authPathes.login;
+  const isRegistrationPath = location.pathname === authPathes.registration;
+  const isVerifyMobilePath = location.pathname === authPathes.mobile;
+  const isForgotPasswordPath = location.pathname === authPathes.forgot;
 
   useEffect(() => {
     generateTitle();
@@ -35,19 +37,19 @@ export const AuthPage = () => {
 
   function generateTitle() {
     switch (location.pathname) {
-      case "/auth/login":
+      case `${authPathes.login}`:
         setTitle("Login");
         break;
 
-      case "/auth/registration":
+      case `${authPathes.registration}`:
         setTitle("Registration");
         break;
 
-      case "/auth/mobile":
+      case `${authPathes.mobile}`:
         setTitle("Verification by mobile");
         break;
 
-      case "/auth/forgot-password":
+      case `${authPathes.forgot}`:
         setTitle("Forgot password");
         break;
 

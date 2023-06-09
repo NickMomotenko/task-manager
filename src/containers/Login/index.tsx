@@ -15,6 +15,8 @@ import { Separator } from "../../components/Separator";
 
 import { useInput } from "../../hooks/useInput";
 
+import { authPathes } from "../../helpers/routes";
+
 export const Login = () => {
   const email = useInput();
   const password = useInput();
@@ -38,15 +40,15 @@ export const Login = () => {
       return;
     }
 
-    navigate("/auth/mobile");
+    navigate(authPathes.login);
   };
 
   const handleCreateNewAccount = () => {
-    navigate("/auth/registration");
+    navigate(authPathes.registration);
   };
 
   const handleForgotPassword = () => {
-    navigate("/auth/forgot-password");
+    navigate(authPathes.forgot);
   };
 
   return (

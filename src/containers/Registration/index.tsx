@@ -14,6 +14,8 @@ import {
   RegistrationOtherBtn,
 } from "./styled";
 
+import { authPathes } from "../../helpers/routes";
+
 export const Registration = () => {
   const email = useInput();
   const firstName = useInput();
@@ -30,7 +32,7 @@ export const Registration = () => {
   }, []);
 
   const handleNavigateToLogin = () => {
-    navigate("/auth/login");
+    navigate(authPathes.login);
   };
 
   const handleSubmitLogin = () => {
