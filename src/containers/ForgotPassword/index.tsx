@@ -15,6 +15,7 @@ import {
 } from "./styled";
 
 import { authPathes } from "../../helpers/routes";
+import { validateInputs } from "../../pages/AuthPage/helper";
 
 export const ForgotPassword = () => {
   const email = useInput();
@@ -28,12 +29,11 @@ export const ForgotPassword = () => {
   }, []);
 
   const handleSubmitLogin = () => {
-    if (!email.value) {
-      email.ref.current.focus();
-      return;
-    }
+    const isValid = validateInputs(inputs);
 
-    navigate(authPathes.login);
+    if (isValid) {
+      navigate(authPathes.login);
+    }
   };
 
   const handleNavigateToLogin = () => {

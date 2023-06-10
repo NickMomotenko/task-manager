@@ -15,6 +15,7 @@ import {
 } from "./styled";
 
 import { authPathes } from "../../helpers/routes";
+import { validateInputs } from "../../pages/AuthPage/helper";
 
 export const Registration = () => {
   const email = useInput();
@@ -35,12 +36,12 @@ export const Registration = () => {
     navigate(authPathes.login);
   };
 
-  const handleSubmitLogin = () => {
+  const handleSubmitRegistration = () => {
     if (password.value !== repeatPassword.value) return;
 
-    const isValid = inputs.filter((item) => !item.value);
+    const isValid = validateInputs(inputs);
 
-    if (!isValid.length) {
+    if (isValid) {
       let data: any = {};
 
       data["email"] = inputs[0].value;
@@ -48,7 +49,7 @@ export const Registration = () => {
       data["secondName"] = inputs[2].value;
       data["password"] = inputs[3].value;
 
-      console.log(data);
+      alert(JSON.stringify(data));
     }
   };
 
@@ -97,7 +98,7 @@ export const Registration = () => {
         />
       </RegistrationInput>
       <RegistrationButton>
-        <Button onClick={handleSubmitLogin}>Registration</Button>
+        <Button onClick={handleSubmitRegistration}>Registration</Button>
       </RegistrationButton>
       <Separator />
       <RegistrationOtherBtn>

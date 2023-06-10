@@ -17,6 +17,7 @@ import {
   MobileApproveTimerText,
   MobileApproveMessage,
 } from "./styled";
+import { validateInputs } from "../../pages/AuthPage/helper";
 
 export const MobileApprove = () => {
   const [index, setIndex] = useState(0);
@@ -61,9 +62,9 @@ export const MobileApprove = () => {
   );
 
   const handleValidateMobileCode = () => {
-    const isValid = inputs.filter((item) => !item.value);
+    const isValid = validateInputs(inputs);
 
-    if (!isValid.length) {
+    if (isValid) {
       setSending(true);
 
       const mobileCode = inputs.map((item) => item.value).join("");

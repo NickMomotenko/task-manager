@@ -16,6 +16,7 @@ import { Separator } from "../../components/Separator";
 import { useInput } from "../../hooks/useInput";
 
 import { authPathes } from "../../helpers/routes";
+import { validateInputs } from "../../pages/AuthPage/helper";
 
 export const Login = () => {
   const email = useInput();
@@ -30,17 +31,11 @@ export const Login = () => {
   }, []);
 
   const handleSubmitLogin = () => {
-    if (!email.value) {
-      email.ref.current.focus();
-      return;
-    }
+    const isValid = validateInputs(inputs);
 
-    if (!password.value) {
-      password.ref.current.focus();
-      return;
+    if (isValid) {
+      navigate(authPathes.mobile);
     }
-
-    navigate(authPathes.login);
   };
 
   const handleCreateNewAccount = () => {
