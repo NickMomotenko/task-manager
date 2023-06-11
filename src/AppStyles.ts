@@ -7,3 +7,8 @@ export const AppWrapp = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+export const AppRouter = styled.div`
+  height: 100%;
+  width: 100%;
+`;

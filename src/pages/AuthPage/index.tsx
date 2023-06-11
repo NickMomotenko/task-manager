@@ -1,13 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
-import { useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 import { Logo } from "../../components/Logo";
-import { MobileApprove } from "../../components/MobileApprove";
-
-import { Login } from "../../containers/Login";
-import { Registration } from "../../containers/Registration";
-import { ForgotPassword } from "../../containers/ForgotPassword";
 
 import { AuthSlider } from "./AuthSlider";
 import { AuthWrapper } from "./AuthWrapper";
@@ -19,17 +14,27 @@ import {
   AuthPageLogo,
   AuthPageContainer,
 } from "./styled";
+
 import { authPathes } from "../../helpers/routes";
+
+import { AlertContext } from "../../context/AlertContext";
 
 export const AuthPage = () => {
   const [title, setTitle] = useState("");
 
   const location = useLocation();
 
-  const isLoginPath = location.pathname === authPathes.login;
-  const isRegistrationPath = location.pathname === authPathes.registration;
-  const isVerifyMobilePath = location.pathname === authPathes.mobile;
-  const isForgotPasswordPath = location.pathname === authPathes.forgot;
+  const { generateAlert } = useContext(AlertContext);
+
+  useEffect(() => {
+    setTimeout(() => {
+      generateAlert({
+        type: "info",
+        title: "Welcome to the Task Manager",
+        text: "You can use absolutely any data in the login form , also in the mobile approve - and after that you will be navigate to the root path",
+      });
+    }, 1500);
+  }, []);
 
   useEffect(() => {
     generateTitle();
@@ -67,10 +72,7 @@ export const AuthPage = () => {
             <Logo />
           </AuthPageLogo>
           <AuthWrapper title={title}>
-            {isLoginPath && <Login />}
-            {isRegistrationPath && <Registration />}
-            {isVerifyMobilePath && <MobileApprove />}
-            {isForgotPasswordPath && <ForgotPassword />}
+            <Outlet />
           </AuthWrapper>
         </AuthPageContent>
         <AuthPageImage>

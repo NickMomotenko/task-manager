@@ -18,6 +18,8 @@ import {
   MobileApproveMessage,
 } from "./styled";
 import { validateInputs } from "../../pages/AuthPage/helper";
+import { useDispatch } from "react-redux";
+import { SET_LOGIN } from "../../redux/auth/types";
 
 export const MobileApprove = () => {
   const [index, setIndex] = useState(0);
@@ -27,6 +29,8 @@ export const MobileApprove = () => {
   const second = useInput();
   const third = useInput();
   const fourth = useInput();
+
+  const dispatch = useDispatch();
 
   const { startTimer, seconds, started } = useTimer({ initialValue: 5 });
 
@@ -69,7 +73,9 @@ export const MobileApprove = () => {
 
       const mobileCode = inputs.map((item) => item.value).join("");
 
-      startTimer();
+      // startTimer();
+
+      dispatch({ type: SET_LOGIN });
 
       loader.handleToggleOpen();
 

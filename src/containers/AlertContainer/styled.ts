@@ -1,12 +1,12 @@
 import styled, { css } from "styled-components";
 
 export const AlertContainerWrapp = styled.div<{ isOpen: boolean }>`
-  height: 30%;
-  width: 40%;
+  height: 100%;
+  width: 30%;
   position: fixed;
   right: -100%;
   bottom: 0;
-  z-index: 10;
+  z-index: 1;
   opacity: 0;
   visibility: hidden;
 
@@ -17,7 +17,7 @@ export const AlertContainerWrapp = styled.div<{ isOpen: boolean }>`
   align-items: flex-end;
   justify-content: flex-end;
 
-  padding: 15px 0;
+  padding: 15px 20px;
 
   ${({ isOpen }) =>
     isOpen &&

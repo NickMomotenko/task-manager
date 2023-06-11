@@ -1,17 +1,17 @@
-import { Outlet } from "react-router-dom";
-
 import { Container } from "../Container";
-
-import { MainContentWrapp } from "./styled";
 import Header from "../Header";
 
-export const MainContent = () => {
+import { MainContentWrapp } from "./styled";
+
+type MainContentProps = {
+  children: React.ReactNode;
+};
+
+export const MainContent: React.FC<MainContentProps> = ({ children }) => {
   return (
     <MainContentWrapp>
       <Header />
-      <Container>
-        <Outlet />
-      </Container>
+      <Container>{children}</Container>
     </MainContentWrapp>
   );
 };

@@ -31,11 +31,11 @@ export const AlertProvider = ({ children }) => {
 
     setAlerts((prev) => [...prev, alertObj]);
 
-    timeout = window.setTimeout(() => {
-      setAlerts((prev) => [
-        ...prev.filter((prevAlert) => prevAlert.id !== alertObj.id),
-      ]);
-    }, baseTimer);
+    // timeout = window.setTimeout(() => {
+    //   setAlerts((prev) => [
+    //     ...prev.filter((prevAlert) => prevAlert.id !== alertObj.id),
+    //   ]);
+    // }, baseTimer);
   };
 
   const deleteAlert = (id) => {
