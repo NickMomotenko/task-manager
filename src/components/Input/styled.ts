@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const InputWrapp = styled.label`
+export const InputWrapp = styled.div``;
+
+export const InputContent = styled.label`
   display: flex;
   align-items: center;
 
@@ -37,4 +39,10 @@ export const InputIcon = styled.span`
   img {
     max-width: 100%;
   }
+`;
+
+export const InputError = styled.div`
+  padding: 0 20px;
+  color: #cd162c;
+  font-size: 13px;
 `;

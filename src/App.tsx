@@ -41,8 +41,8 @@ export const App = () => {
         <Routes>
           <Route path="*" element={<Navigate replace to="/404" />} />
           <Route path="/" element={<PrivateRoute />}>
-            <Route path="/" element={<Projects />} />
-            <Route path="/project/:id" element={<ProjectScreen />} />
+            {/* <Route path="/" element={<Projects />} />
+            <Route path="/project/:id" element={<ProjectScreen />} /> */}
           </Route>
           <Route path="auth/" element={<AuthPage />}>
             <Route path="login" element={<Login />} />

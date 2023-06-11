@@ -2,28 +2,38 @@ import React from "react";
 
 import { Icon } from "../Icon";
 
-import { InputBody, InputWrapp, InputIcon } from "./styled";
+import {
+  InputBody,
+  InputWrapp,
+  InputIcon,
+  InputError,
+  InputContent,
+} from "./styled";
 
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   icon?: string;
+  error?: string;
 };
 
 export const Input: React.FC<InputProps> = React.forwardRef(
-  ({ value, onChange, placeholder, icon, ...rest }, ref) => {
+  ({ value, onChange, placeholder, icon, error, ...rest }, ref) => {
     return (
       <InputWrapp>
-        {icon && (
-          <InputIcon>
-            <Icon src={icon} alt="icon" />
-          </InputIcon>
-        )}
-        <InputBody
-          value={value}
-          placeholder={placeholder}
-          onChange={onChange}
-          ref={ref}
-          {...rest}
-        />
+        <InputContent>
+          {icon && (
+            <InputIcon>
+              <Icon src={icon} alt="icon" />
+            </InputIcon>
+          )}
+          <InputBody
+            value={value}
+            placeholder={placeholder}
+            onChange={onChange}
+            ref={ref}
+            {...rest}
+          />
+        </InputContent>
+        <InputError>{error}</InputError>
       </InputWrapp>
     );
   }

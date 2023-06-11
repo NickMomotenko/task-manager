@@ -7,6 +7,11 @@ import { Separator } from "../../components/Separator";
 
 import { useInput } from "../../hooks/useInput";
 
+import { validateInputs } from "../../pages/AuthPage/helper";
+
+import { checkLength } from "../../helpers/input-validation";
+import { authPathes } from "../../helpers/routes";
+
 import {
   ForgotPasswordButton,
   ForgotPasswordInput,
@@ -14,11 +19,8 @@ import {
   ForgotPasswordWrapp,
 } from "./styled";
 
-import { authPathes } from "../../helpers/routes";
-import { validateInputs } from "../../pages/AuthPage/helper";
-
 export const ForgotPassword = () => {
-  const email = useInput();
+  const email = useInput("", [() => checkLength(email.value, 1)]);
 
   const navigate = useNavigate();
 
@@ -32,7 +34,9 @@ export const ForgotPassword = () => {
     const isValid = validateInputs(inputs);
 
     if (isValid) {
-      navigate(authPathes.login);
+      console.log(22);
+
+      // navigate(authPathes.login);
     }
   };
 
@@ -49,6 +53,9 @@ export const ForgotPassword = () => {
             value={email.value}
             onChange={email.handleChange}
             ref={email.ref}
+            error={email.error}
+            onFocus={() => email.setIsBlured(false)}
+            onBlur={() => email.setIsBlured(true)}
           />
         </ForgotPasswordInput>
         <ForgotPasswordButton>

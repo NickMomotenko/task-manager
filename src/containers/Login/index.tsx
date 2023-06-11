@@ -55,6 +55,9 @@ export const Login = () => {
             value={email.value}
             onChange={email.handleChange}
             ref={email.ref}
+            error={email.error}
+            onFocus={() => email.setIsBlured(false)}
+            onBlur={() => email.setIsBlured(true)}
           />
         </LoginInput>
         <LoginInput>
@@ -64,6 +67,9 @@ export const Login = () => {
             value={password.value}
             onChange={password.handleChange}
             ref={password.ref}
+            error={password.error}
+            onFocus={() => password.setIsBlured(false)}
+            onBlur={() => password.setIsBlured(true)}
           />
         </LoginInput>
         <LoginButton>

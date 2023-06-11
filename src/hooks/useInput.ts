@@ -1,14 +1,44 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-export const useInput = (initialValue?: string, name?: string) => {
+import { checkLength } from "../helpers/input-validation";
+
+export const useInput = (
+  initialValue?: string,
+  validatationRules: any[] = [checkLength]
+) => {
   const [value, setValue] = useState<string>(initialValue ?? "");
   const [error, setError] = useState<string>("");
+  const [validated, setValidated] = useState(false);
+  const [isBlured, setIsBlured] = useState(false);
 
   const ref = useRef<any>();
 
+  useEffect(() => {
+    if (isBlured) {
+      validateInputWithRules();
+    }
+  }, [isBlured]);
+
   const handleChange = (
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-  ) => setValue(event.target.value);
+  ) => {
+    setValue(event.target.value);
+  };
+
+  const validateInputWithRules = () => {
+    for (const rule of validatationRules) {
+      const { isCorrect, errorText } = rule(value);
+
+      if (!isCorrect) {
+        setError(errorText);
+        setValidated(false);
+        break;
+      } else {
+        setError("");
+        setValidated(true);
+      }
+    }
+  };
 
   const clearValue = () => setValue("");
 
@@ -20,5 +50,8 @@ export const useInput = (initialValue?: string, name?: string) => {
     setError,
     handleChange,
     clearValue,
+    isBlured,
+    setIsBlured,
+    validated,
   };
 };
