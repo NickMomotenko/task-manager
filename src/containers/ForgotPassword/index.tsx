@@ -1,16 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+
+import { useForm } from "react-hook-form";
+
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { Separator } from "../../components/Separator";
+import { Form } from "../../components/Form";
 
-import { useInput } from "../../hooks/useInput";
-
-import { validateInputs } from "../../pages/AuthPage/helper";
-
-import { checkLength } from "../../helpers/input-validation";
 import { authPathes } from "../../helpers/routes";
+import { ERRORS } from "../../helpers/input-errors-text";
 
 import {
   ForgotPasswordButton,
@@ -19,26 +20,26 @@ import {
   ForgotPasswordWrapp,
 } from "./styled";
 
+const schema = yup
+  .object({
+    email: yup.string().email().required(),
+  })
+  .required();
+
 export const ForgotPassword = () => {
-  const email = useInput("", [() => checkLength(email.value, 1)]);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const navigate = useNavigate();
 
-  const inputs = [email];
-
-  useEffect(() => {
-    inputs[0].ref.current.focus();
-  }, []);
-
-  const handleSubmitLogin = () => {
-    const isValid = validateInputs(inputs);
-
-    if (isValid) {
-      console.log(22);
-
-      // navigate(authPathes.login);
-    }
-  };
+  const onSubmit = handleSubmit((data) => {
+    navigate(authPathes.login);
+  });
 
   const handleNavigateToLogin = () => {
     navigate(authPathes.login);
@@ -47,20 +48,18 @@ export const ForgotPassword = () => {
   return (
     <ForgotPasswordWrapp>
       <>
-        <ForgotPasswordInput>
-          <Input
-            placeholder="Nickname or email"
-            value={email.value}
-            onChange={email.handleChange}
-            ref={email.ref}
-            error={email.error}
-            onFocus={() => email.setIsBlured(false)}
-            onBlur={() => email.setIsBlured(true)}
-          />
-        </ForgotPasswordInput>
-        <ForgotPasswordButton>
-          <Button onClick={handleSubmitLogin}>Help me</Button>
-        </ForgotPasswordButton>
+        <Form onSubmit={onSubmit}>
+          <ForgotPasswordInput>
+            <Input
+              placeholder="Email"
+              error={errors.email && ERRORS.EMAIL}
+              {...register("email")}
+            />
+          </ForgotPasswordInput>
+          <ForgotPasswordButton>
+            <Button type="submit">Help me</Button>
+          </ForgotPasswordButton>
+        </Form>
         <Separator />
         <ForgotPasswordOtherBtn>
           <Button view="ghost" onClick={handleNavigateToLogin}>

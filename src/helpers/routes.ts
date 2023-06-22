@@ -1,15 +1,15 @@
 export const routes = {
-  base: { path: "/" },
+  base: "/",
   profile: { path: "/profile" },
   settings: { path: "/settings" },
   help: { path: "/help" },
 };
 
 export const navigationList = [
-  { id: 1, title: "Projects", path: routes.base.path },
-  { id: 2, title: "Profile", path: routes.profile.path },
-  { id: 3, title: "Settings", path: routes.settings.path },
-  { id: 4, title: "Help", path: routes.help.path },
+  { id: 1, title: "Projects", path: routes.base },
+  { id: 2, title: "Profile", path: routes.profile },
+  { id: 3, title: "Settings", path: routes.settings },
+  { id: 4, title: "Help", path: routes.help },
 ];
 
 export const authPathes = {

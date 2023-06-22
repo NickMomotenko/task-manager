@@ -1,5 +1,9 @@
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { useForm } from "react-hook-form";
+
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 import {
   LoginWrapp,
@@ -12,31 +16,32 @@ import {
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { Separator } from "../../components/Separator";
+import { Form } from "../../components/Form";
 
-import { useInput } from "../../hooks/useInput";
+import { authPathes, routes } from "../../helpers/routes";
+import { ERRORS } from "../../helpers/input-errors-text";
 
-import { authPathes } from "../../helpers/routes";
-import { validateInputs } from "../../pages/AuthPage/helper";
+const schema = yup
+  .object({
+    email: yup.string().email().required(),
+    password: yup.string().required(),
+  })
+  .required();
 
 export const Login = () => {
-  const email = useInput();
-  const password = useInput();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const navigate = useNavigate();
 
-  const inputs = [email, password];
-
-  useEffect(() => {
-    inputs[0].ref.current.focus();
-  }, []);
-
-  const handleSubmitLogin = () => {
-    const isValid = validateInputs(inputs);
-
-    if (isValid) {
-      navigate(authPathes.mobile);
-    }
-  };
+  const onSubmit = handleSubmit(() => {
+    navigate(authPathes.mobile);
+  });
 
   const handleCreateNewAccount = () => {
     navigate(authPathes.registration);
@@ -49,32 +54,27 @@ export const Login = () => {
   return (
     <LoginWrapp>
       <>
-        <LoginInput>
-          <Input
-            placeholder="Nickname or email"
-            value={email.value}
-            onChange={email.handleChange}
-            ref={email.ref}
-            error={email.error}
-            onFocus={() => email.setIsBlured(false)}
-            onBlur={() => email.setIsBlured(true)}
-          />
-        </LoginInput>
-        <LoginInput>
-          <Input
-            type="password"
-            placeholder="Password"
-            value={password.value}
-            onChange={password.handleChange}
-            ref={password.ref}
-            error={password.error}
-            onFocus={() => password.setIsBlured(false)}
-            onBlur={() => password.setIsBlured(true)}
-          />
-        </LoginInput>
-        <LoginButton>
-          <Button onClick={handleSubmitLogin}>Login</Button>
-        </LoginButton>
+        <Form onSubmit={onSubmit}>
+          <LoginInput>
+            <Input
+              placeholder="Email"
+              type="email"
+              error={errors.email && ERRORS.EMAIL}
+              {...register("email")}
+            />
+          </LoginInput>
+          <LoginInput>
+            <Input
+              placeholder="Password"
+              type="password"
+              error={errors.password && ERRORS.PASSWORD}
+              {...register("password")}
+            />
+          </LoginInput>
+          <LoginButton>
+            <Button type="submit">Login</Button>
+          </LoginButton>
+        </Form>
         <Separator />
         <LoginOtherBtns>
           <LoginCreateAccountBtn>

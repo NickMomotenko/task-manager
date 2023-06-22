@@ -16,13 +16,16 @@ export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 };
 
 export const Input: React.FC<InputProps> = React.forwardRef(
-  ({ value, onChange, placeholder, icon, error, ...rest }, ref) => {
+  (
+    { value, onChange, placeholder, icon, error, ...rest },
+    ref: React.ForwardedRef<HTMLInputElement>
+  ) => {
     return (
       <InputWrapp>
         <InputContent>
           {icon && (
             <InputIcon>
-              <Icon src={icon} alt="icon" />
+              <Icon src={icon} />
             </InputIcon>
           )}
           <InputBody

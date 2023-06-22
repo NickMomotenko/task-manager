@@ -20,6 +20,7 @@ import {
 import { validateInputs } from "../../pages/AuthPage/helper";
 import { useDispatch } from "react-redux";
 import { SET_LOGIN } from "../../redux/auth/types";
+import { routes } from "../../helpers/routes";
 
 export const MobileApprove = () => {
   const [index, setIndex] = useState(0);
@@ -80,7 +81,7 @@ export const MobileApprove = () => {
       loader.handleToggleOpen();
 
       setTimeout(() => {
-        navigate("/");
+        navigate(routes.base);
       }, 500);
     }
   };

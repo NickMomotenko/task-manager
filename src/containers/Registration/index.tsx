@@ -1,11 +1,14 @@
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { useForm } from "react-hook-form";
+
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { Separator } from "../../components/Separator";
-
-import { useInput } from "../../hooks/useInput";
+import { Form } from "../../components/Form";
 
 import {
   RegistrationWrapp,
@@ -15,91 +18,95 @@ import {
 } from "./styled";
 
 import { authPathes } from "../../helpers/routes";
-import { validateInputs } from "../../pages/AuthPage/helper";
+import { ERRORS } from "../../helpers/input-errors-text";
+import { useContext } from "react";
+import { AlertContext } from "../../context/AlertContext";
+
+const schema = yup
+  .object({
+    email: yup.string().email().required(),
+    name: yup.string().required(),
+    secondName: yup.string().required(),
+    password: yup.string().required(),
+    repeatPassword: yup
+      .string()
+      .oneOf([yup.ref("password")], "Passwords must match"),
+  })
+  .required();
 
 export const Registration = () => {
-  const email = useInput();
-  const firstName = useInput();
-  const secondName = useInput();
-  const password = useInput();
-  const repeatPassword = useInput();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const { generateAlert } = useContext(AlertContext);
 
   const navigate = useNavigate();
 
-  const inputs = [email, firstName, secondName, password, repeatPassword];
+  const onSubmit = handleSubmit((data) => {
+    generateAlert({
+      type: "success",
+      title: "Success",
+      text: "Navigate to Login Page",
+    });
 
-  useEffect(() => {
-    inputs[0].ref.current.focus();
-  }, []);
+    setTimeout(() => {
+      navigate(authPathes.login);
+    }, 500);
+  });
 
   const handleNavigateToLogin = () => {
     navigate(authPathes.login);
   };
 
-  const handleSubmitRegistration = () => {
-    if (password.value !== repeatPassword.value) return;
-
-    const isValid = validateInputs(inputs);
-
-    if (isValid) {
-      let data: any = {};
-
-      data["email"] = inputs[0].value;
-      data["name"] = inputs[1].value;
-      data["secondName"] = inputs[2].value;
-      data["password"] = inputs[3].value;
-
-      alert(JSON.stringify(data));
-    }
-  };
-
   return (
     <RegistrationWrapp>
-      <RegistrationInput>
-        <Input
-          placeholder="Email"
-          value={email.value}
-          onChange={email.handleChange}
-          ref={email.ref}
-        />
-      </RegistrationInput>
-      <RegistrationInput>
-        <Input
-          placeholder="Name"
-          value={firstName.value}
-          onChange={firstName.handleChange}
-          ref={firstName.ref}
-        />
-      </RegistrationInput>
-      <RegistrationInput>
-        <Input
-          placeholder="Second name"
-          value={secondName.value}
-          onChange={secondName.handleChange}
-          ref={secondName.ref}
-        />
-      </RegistrationInput>
-      <RegistrationInput>
-        <Input
-          type="password"
-          placeholder="Password"
-          value={password.value}
-          onChange={password.handleChange}
-          ref={password.ref}
-        />
-      </RegistrationInput>
-      <RegistrationInput>
-        <Input
-          type="password"
-          placeholder="Repeat password"
-          value={repeatPassword.value}
-          onChange={repeatPassword.handleChange}
-          ref={repeatPassword.ref}
-        />
-      </RegistrationInput>
-      <RegistrationButton>
-        <Button onClick={handleSubmitRegistration}>Registration</Button>
-      </RegistrationButton>
+      <Form onSubmit={onSubmit}>
+        <RegistrationInput>
+          <Input
+            placeholder="Email"
+            error={errors.email && ERRORS.EMAIL}
+            {...register("email")}
+          />
+        </RegistrationInput>
+        <RegistrationInput>
+          <Input
+            placeholder="Name"
+            error={errors.name && ERRORS.NAME}
+            {...register("name")}
+          />
+        </RegistrationInput>
+        <RegistrationInput>
+          <Input
+            placeholder="Second name"
+            error={errors.secondName && ERRORS.SECOND_NAME}
+            {...register("secondName")}
+          />
+        </RegistrationInput>
+        <RegistrationInput>
+          <Input
+            type="password"
+            placeholder="Password"
+            error={errors.password && ERRORS.PASSWORD}
+            {...register("password")}
+          />
+        </RegistrationInput>
+        <RegistrationInput>
+          <Input
+            type="password"
+            placeholder="Repeat password"
+            error={errors.repeatPassword && errors?.repeatPassword?.message}
+            {...register("repeatPassword")}
+          />
+        </RegistrationInput>
+        <RegistrationButton>
+          <Button type="submit">Registration</Button>
+        </RegistrationButton>
+      </Form>
       <Separator />
       <RegistrationOtherBtn>
         <Button view="ghost" onClick={handleNavigateToLogin}>

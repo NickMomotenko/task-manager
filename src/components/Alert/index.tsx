@@ -41,12 +41,12 @@ export const Alert: React.FC<AlertProps> = ({
     <AlertWrapp isActive={isActive} style={{ background: wrappColor }}>
       <AlertBlock>
         <AlertIcon>
-          <Icon src={alertData?.icon} alt={`${alertData?.type} icon`} />
+          <Icon src={alertData?.icon} />
         </AlertIcon>
       </AlertBlock>
       <AlertBlock>
         <AlertTitle style={{ color: textColor }}>{title}</AlertTitle>
-        <AlertDesc style={{ color: textColor }}>{text}</AlertDesc>
+        {text && <AlertDesc style={{ color: textColor }}>{text}</AlertDesc>}
       </AlertBlock>
       <AlertCrossButton onClick={() => handleDelete(id)}>
         <Icon src={crossIcon} alt={`${alertData?.type} icon`} />
