@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { ReactSVG } from "react-svg";
 
@@ -10,15 +10,20 @@ type ISize = {
 export const IconWrapp = styled(ReactSVG)<{
   size?: ISize;
   fill?: string;
+  noFill?: boolean;
 }>`
   display: inline-block;
   height: ${({ size }) => size?.h};
   width: ${({ size }) => size?.w};
 
   svg {
-    * {
-      fill: ${({ fill }) => fill} !important;
-      stroke: ${({ fill }) => fill} !important;
-    }
+    ${({ noFill, fill }) =>
+      !noFill &&
+      css`
+        * {
+          fill: ${fill} !important;
+          stroke: ${fill} !important;
+        }
+      `}
   }
 `;

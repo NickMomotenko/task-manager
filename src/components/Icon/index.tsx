@@ -9,8 +9,14 @@ type IconProps = {
     w: string;
   };
   fill?: string;
+  noFill?: boolean;
 };
 
-export const Icon: React.FC<IconProps> = ({ src, size, fill = "#fff" }) => {
-  return <IconWrapp src={src} size={size} fill={fill} />;
+export const Icon: React.FC<IconProps> = ({
+  src,
+  size,
+  fill = "#fff",
+  noFill,
+}) => {
+  return <IconWrapp src={src} size={size} fill={fill} noFill={noFill} />;
 };

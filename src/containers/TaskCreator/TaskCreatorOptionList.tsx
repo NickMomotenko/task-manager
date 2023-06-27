@@ -18,7 +18,7 @@ export const TaskCreatorOptionList = () => {
               isLastIcon={personAddIconId === id}
             >
               <Button view="ghost">
-                <Icon src={icon} alt={alt} />
+                <Icon src={icon} noFill />
               </Button>
             </TaskCreatorOptionsItem>
           );

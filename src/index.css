@@ -2,7 +2,7 @@
 
 :root {
   --button-bg: #2f80ed;
-  --button-color: #f2f2f2;
+  --button-color: #fff;
   --button-radius: 8px;
   --button-font-size: 13px;
   --button-s-padding: 3px 15px;
@@ -15,6 +15,21 @@
 * {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    /* плашка-бегунок */
+    background: #ebe7e7;
+  }
+
+  &::-webkit-scrollbar-track {
+    /* фон */
+    background: #fcf8f8;
+  }
 }
 
 #root,
@@ -29,7 +44,7 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-size: 14px;
-  background: #e3e7f1;
+  background: #e3e7f152;
 }
 
 a {

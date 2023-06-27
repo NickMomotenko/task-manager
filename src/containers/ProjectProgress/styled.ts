@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import { Row } from "../../components/Layout";
-import { Paper } from "../../components/Paper";
 
 export const ProjectProgressWrapp = styled.div``;
 

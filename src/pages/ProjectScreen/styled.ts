@@ -14,6 +14,8 @@ export const ProjectScreenRow = styled(Row)`
 
 export const ProjectScreenChat = styled.div`
   margin-bottom: 20px;
+  max-height: 70vh;
+  overflow-x: auto;
 `;
 
 export const ProjectScreenAttachments = styled.div`
@@ -30,10 +32,12 @@ export const ProjectScreenColumn = styled.div`
 `;
 
 export const ProjectScreenMembers = styled.div`
-  margin-bottom: 20px;
+  margin-top: 20px;
 `;
 
-export const ProjectScreenActivity = styled.div``;
+export const ProjectScreenActivity = styled.div`
+  margin-top: 20px;
+`;
 
 export const ProjectScreenStatusTable = styled.div`
   margin-bottom: 20px;

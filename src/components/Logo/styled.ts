@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const LogoWrapp = styled.div`
   display: inline-block;
 `;
 
-export const LogoLink = styled.a`
+export const LogoLink = styled(Link)`
   display: block;
 `;
 

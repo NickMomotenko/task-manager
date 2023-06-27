@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const TextareaWrapp = styled.label<{ isFocused: boolean }>`
+export const TextareaWrapp = styled.label<{
+  isFocused: boolean;
+}>`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -10,8 +12,7 @@ export const TextareaWrapp = styled.label<{ isFocused: boolean }>`
   padding: 12px;
   min-height: 121px;
 
-  &:focus,
-  &:hover {
+  &:focus-within {
     border-color: #2f80ed;
     box-shadow: 0px 4px 6px 3px rgba(45, 83, 219, 0.1);
   }

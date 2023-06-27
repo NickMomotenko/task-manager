@@ -19,6 +19,9 @@ import { useOpen } from "../../hooks/useOpen";
 
 import { SET_ACTIVE_PROJECT } from "../../redux/projects/types";
 
+import { Button } from "../../components/Button";
+import { Icon } from "../../components/Icon";
+
 import {
   ProjectScreenWrapp,
   ProjectScreenCard,
@@ -31,8 +34,11 @@ import {
   ProjectScreenStatusTable,
 } from "./styled";
 
+import backIcon from "../../assets/icons/back.svg";
+import { useNavigate } from "react-router-dom";
+
 export const ProjectScreen = () => {
-  const { projects, activeProject } = useSelector(
+  const { projects, activeProject } = useSelector<any, any>(
     (state: RootState) => state.projects
   );
 
@@ -45,15 +51,28 @@ export const ProjectScreen = () => {
   }>();
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const projectData = projects.find(({ id }) => id === Number(params.id));
+    const projectData = projects.find(
+      ({ id }: any) => id === Number(params.id)
+    );
 
     dispatch({ type: SET_ACTIVE_PROJECT, payload: projectData });
   }, [params?.id]);
 
+  const handleBack = () => {
+    navigate(-1);
+  };
+
   return (
     <ProjectScreenWrapp>
+      <Button
+        style={{ color: "#fff", paddingLeft: 4, marginBottom: 25 }}
+        onClick={handleBack}
+      >
+        <Icon src={backIcon} size={{ h: "25px", w: "25px" }} noFill /> Back
+      </Button>
       <ProjectScreenRow>
         <ProjectScreenColumn>
           <ProjectScreenCard>

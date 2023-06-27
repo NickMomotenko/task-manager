@@ -8,5 +8,5 @@ export const PaperWrapp = styled.div`
   padding: 20px;
   max-width: 100%;
   min-width: 330px;
-  box-shadow: 0 0 8px #afb8cf;
+  /* box-shadow: 0 0 8px #afb8cf; */
 `;

@@ -53,10 +53,10 @@ export const ProjectStatus: React.FC<ProjectStatusProps> = ({
           <Title text="Project Status" />
           <ProjectStatusTableHeadButtons>
             <ProjectStatusSearchButton>
-              <Icon src={lypaIcon} alt="search icon" />
+              <Icon src={lypaIcon} noFill />
             </ProjectStatusSearchButton>
             <ProjectStatusOptionButton onClick={handleOptionsActiveClick}>
-              <Icon src={optionIcon} alt="option icon" />
+              <Icon src={optionIcon} noFill />
             </ProjectStatusOptionButton>
           </ProjectStatusTableHeadButtons>
         </ProjectStatusHeader>

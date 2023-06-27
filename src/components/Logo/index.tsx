@@ -7,7 +7,7 @@ import logoIcon from "../../assets/logo/task.png";
 export const Logo = () => {
   return (
     <LogoWrapp>
-      <LogoLink href={routes.base.path}>
+      <LogoLink to={routes.base}>
         <LogoIcon src={logoIcon} alt="Logo Icon" />
       </LogoLink>
     </LogoWrapp>

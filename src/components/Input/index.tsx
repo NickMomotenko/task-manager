@@ -12,13 +12,24 @@ import {
 
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   icon?: string;
+  iconFill?: string;
   error?: string;
-  onKeyUp: (event: React.KeyboardEvent<HTMLElement>) => void;
+  onKeyUp?: (event: React.KeyboardEvent<HTMLElement>) => void;
 };
 
 export const Input: React.FC<InputProps> = React.forwardRef(
   (
-    { value, onChange, placeholder, icon, error, disabled, onKeyUp, ...rest },
+    {
+      value,
+      onChange,
+      placeholder,
+      icon,
+      iconFill,
+      error,
+      disabled,
+      onKeyUp,
+      ...rest
+    },
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
     return (
@@ -26,7 +37,7 @@ export const Input: React.FC<InputProps> = React.forwardRef(
         <InputContent>
           {icon && (
             <InputIcon>
-              <Icon src={icon} />
+              <Icon src={icon} fill={iconFill} />
             </InputIcon>
           )}
           <InputBody

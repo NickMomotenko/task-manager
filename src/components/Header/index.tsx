@@ -10,9 +10,9 @@ import { Input } from "../Input";
 import { Logo } from "../Logo";
 
 import { RootState } from "../../redux/store";
-import { useInput } from "../../hooks/useInput";
 
-import lypaIcon from "../../assets/icons/lypa.svg";
+
+import { useInput } from "../../hooks/useInput";
 
 import {
   HeaderWrapp,
@@ -40,7 +40,6 @@ const Header: React.FC = () => {
               value={value}
               onChange={handleChange}
               placeholder="Search everything"
-              icon={lypaIcon}
             />
           </HeaderInput>
           <HeaderMenu>

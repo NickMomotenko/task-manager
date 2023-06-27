@@ -35,7 +35,7 @@ export const Modal: React.FC<ModalProps> = ({
         <ModalHead gorizontalSpace="between">
           <Title text={title} />
           <Button view="ghost" onClick={handleToggleActive}>
-            <Icon src={crossIcon} alt="cross icon" />
+            <Icon src={crossIcon} noFill />
           </Button>
         </ModalHead>
         {children}

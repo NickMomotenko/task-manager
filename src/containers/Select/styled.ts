@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const SelectWrapp = styled.div``;
+export const SelectWrapp = styled.div`
+  position: relative;
+`;
 
 export const SelectOptions = styled.div`
   border-radius: var(--button-radius);
@@ -11,6 +13,11 @@ export const SelectOptions = styled.div`
 
   background: #fff;
   margin-top: 5px;
+
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 265px;
 `;
 
 export const SelectInputWrapp = styled.div``;

@@ -77,7 +77,7 @@ export const InviteBlock: React.FC<InviteBlockProps> = ({
         <Row gorizontalSpace="between">
           <Button view="ghost" onClick={handleCopyInviteLink}>
             <InviteButtonIcon>
-              <Icon src={inviteIcon} alt="invite icon" />
+              <Icon src={inviteIcon} noFill />
             </InviteButtonIcon>
             copy link invite
           </Button>

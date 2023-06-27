@@ -50,7 +50,7 @@ export const Accordion: React.FC<AccordionProps> = ({
             <AccordionIcon isOpen={isOpen}>
               <Icon
                 src={arrowIcon}
-                alt="arrow icon"
+                fill="black"
                 size={{ h: "15px", w: "15px" }}
               />
             </AccordionIcon>

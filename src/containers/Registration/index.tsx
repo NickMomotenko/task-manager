@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 
 import { useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+
+import { AlertContext } from "../../context/AlertContext";
 
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
@@ -19,8 +22,6 @@ import {
 
 import { authPathes } from "../../helpers/routes";
 import { ERRORS } from "../../helpers/input-errors-text";
-import { useContext } from "react";
-import { AlertContext } from "../../context/AlertContext";
 
 const schema = yup
   .object({

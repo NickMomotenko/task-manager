@@ -10,7 +10,7 @@ export type SelectProps = {
   className?: string;
   optionsClassName?: string;
   customInput?: React.FC<
-    SelectInputProps & { ref: React.Ref<HTMLDivElement | null> }
+    SelectInputProps & { ref?: React.Ref<HTMLDivElement | null> }
   >;
   options?: {
     value: any;

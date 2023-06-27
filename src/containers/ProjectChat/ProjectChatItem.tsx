@@ -5,6 +5,9 @@ import { Button } from "../../components/Button";
 import { IChat } from "./types";
 
 import likedIcon from "../../assets/icons/like.svg";
+import changeIcon from "../../assets/icons/change.svg";
+import deleteIcon from "../../assets/icons/delete.svg";
+
 import {
   ProjectChatItemAvatar,
   ProjectChatItemBottom,
@@ -61,7 +64,7 @@ export const ProjectChatItem: React.FC<ProjectChatItemProps> = ({
                 {liked?.length}
               </ProjectChatItemLikedCounter>
               <ProjectChatItemLikedIcon>
-                <Icon src={likedIcon} alt="like icon" />
+                <Icon src={likedIcon} fill="#2f80ed" />
               </ProjectChatItemLikedIcon>
             </Button>
             {changed && (
@@ -75,10 +78,18 @@ export const ProjectChatItem: React.FC<ProjectChatItemProps> = ({
                   size="s"
                   onClick={() => onChangeMessage(id)}
                 >
-                  change
+                  <Icon
+                    src={changeIcon}
+                    fill="#2f80ed"
+                    size={{ h: "17px", w: "17px" }}
+                  />
                 </Button>
                 <Button view="ghost" size="s" onClick={() => onDelete(id)}>
-                  delete
+                  <Icon
+                    src={deleteIcon}
+                    fill="#2f80ed"
+                    size={{ h: "17px", w: "17px" }}
+                  />
                 </Button>
               </ProjectChatMyButton>
             )}

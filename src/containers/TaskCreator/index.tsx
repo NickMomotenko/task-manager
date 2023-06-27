@@ -7,15 +7,9 @@ import { Button } from "../../components/Button";
 
 import { TaskCreatorLabels } from "./TaskCreatorLabels";
 import { TaskCreatorTextarea } from "./TaskCreatorTextarea";
-import { TaskCreatorOptionList } from "./TaskCreatorOptionList";
 import { TaskCreatorSelect } from "./TaskCreatorSelect";
 
-import {
-  TaskCreatorWrapp,
-  TaskCreatorBody,
-  TaskCreatorOptions,
-  TaskCreatorButton,
-} from "./styled";
+import { TaskCreatorWrapp, TaskCreatorBody, TaskCreatorButton } from "./styled";
 
 import { useInput } from "../../hooks/useInput";
 
@@ -69,9 +63,6 @@ export const TaskCreator = () => {
           value={descriptionTextarea.value}
           onChange={descriptionTextarea.handleChange}
         />
-        <TaskCreatorOptions>
-          <TaskCreatorOptionList />
-        </TaskCreatorOptions>
         <TaskCreatorButton>
           <Button size="b" onClick={createNewTask}>
             Create Task

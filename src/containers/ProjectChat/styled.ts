@@ -2,10 +2,18 @@ import styled from "styled-components";
 
 import { Row } from "../../components/Layout";
 
-export const ProjectChatContent = styled.div``;
+export const ProjectChatContent = styled.div`
+  position: relative;
+`;
 
 export const ProjectChatTeamList = styled.div`
   margin-bottom: 15px;
+  position: sticky;
+  top: 10px;
+  background: #fff;
+  display: inline-block;
+  border-radius: 20px;
+  padding: 2px 5px;
 `;
 
 export const ProjectChatTeamLabelText = styled.div`
@@ -15,7 +23,12 @@ export const ProjectChatTeamLabelText = styled.div`
 
 export const ProjectChatTeamMultiAvatar = styled.div``;
 
-export const ProjectChatTextareaBlock = styled.div``;
+export const ProjectChatTextareaBlock = styled.div`
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  padding: 15px 0;
+`;
 
 export const ProjectChatTextareaBlockRow = styled(Row)`
   align-items: flex-start;
