@@ -11,12 +11,12 @@ export const InputContent = styled.label`
   border: 1px solid transparent;
   padding: 9px 20px 9px 20px;
 
-  &:focus {
+  &:active {
     border-color: #e2e2e2;
   }
 
-  &:active {
-    border-color: #e2e2e2;
+  &:focus-within {
+    border-color: red;
   }
 `;
 

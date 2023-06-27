@@ -1,7 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useInput } from "../../hooks/useInput";
+import { useForm } from "react-hook-form";
+
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
 import { useTimer } from "../../hooks/useTimer";
 
 import { Input } from "../Input";
@@ -21,15 +25,38 @@ import { validateInputs } from "../../pages/AuthPage/helper";
 import { useDispatch } from "react-redux";
 import { SET_LOGIN } from "../../redux/auth/types";
 import { routes } from "../../helpers/routes";
+import { Form } from "../Form";
+
+const schema = yup
+  .object({
+    first: yup.string(),
+    second: yup.string(),
+    third: yup.string(),
+    fourth: yup.string(),
+  })
+  .required();
+
+export type Test = "first" | "second" | "third" | "fourth";
 
 export const MobileApprove = () => {
   const [index, setIndex] = useState(0);
   const [sending, setSending] = useState(false);
 
-  const first = useInput();
-  const second = useInput();
-  const third = useInput();
-  const fourth = useInput();
+  const { register, handleSubmit, getValues } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const firstRef = useRef<HTMLInputElement | any>(null);
+  const secondRef = useRef<HTMLInputElement | any>(null);
+  const thirdRef = useRef<HTMLInputElement | any>(null);
+  const fourthRef = useRef<HTMLInputElement | any>(null);
+
+  const first = register("first");
+  const second = register("second");
+  const third = register("third");
+  const fourth = register("fourth");
+
+  const inputRefs = [firstRef, secondRef, thirdRef, fourthRef];
 
   const dispatch = useDispatch();
 
@@ -37,52 +64,39 @@ export const MobileApprove = () => {
 
   const loader = useContext(LoaderContext);
 
-  const inputs = [first, second, third, fourth];
-
   const navigate = useNavigate();
 
-  useEffect(() => {
-    inputs[index].ref.current.focus();
-  }, []);
-
-  useEffect(
-    () => {
-      for (let i = 0; i < inputs.length; i++) {
-        const current = inputs[index];
-
-        if (current.value.length) {
-          if (index === inputs.length - 1) {
-            inputs[inputs.length - 1].ref.current.focus();
-          } else {
-            inputs[index + 1].ref.current.focus();
-            setIndex((prev) => prev + 1);
-            break;
-          }
-        } else {
-          inputs[index].ref.current.focus();
-        }
-      }
-    },
-    inputs.map((item) => item.value)
-  );
-
-  const handleValidateMobileCode = () => {
-    const isValid = validateInputs(inputs);
+  const onSubmit = handleSubmit(() => {
+    const isValid =
+      inputRefs.filter((input) => !input.current.value).length === 0;
 
     if (isValid) {
-      setSending(true);
+      navigate(routes.base);
+    }
+  });
 
-      const mobileCode = inputs.map((item) => item.value).join("");
+  useEffect(() => {
+    inputRefs[0].current?.focus();
+  }, []);
 
-      // startTimer();
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (e.keyCode === 8) {
+      if (inputRefs[index - 1]) {
+        inputRefs[index - 1].current.disabled = false;
+        inputRefs[index - 1].current.focus();
+        inputRefs[index].current.disabled = true;
+        setIndex((prev) => prev - 1);
+      } else {
+        inputRefs[index].current.focus();
+      }
+    } else {
+      if (inputRefs[index + 1]) {
+        inputRefs[index].current.disabled = true;
+        inputRefs[index + 1].current.disabled = false;
+        inputRefs[index + 1].current.focus();
 
-      dispatch({ type: SET_LOGIN });
-
-      loader.handleToggleOpen();
-
-      setTimeout(() => {
-        navigate(routes.base);
-      }, 500);
+        setIndex((prev) => prev + 1);
+      }
     }
   };
 
@@ -91,37 +105,56 @@ export const MobileApprove = () => {
       <MobileApproveMessage>
         We have sent the code on your mobile phone
       </MobileApproveMessage>
-      <MobileApproveRow>
-        <Input
-          value={first.value}
-          onChange={first.handleChange}
-          ref={first.ref}
-          maxLength={1}
-        />
-        <Input
-          value={second.value}
-          onChange={second.handleChange}
-          ref={second.ref}
-          maxLength={1}
-        />
-        <Input
-          value={third.value}
-          onChange={third.handleChange}
-          ref={third.ref}
-          maxLength={1}
-        />
-        <Input
-          value={fourth.value}
-          onChange={fourth.handleChange}
-          ref={fourth.ref}
-          maxLength={1}
-        />
-      </MobileApproveRow>
-      <MobileApproveSubmit>
-        <Button onClick={handleValidateMobileCode} disabled={sending}>
-          Validate
-        </Button>
-      </MobileApproveSubmit>
+      <Form onSubmit={onSubmit}>
+        <MobileApproveRow>
+          <Input
+            maxLength={1}
+            {...first}
+            name="first"
+            ref={(e: any) => {
+              first.ref(e);
+              firstRef.current = e;
+            }}
+            onKeyUp={handleKeyUp}
+          />
+          <Input
+            maxLength={1}
+            {...second}
+            name="second"
+            ref={(e: any) => {
+              second.ref(e);
+              secondRef.current = e;
+            }}
+            disabled={true}
+            onKeyUp={handleKeyUp}
+          />
+          <Input
+            maxLength={1}
+            {...third}
+            name="third"
+            ref={(e: any) => {
+              third.ref(e);
+              thirdRef.current = e;
+            }}
+            disabled={true}
+            onKeyUp={handleKeyUp}
+          />
+          <Input
+            maxLength={1}
+            {...fourth}
+            name="fourth"
+            ref={(e: any) => {
+              fourth.ref(e);
+              fourthRef.current = e;
+            }}
+            disabled={true}
+            onKeyUp={handleKeyUp}
+          />
+        </MobileApproveRow>
+        <MobileApproveSubmit>
+          <Button type="submit">Validate</Button>
+        </MobileApproveSubmit>
+      </Form>
       {sending && (
         <MobileApproveTimer>
           <MobileApproveTimerText>

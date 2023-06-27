@@ -13,11 +13,12 @@ import {
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   icon?: string;
   error?: string;
+  onKeyUp: (event: React.KeyboardEvent<HTMLElement>) => void;
 };
 
 export const Input: React.FC<InputProps> = React.forwardRef(
   (
-    { value, onChange, placeholder, icon, error, ...rest },
+    { value, onChange, placeholder, icon, error, disabled, onKeyUp, ...rest },
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
     return (
@@ -32,7 +33,9 @@ export const Input: React.FC<InputProps> = React.forwardRef(
             value={value}
             placeholder={placeholder}
             onChange={onChange}
+            onKeyUp={onKeyUp}
             ref={ref}
+            disabled={disabled}
             {...rest}
           />
         </InputContent>
