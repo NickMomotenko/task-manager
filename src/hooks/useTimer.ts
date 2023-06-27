@@ -1,30 +1,44 @@
 import { useEffect, useState } from "react";
 
-type TimerProps = {
-  initialValue?: number;
-};
-
-export const useTimer = ({ initialValue }: TimerProps) => {
-  const [seconds, setSeconds] = useState<number>(initialValue ?? 10);
+export const useTimer = () => {
+  const [seconds, setSeconds] = useState<number>(0);
   const [started, setStarted] = useState(false);
+
+  let intervalId: any;
 
   useEffect(() => {
     if (started) {
       if (seconds !== 0) {
-        const intervalId = setInterval(() => {
-          setSeconds((prev) => prev - 1);
-        }, 1000);
+        doTimer();
 
         return () => clearInterval(intervalId);
       } else {
         setStarted(false);
       }
     }
-  }, [seconds , started]);
+  }, [seconds, started]);
 
-  function startTimer() {
+  function startTimer(seconds: number): Promise<void | boolean> {
+    setSeconds(seconds);
     setStarted(true);
+
+    return new Promise<void | boolean>((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, seconds * 1000);
+    });
   }
 
-  return { seconds, startTimer , started };
+  function doTimer() {
+    intervalId = setInterval(() => {
+      setSeconds((prev) => prev - 1);
+    }, 1000);
+  }
+
+  function stopTimer() {
+    setSeconds(0);
+    clearInterval(intervalId);
+  }
+
+  return { seconds, startTimer, stopTimer, started };
 };

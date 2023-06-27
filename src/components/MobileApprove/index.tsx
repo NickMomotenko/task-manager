@@ -10,6 +10,7 @@ import { useTimer } from "../../hooks/useTimer";
 
 import { Input } from "../Input";
 import { Button } from "../Button";
+import { Form } from "../Form";
 
 import { LoaderContext } from "../../context/LoaderContext";
 
@@ -21,11 +22,8 @@ import {
   MobileApproveTimerText,
   MobileApproveMessage,
 } from "./styled";
-import { validateInputs } from "../../pages/AuthPage/helper";
-import { useDispatch } from "react-redux";
-import { SET_LOGIN } from "../../redux/auth/types";
+
 import { routes } from "../../helpers/routes";
-import { Form } from "../Form";
 
 const schema = yup
   .object({
@@ -36,13 +34,11 @@ const schema = yup
   })
   .required();
 
-export type Test = "first" | "second" | "third" | "fourth";
-
 export const MobileApprove = () => {
   const [index, setIndex] = useState(0);
   const [sending, setSending] = useState(false);
 
-  const { register, handleSubmit, getValues } = useForm({
+  const { register, handleSubmit } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -58,20 +54,29 @@ export const MobileApprove = () => {
 
   const inputRefs = [firstRef, secondRef, thirdRef, fourthRef];
 
-  const dispatch = useDispatch();
-
-  const { startTimer, seconds, started } = useTimer({ initialValue: 5 });
-
+  const { startTimer, seconds, stopTimer } = useTimer();
   const loader = useContext(LoaderContext);
-
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setSending(true);
+    startTimer(30).then(() => {
+      setSending(false);
+    });
+  }, []);
 
   const onSubmit = handleSubmit(() => {
     const isValid =
       inputRefs.filter((input) => !input.current.value).length === 0;
 
     if (isValid) {
-      navigate(routes.base);
+      stopTimer();
+
+      loader.handleToggleOpen(true);
+
+      setTimeout(() => {
+        navigate(routes.base);
+      }, 1000);
     }
   });
 
@@ -98,6 +103,13 @@ export const MobileApprove = () => {
         setIndex((prev) => prev + 1);
       }
     }
+  };
+
+  const handleTryAgain = () => {
+    setSending(true);
+    startTimer(30).then(() => {
+      setSending(false);
+    });
   };
 
   return (
@@ -155,13 +167,14 @@ export const MobileApprove = () => {
           <Button type="submit">Validate</Button>
         </MobileApproveSubmit>
       </Form>
-      {sending && (
-        <MobileApproveTimer>
-          <MobileApproveTimerText>
-            <Button view="ghost">Try again</Button> after {seconds}
-          </MobileApproveTimerText>
-        </MobileApproveTimer>
-      )}
+      <MobileApproveTimer>
+        <MobileApproveTimerText>
+          <Button view="ghost" onClick={handleTryAgain} disabled={sending}>
+            Get a new code
+          </Button>{" "}
+          after {seconds}
+        </MobileApproveTimerText>
+      </MobileApproveTimer>
     </MobileApproveWrapp>
   );
 };
